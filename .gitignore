@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+.next/
+.venv/
+__pycache__/
+*.pyc
+
+# Environment & logs
+.env
+*.log
+tunnel.log
+
+# Binaries & tools
+cloudflared.exe
+
+# Build artifacts
+dist/
+build/
+next-env.d.ts
