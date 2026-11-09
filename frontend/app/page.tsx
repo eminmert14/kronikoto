@@ -32,6 +32,121 @@ const TRANS_OPTIONS: [string, string][] = [
   ["otomatik", "Otomatik"],
 ];
 
+// Türkçe karakter normalizasyonu
+function normalizeTr(s: string): string {
+  const map: Record<string, string> = {
+    ç: "c", ğ: "g", ı: "i", ö: "o", ş: "s", ü: "u",
+    Ç: "c", Ğ: "g", İ: "i", I: "i", Ö: "o", Ş: "s", Ü: "u",
+  };
+  return s
+    .split("")
+    .map((ch) => map[ch] ?? ch)
+    .join("")
+    .toLowerCase()
+    .trim();
+}
+
+// Levenshtein mesafesi (yazım hatası tahmini için)
+function levenshtein(a: string, b: string): number {
+  const m = a.length;
+  const n = b.length;
+  const dp: number[][] = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + cost);
+    }
+  }
+  return dp[m][n];
+}
+
+// Bilinen popüler fonetik yazım yanlışları -> Önerilen doğrular
+const PHONETIC_SUGGESTIONS: Record<string, string[]> = {
+  "civik": ["Honda Civic"],
+  "sivik": ["Honda Civic"],
+  "civi": ["Honda Civic"],
+  "sity": ["Honda City"],
+  "siti": ["Honda City"],
+  "ford kuma": ["Ford Puma", "Ford Kuga"],
+  "kuma": ["Ford Puma", "Ford Kuga"],
+  "kuga": ["Ford Puma"],
+  "puna": ["Ford Puma"],
+  "megan": ["Renault Megane"],
+  "pasat": ["Volkswagen Passat"],
+  "korola": ["Toyota Corolla"],
+  "korolla": ["Toyota Corolla"],
+  "corola": ["Toyota Corolla"],
+  "fokus": ["Ford Focus"],
+  "foküs": ["Ford Focus"],
+  "egeya": ["Fiat Egea"],
+  "dastır": ["Dacia Duster"],
+  "tuson": ["Hyundai Tucson"],
+  "tukson": ["Hyundai Tucson"],
+  "kaşkai": ["Renault Kadjar", "Renault Austral"],
+  "qashqai": ["Renault Kadjar", "Renault Austral"],
+  "oktavya": ["Skoda Octavia"],
+  "oktavia": ["Skoda Octavia"],
+  "süperb": ["Skoda Superb"],
+  "superp": ["Skoda Superb"],
+  "pejo": ["Peugeot 3008", "Peugeot 208", "Peugeot 301"],
+  "pöjo": ["Peugeot 3008", "Peugeot 208"],
+  "reno": ["Renault Megane", "Renault Clio"],
+  "vosvogen": ["Volkswagen Passat", "Volkswagen Golf"],
+  "hundai": ["Hyundai i20", "Hyundai Tucson"],
+  "sportaj": ["Kia Sportage"],
+  "kliyo": ["Renault Clio"],
+  "klio": ["Renault Clio"],
+  "talyant": ["Renault Taliant"],
+  "kacar": ["Renault Kadjar"],
+};
+
+const POPULAR_COMPARISONS = [
+  {
+    title: "Fiat Egea vs Renault Megane",
+    subtitle: "Türkiye'nin en çok satan iki C-Sedan modeli karşı karşıya",
+    c1: "Egea Sedan",
+    c2: "Megane 4 Sedan",
+    badge: "En Popüler",
+  },
+  {
+    title: "VW Golf vs Ford Focus",
+    subtitle: "Alman konforu ve yol tutuş efsanesinin düellosu",
+    c1: "Golf 7",
+    c2: "Focus 4",
+    badge: "Sürüş & Konfor",
+  },
+  {
+    title: "Honda Civic vs Toyota Corolla",
+    subtitle: "Japon sorunsuzluğu, atmosferik/turbo motor ve ikinci el kıyaslaması",
+    c1: "Civic FC5",
+    c2: "Corolla E210",
+    badge: "Japon Düellosu",
+  },
+  {
+    title: "Peugeot 3008 vs Hyundai Tucson",
+    subtitle: "C-SUV segmentinin en gözde iki aile aracının kapışması",
+    c1: "3008",
+    c2: "Tucson",
+    badge: "SUV Karşılaştırma",
+  },
+  {
+    title: "VW Passat vs Skoda Superb",
+    subtitle: "D-Segment makam ve geniş aile konforunda zirve yarışı",
+    c1: "Passat B8",
+    c2: "Superb",
+    badge: "D-Segment Zirvesi",
+  },
+  {
+    title: "Renault Clio vs Hyundai i20",
+    subtitle: "Şehir içi pratiklik, yakıt ekonomisi ve kronik sağlamlık",
+    c1: "Clio 5",
+    c2: "i20",
+    badge: "Şehir İçi B-HB",
+  },
+];
+
 export default function Home() {
   const [f, setF] = useState<Record<string, string>>({});
   const [searchQuery, setSearchQuery] = useState("");
@@ -42,11 +157,80 @@ export default function Home() {
   const [kmMaxDisplay, setKmMaxDisplay] = useState("");
 
   const [results, setResults] = useState<SearchResult[] | null>(null);
+  const [allCatalog, setAllCatalog] = useState<SearchResult[]>([]);
   const [error, setError] = useState("");
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
 
-  // Kullanıcı isteği: Sayfa ilk açıldığında araçlar otomatik listelenmez.
-  // "Araçları Listele" butonuna basınca Alfabetik (A-Z) listelenir.
+  // Katalog verisini arka planda çek (Öne Çıkan En Yüksek Puanlı 3 Araç + "Bunu mu demek istediniz?" tahmin motoru için)
+  useEffect(() => {
+    api<SearchResult[]>("/vehicles/search")
+      .then((data) => setAllCatalog(data))
+      .catch(() => {});
+  }, []);
+
+  // Puanı en yüksek 3 araba ("Öne Çıkan / Güvenilir Araçlar")
+  const topFeaturedCars = useMemo(() => {
+    if (!allCatalog.length) return [];
+    return [...allCatalog]
+      .sort((a, b) => (b.comfort_score ?? 0) - (a.comfort_score ?? 0))
+      .slice(0, 3);
+  }, [allCatalog]);
+
+  // "Bunu mu demek istediniz?" akıllı tahmin hesaplayıcı
+  const didYouMeanSuggestions = useMemo(() => {
+    const raw = searchQuery.trim();
+    if (raw.length < 2) return [];
+    const qNorm = normalizeTr(raw);
+
+    // Eğer tam eşleşme varsa öneriye gerek yok
+    const hasExactSubstring = allCatalog.some((c) => {
+      const full = normalizeTr(`${c.brand} ${c.name}`);
+      return full.includes(qNorm);
+    });
+
+    const suggestions = new Set<string>();
+
+    // 1. Özel fonetik sözlük kontrolü ("civik", "sity", "ford kuma" vb.)
+    if (PHONETIC_SUGGESTIONS[qNorm]) {
+      PHONETIC_SUGGESTIONS[qNorm].forEach((s) => suggestions.add(s));
+    }
+    for (const token of qNorm.split(/\s+/)) {
+      if (PHONETIC_SUGGESTIONS[token]) {
+        PHONETIC_SUGGESTIONS[token].forEach((s) => suggestions.add(s));
+      }
+    }
+
+    // 2. Katalogdaki marka ve modeller üzerinde Levenshtein benzerlik taraması
+    if (!hasExactSubstring && allCatalog.length > 0) {
+      const qTokens = qNorm.split(/\s+/);
+      const scored: { label: string; dist: number }[] = [];
+
+      for (const car of allCatalog) {
+        const bNorm = normalizeTr(car.brand);
+        const mNorm = normalizeTr(car.name);
+        const mFirstWord = mNorm.split(/\s+/)[0];
+        const candidates = [mFirstWord, bNorm, `${bNorm} ${mFirstWord}`];
+
+        for (const cand of candidates) {
+          for (const qt of [qNorm, ...qTokens]) {
+            if (qt.length < 3) continue;
+            const d = levenshtein(qt, cand);
+            const maxAllowed = qt.length <= 4 ? 1 : 2;
+            if (d > 0 && d <= maxAllowed) {
+              scored.push({ label: `${car.brand} ${car.name}`, dist: d });
+            }
+          }
+        }
+      }
+
+      scored
+        .sort((a, b) => a.dist - b.dist)
+        .slice(0, 3)
+        .forEach((item) => suggestions.add(item.label));
+    }
+
+    return Array.from(suggestions).slice(0, 3);
+  }, [searchQuery, allCatalog]);
 
   // Aktif filtre sayısı hesabı
   const activeFilterCount = useMemo(() => {
@@ -60,6 +244,9 @@ export default function Home() {
     if (f.transmission_type) count++;
     return count;
   }, [searchQuery, f, yearMin, yearMax]);
+
+  // Son açılan aramanın anahtarı (Aynı filtrelerle tekrar "Araçları Listele"ye basınca kapanması için)
+  const [lastExecutedKey, setLastExecutedKey] = useState<string | null>(null);
 
   // URL query parametre string'i üret
   const filterQueryString = useMemo(() => {
@@ -121,10 +308,12 @@ export default function Home() {
     setKmMaxDisplay("");
     setError("");
     setResults(null);
+    setLastExecutedKey(null);
   };
 
-  async function executeSearch() {
+  async function executeSearch(overrideQuery?: string) {
     setError("");
+    const qToUse = overrideQuery !== undefined ? overrideQuery : searchQuery;
 
     // Üretim yılı kontrolleri
     const yMinNum = yearMin ? parseInt(yearMin, 10) : null;
@@ -149,13 +338,16 @@ export default function Home() {
     }
 
     const queryParams: Record<string, string> = { ...f };
-    if (searchQuery.trim()) queryParams.q = searchQuery.trim();
+    if (qToUse.trim()) queryParams.q = qToUse.trim();
     if (yearMin) queryParams.year_min = yearMin;
     if (yearMax) queryParams.year_max = yearMax;
+
+    const currentKey = JSON.stringify(queryParams);
 
     try {
       const data = await api<SearchResult[]>("/vehicles/search", queryParams);
       setResults(data);
+      setLastExecutedKey(currentKey);
       setIsMobileDrawerOpen(false);
     } catch (err: any) {
       setError(err?.message || "Bir hata oluştu.");
@@ -163,16 +355,47 @@ export default function Home() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Kullanıcı İsteği 1: "Araçları Listele"ye basınca açılsın, bir daha basınca kapansın (Toggle)
+  const handleToggleList = (e: React.FormEvent) => {
     e.preventDefault();
+    const queryParams: Record<string, string> = { ...f };
+    if (searchQuery.trim()) queryParams.q = searchQuery.trim();
+    if (yearMin) queryParams.year_min = yearMin;
+    if (yearMax) queryParams.year_max = yearMax;
+    const currentKey = JSON.stringify(queryParams);
+
+    // Eğer liste zaten açıksa ve filtreler değişmediyse listeyi kapat
+    if (results !== null && lastExecutedKey === currentKey) {
+      setResults(null);
+      setLastExecutedKey(null);
+      return;
+    }
+
     executeSearch();
   };
 
-  // Filtreleme formu (En üstte serbest Marka/Model Arama kutusu)
+  // Önerilen kelimeye ("Bunu mu demek istediniz?") tıklanınca otomatik arama yap
+  const applySuggestion = (suggestedText: string) => {
+    // Eğer "Ford Kuga" gibi katalogda Puma karşılığı olan bir öneriyse veya doğrudan modelse
+    const queryForApi = suggestedText.toLowerCase().includes("kuga") ? "Ford Puma" : suggestedText;
+    setSearchQuery(suggestedText);
+    executeSearch(queryForApi);
+  };
+
+  const isListOpenWithSameFilters = useMemo(() => {
+    if (results === null) return false;
+    const queryParams: Record<string, string> = { ...f };
+    if (searchQuery.trim()) queryParams.q = searchQuery.trim();
+    if (yearMin) queryParams.year_min = yearMin;
+    if (yearMax) queryParams.year_max = yearMax;
+    return lastExecutedKey === JSON.stringify(queryParams);
+  }, [results, lastExecutedKey, f, searchQuery, yearMin, yearMax]);
+
+  // Filtreleme formu (En üstte serbest Marka/Model Arama kutusu + Akıllı Tahmin Önerisi)
   const FilterInputs = (
     <>
       <div style={{ gridColumn: "1 / -1", marginBottom: 4 }}>
-        <label style={{ fontSize: "0.95rem", fontWeight: 700, color: "#0f172a" }}>
+        <label style={{ fontSize: "0.95rem", fontWeight: 700, color: "var(--text)" }}>
           🔍 Marka veya Model Ara
           <input
             type="text"
@@ -183,12 +406,53 @@ export default function Home() {
               width: "100%",
               padding: "11px 14px",
               fontSize: "1rem",
-              border: "2px solid #cbd5e1",
+              border: "2px solid var(--border)",
               borderRadius: "10px",
               marginTop: 4,
             }}
           />
         </label>
+
+        {/* Bunu mu demek istediniz? (Akıllı Tahmin Kutusu) */}
+        {didYouMeanSuggestions.length > 0 && (
+          <div
+            style={{
+              marginTop: 8,
+              padding: "8px 12px",
+              background: "var(--accent-light)",
+              border: "1px solid var(--border)",
+              borderRadius: "8px",
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: 8,
+              fontSize: "0.88rem",
+            }}
+          >
+            <span style={{ color: "var(--muted)", fontWeight: 600 }}>
+              💡 Bunu mu demek istediniz:
+            </span>
+            {didYouMeanSuggestions.map((sug) => (
+              <button
+                key={sug}
+                type="button"
+                onClick={() => applySuggestion(sug)}
+                style={{
+                  background: "var(--accent)",
+                  color: "#ffffff",
+                  border: "none",
+                  borderRadius: "999px",
+                  padding: "4px 12px",
+                  fontSize: "0.82rem",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                }}
+              >
+                {sug} ↗
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       <label>
@@ -268,7 +532,6 @@ export default function Home() {
         </select>
       </label>
 
-      {/* Şanzıman: Sadece Manuel ve Otomatik */}
       <label>
         Şanzıman
         <select
@@ -289,7 +552,7 @@ export default function Home() {
   return (
     <>
       <div style={{ marginBottom: 20 }}>
-        <h1 style={{ fontSize: "1.9rem", marginBottom: 6, color: "#0f172a" }}>
+        <h1 style={{ fontSize: "1.9rem", marginBottom: 6, color: "var(--text)" }}>
           Hangi aracı almalı? Önce kronik arızalarını ve konforunu gör.
         </h1>
         <p className="muted" style={{ margin: 0, fontSize: "0.95rem" }}>
@@ -298,7 +561,7 @@ export default function Home() {
       </div>
 
       {/* Masaüstü Filtre Formu */}
-      <form className="filters card desktop-filters" onSubmit={handleSubmit}>
+      <form className="filters card desktop-filters" onSubmit={handleToggleList}>
         {FilterInputs}
         <div style={{ display: "flex", gap: 8, alignSelf: "end" }}>
           {activeFilterCount > 0 && (
@@ -316,11 +579,20 @@ export default function Home() {
               Temizle
             </button>
           )}
-          <button type="submit" style={{ height: "44px", minWidth: "130px", fontWeight: 700 }}>
-            Araçları Listele
+          <button
+            type="submit"
+            style={{
+              height: "44px",
+              minWidth: "155px",
+              fontWeight: 700,
+              background: isListOpenWithSameFilters ? "#475569" : "var(--accent)",
+            }}
+          >
+            {isListOpenWithSameFilters ? "Listeyi Kapat ▲" : "Araçları Listele ▼"}
           </button>
           <Link
             href="/compare"
+            className="nav-link-compare"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -346,9 +618,8 @@ export default function Home() {
               justifyContent: "center",
               height: "44px",
               padding: "0 14px",
-              background: "#f0fdf4",
-              color: "#166534",
-              border: "1px solid #bbf7d0",
+              background: "var(--accent)",
+              color: "#ffffff",
               borderRadius: "8px",
               fontWeight: 700,
               fontSize: "0.9rem",
@@ -415,9 +686,7 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="bottom-sheet-body">
-              {FilterInputs}
-            </div>
+            <div className="bottom-sheet-body">{FilterInputs}</div>
 
             <div className="bottom-sheet-footer" style={{ flexDirection: "column", gap: 8 }}>
               <div style={{ display: "flex", gap: 10, width: "100%" }}>
@@ -436,7 +705,15 @@ export default function Home() {
                 </button>
                 <button
                   type="button"
-                  onClick={executeSearch}
+                  onClick={() => {
+                    if (isListOpenWithSameFilters) {
+                      setResults(null);
+                      setLastExecutedKey(null);
+                      setIsMobileDrawerOpen(false);
+                    } else {
+                      executeSearch();
+                    }
+                  }}
                   style={{
                     flex: 2,
                     background: "var(--accent)",
@@ -445,7 +722,7 @@ export default function Home() {
                     fontWeight: 800,
                   }}
                 >
-                  Filtreleri Uygula
+                  {isListOpenWithSameFilters ? "Listeyi Kapat" : "Araçları Listele"}
                 </button>
               </div>
               <Link
@@ -486,102 +763,180 @@ export default function Home() {
         </div>
       )}
 
-      {/* Sayfa İlk Açılışı: Araç Listeleme Çağrısı */}
-      {results === null && !error && (
-        <div
-          className="card"
-          style={{
-            textAlign: "center",
-            padding: "3.5rem 1.5rem",
-            background: "#ffffff",
-            borderRadius: "16px",
-            border: "1px dashed #cbd5e1",
-            marginTop: 12,
-            boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
-          }}
-        >
-          <div style={{ fontSize: "2.6rem", marginBottom: 12 }}>🚗🔍</div>
-          <h3 style={{ fontSize: "1.35rem", fontWeight: 800, color: "#0f172a", margin: "0 0 8px 0" }}>
-            Araçları İncelemek İçin Başlayın
-          </h3>
-          <p style={{ color: "#64748b", maxWidth: 540, margin: "0 auto 24px auto", lineHeight: 1.5, fontSize: "0.95rem" }}>
-            Yukarıdaki filtreleri (kasa tipi, bütçe, km, üretim yılı, yakıt, şanzıman) belirleyebilir veya doğrudan alfabetik sırayla tüm araçları listeleyebilirsiniz.
-          </p>
-          <button
-            type="button"
-            className="btn"
-            onClick={executeSearch}
-            style={{
-              padding: "12px 32px",
-              fontSize: "1.05rem",
-              fontWeight: 700,
-              boxShadow: "0 4px 14px rgba(37, 99, 235, 0.25)",
-              cursor: "pointer",
-            }}
-          >
-            📋 Araçları Listele (A-Z)
-          </button>
-        </div>
-      )}
-
       {/* Sonuç Yok Uyarısı */}
       {results !== null && results.length === 0 && (
-        <div className="card muted" style={{ textAlign: "center", padding: "3rem 1rem", background: "#ffffff" }}>
+        <div className="card muted" style={{ textAlign: "center", padding: "2.5rem 1rem", marginBottom: 24 }}>
           <div style={{ fontSize: "2rem", marginBottom: 8 }}>🚗💨</div>
-          <strong style={{ color: "#0f172a" }}>Belirtilen kriterlere uygun araç bulunamadı.</strong>
+          <strong style={{ color: "var(--text)" }}>Belirtilen kriterlere uygun araç bulunamadı.</strong>
           <p className="small" style={{ margin: "6px 0 0" }}>
             Lütfen arama kelimenizi veya filtrelerinizi genişleterek tekrar deneyin.
           </p>
         </div>
       )}
 
-      {/* Araç Kartları Izgarası */}
-      <div className="grid">
-        {results?.map((r) => {
-          const detailUrl = filterQueryString
-            ? `/model/${r.id}?${filterQueryString}`
-            : `/model/${r.id}`;
+      {/* AÇILIR/KAPANIR ARAÇ LİSTESİ (Araçları Listele'ye basıldığında açılır, tekrar basınca kapanır) */}
+      {results !== null && results.length > 0 && (
+        <div style={{ marginBottom: 36 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: 14,
+              flexWrap: "wrap",
+              gap: 10,
+            }}
+          >
+            <strong style={{ fontSize: "1.1rem", color: "var(--text)" }}>
+              📋 Listelenen Araçlar ({results.length} Model)
+            </strong>
+            <button
+              type="button"
+              onClick={() => {
+                setResults(null);
+                setLastExecutedKey(null);
+              }}
+              style={{
+                background: "transparent",
+                color: "var(--muted)",
+                border: "1px solid var(--border)",
+                padding: "6px 14px",
+                fontSize: "0.85rem",
+                fontWeight: 700,
+              }}
+            >
+              ✕ Listeyi Kapat
+            </button>
+          </div>
 
-          return (
+          <div className="grid">
+            {results.map((r) => {
+              const detailUrl = filterQueryString
+                ? `/model/${r.id}?${filterQueryString}`
+                : `/model/${r.id}`;
+
+              return (
+                <Link
+                  key={r.id}
+                  href={detailUrl}
+                  className="card"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    gap: 12,
+                    transition: "transform 0.15s, box-shadow 0.15s",
+                  }}
+                >
+                  <div className="row" style={{ alignItems: "flex-start" }}>
+                    <div>
+                      <strong style={{ fontSize: "1.15rem", display: "block", color: "var(--text)" }}>
+                        {r.brand} {r.name}
+                      </strong>
+                      <div className="muted small" style={{ marginTop: 2 }}>
+                        {BODY_TYPE_LABEL[r.body_type] ?? r.body_type} · {r.year_start}–
+                        {r.year_end ?? "devam"}
+                      </div>
+                    </div>
+
+                    {r.comfort_score !== null && (
+                      <ScoreGauge
+                        score={r.comfort_score}
+                        size="sm"
+                        label=""
+                        showTicks={false}
+                      />
+                    )}
+                  </div>
+
+                  <div className="row" style={{ borderTop: "1px solid var(--border)", paddingTop: 10 }}>
+                    <span className="small muted">
+                      {r.variants_count > 0
+                        ? `${r.variants_count} motor/şanzıman`
+                        : "Motor verisi hazırlanıyor"}
+                    </span>
+                    <span style={{ color: "var(--accent)", fontSize: "0.85rem", fontWeight: 700 }}>
+                      İncele & İlanlar →
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* ANA GİRİŞ EKRANI VİTRİNİ: 1. Öne Çıkan / Güvenilir Araçlar (Ekranı 3'e Bölen En Yüksek Puanlı 3 Araba) */}
+      <section style={{ marginTop: 12, marginBottom: 36 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 14, flexWrap: "wrap", gap: 8 }}>
+          <div>
+            <h2 style={{ fontSize: "1.4rem", fontWeight: 800, margin: 0, color: "var(--text)" }}>
+              🏆 Öne Çıkan / Güvenilir Araçlar
+            </h2>
+            <p className="muted small" style={{ margin: "2px 0 0 0" }}>
+              Konfor, yalıtım ve uzun ömürlülük puanı en yüksek 3 model — motor ve kronik arıza analizi için araca tıklayın.
+            </p>
+          </div>
+        </div>
+
+        <div className="featured-3-grid">
+          {topFeaturedCars.map((car, index) => (
             <Link
-              key={r.id}
-              href={detailUrl}
+              key={car.id}
+              href={`/model/${car.id}`}
               className="card"
               style={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 gap: 12,
+                border: "1px solid var(--border)",
                 transition: "transform 0.15s, box-shadow 0.15s",
-                background: "#ffffff",
               }}
             >
-              <div className="row" style={{ alignItems: "flex-start" }}>
-                <div>
-                  <strong style={{ fontSize: "1.15rem", display: "block", color: "#0f172a" }}>
-                    {r.brand} {r.name}
-                  </strong>
-                  <div className="muted small" style={{ marginTop: 2 }}>
-                    {BODY_TYPE_LABEL[r.body_type] ?? r.body_type} · {r.year_start}–
-                    {r.year_end ?? "devam"}
-                  </div>
-                </div>
+              {/* Üst Sıralama Etiketi (Hepsi aynı kurumsal mavi renkte) */}
+              <div>
+                <span
+                  style={{
+                    display: "inline-block",
+                    background: "var(--accent)",
+                    color: "#ffffff",
+                    fontWeight: 800,
+                    fontSize: "0.75rem",
+                    padding: "3px 10px",
+                    borderRadius: "999px",
+                    marginBottom: 8,
+                  }}
+                >
+                  #{index + 1} En Yüksek Puan
+                </span>
 
-                {/* Düzeltilmiş Hız Göstergesi (Rakam ibrenin altında, çakışma yok) */}
-                {r.comfort_score !== null && (
-                  <ScoreGauge
-                    score={r.comfort_score}
-                    size="sm"
-                    label=""
-                    showTicks={false}
-                  />
-                )}
+                <div className="row" style={{ alignItems: "flex-start" }}>
+                  <div>
+                    <strong style={{ fontSize: "1.18rem", display: "block", color: "var(--text)" }}>
+                      {car.brand} {car.name}
+                    </strong>
+                    <div className="muted small" style={{ marginTop: 2 }}>
+                      {BODY_TYPE_LABEL[car.body_type] ?? car.body_type} · {car.year_start}–
+                      {car.year_end ?? "devam"}
+                    </div>
+                  </div>
+
+                  {car.comfort_score !== null && (
+                    <ScoreGauge
+                      score={car.comfort_score}
+                      size="sm"
+                      label=""
+                      showTicks={false}
+                    />
+                  )}
+                </div>
               </div>
 
-              <div className="row" style={{ borderTop: "1px solid #f1f5f9", paddingTop: 10 }}>
+              <div className="row" style={{ borderTop: "1px solid var(--border)", paddingTop: 10 }}>
                 <span className="small muted">
-                  {r.variants_count > 0
-                    ? `${r.variants_count} motor/şanzıman`
+                  {car.variants_count > 0
+                    ? `${car.variants_count} motor/şanzıman`
                     : "Motor verisi hazırlanıyor"}
                 </span>
                 <span style={{ color: "var(--accent)", fontSize: "0.85rem", fontWeight: 700 }}>
@@ -589,9 +944,80 @@ export default function Home() {
                 </span>
               </div>
             </Link>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ANA GİRİŞ EKRANI VİTRİNİ: 2. Popüler Karşılaştırmalar */}
+      <section style={{ marginBottom: 24 }}>
+        <div style={{ marginBottom: 14 }}>
+          <h2 style={{ fontSize: "1.4rem", fontWeight: 800, margin: 0, color: "var(--text)" }}>
+            ⚔️ Popüler Karşılaştırmalar
+          </h2>
+          <p className="muted small" style={{ margin: "2px 0 0 0" }}>
+            Türkiye pazarında en çok arada kalınan rakipler — tek tıkla yan yana teknik veri, donanım ve konfor kıyaslamasını açın.
+          </p>
+        </div>
+
+        <div className="featured-3-grid">
+          {POPULAR_COMPARISONS.map((item, idx) => (
+            <Link
+              key={idx}
+              href={`/compare?c1=${encodeURIComponent(item.c1)}&c2=${encodeURIComponent(item.c2)}`}
+              className="card"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                gap: 10,
+                border: "1px solid var(--border)",
+                transition: "transform 0.15s ease, border-color 0.15s ease",
+              }}
+            >
+              <div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                  <span
+                    style={{
+                      fontSize: "0.75rem",
+                      fontWeight: 800,
+                      padding: "3px 10px",
+                      borderRadius: "999px",
+                      background: "var(--accent-light)",
+                      color: "var(--accent)",
+                    }}
+                  >
+                    ⚖️ {item.badge}
+                  </span>
+                  <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--muted)" }}>
+                    VS
+                  </span>
+                </div>
+                <strong style={{ fontSize: "1.12rem", display: "block", color: "var(--text)", marginBottom: 4 }}>
+                  {item.title}
+                </strong>
+                <p className="muted small" style={{ margin: 0, lineHeight: 1.4 }}>
+                  {item.subtitle}
+                </p>
+              </div>
+
+              <div
+                style={{
+                  borderTop: "1px solid var(--border)",
+                  paddingTop: 10,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <span className="small muted">Teknik & Kronik Kıyaslama</span>
+                <span style={{ color: "var(--accent)", fontWeight: 800, fontSize: "0.88rem" }}>
+                  Karşılaştırmayı Aç →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
     </>
   );
 }

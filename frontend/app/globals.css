@@ -1,7 +1,8 @@
 :root {
-  --bg: #f8fafc;
+  --bg: #eef2f6;
   --card: #ffffff;
-  --border: #e2e8f0;
+  --card-alt: #f8fafc;
+  --border: #cbd5e1;
   --text: #0f172a;
   --text-secondary: #334155;
   --muted: #64748b;
@@ -16,6 +17,19 @@
   --kritik: #dc2626;
 }
 
+html[data-theme="dark"] {
+  --bg: #0b1120;
+  --card: #131c2e;
+  --card-alt: #1e293b;
+  --border: #1e293b;
+  --text: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-light: #1e293b;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -26,6 +40,7 @@ body {
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.5;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 a {
@@ -38,15 +53,15 @@ a {
   align-items: baseline;
   gap: 14px;
   padding: 16px 32px;
-  background: #ffffff;
+  background: var(--card);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
   font-size: 1.6rem;
   font-weight: 800;
-  color: #0f172a;
+  color: var(--text);
   letter-spacing: -0.5px;
 }
 
@@ -71,15 +86,16 @@ a {
   font-size: 0.85rem;
   padding: 32px 16px;
   border-top: 1px solid var(--border);
-  background: #ffffff;
+  background: var(--card);
 }
 
 .card {
-  background: var(--card);
+  background: var(--card) !important;
+  color: var(--text);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 18px 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .grid {
@@ -88,12 +104,24 @@ a {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
+.featured-3-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .featured-3-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .filters {
   display: grid;
   gap: 14px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   margin-bottom: 24px;
-  background: #ffffff;
+  background: var(--card) !important;
 }
 
 label {
@@ -105,14 +133,54 @@ label {
 }
 
 input, select, textarea, button {
-  background: #ffffff;
+  background: var(--card-alt);
   color: var(--text);
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 9px 12px;
   font: inherit;
   font-size: 0.95rem;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.2s;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] strong {
+  color: var(--text) !important;
+}
+
+html[data-theme="dark"] .nav-link-compare {
+  background: #1e293b !important;
+  color: #60a5fa !important;
+  border-color: #334155 !important;
+}
+
+html[data-theme="dark"] .bottom-sheet-content {
+  background: var(--card) !important;
+}
+
+html[data-theme="dark"] .bottom-sheet-footer {
+  background: var(--bg) !important;
+}
+
+html[data-theme="dark"] table th,
+html[data-theme="dark"] table td {
+  background-color: var(--card) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+html[data-theme="dark"] .tab {
+  background: var(--card-alt);
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .tab.active {
+  background: var(--accent);
+  color: #ffffff;
 }
 
 input:focus, select:focus, textarea:focus {

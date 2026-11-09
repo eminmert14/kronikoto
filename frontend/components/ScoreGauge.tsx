@@ -156,14 +156,14 @@ export default function ScoreGauge({
           {/* İbre */}
           <polygon
             points={`${p1X.toFixed(1)},${p1Y.toFixed(1)} ${tipX.toFixed(1)},${tipY.toFixed(1)} ${p2X.toFixed(1)},${p2Y.toFixed(1)}`}
-            fill="#0f172a"
+            fill="var(--text)"
             style={{
               transition: "all 0.8s cubic-bezier(0.34, 1.3, 0.64, 1)",
             }}
           />
 
           {/* İbre Göbeği (Merkez Pim) */}
-          <circle cx={cx} cy={cy} r={size === "sm" ? 4 : 5.5} fill="#0f172a" />
+          <circle cx={cx} cy={cy} r={size === "sm" ? 4 : 5.5} fill="var(--text)" />
           <circle cx={cx} cy={cy} r={size === "sm" ? 1.8 : 2.5} fill={scoreColor} />
         </svg>
       </div>

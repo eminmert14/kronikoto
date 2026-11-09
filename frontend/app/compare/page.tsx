@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { api } from "@/lib/api";
 import { buildSahibindenUrl, buildArabamUrl } from "@/lib/listingUrl";
 import ScoreGauge from "@/components/ScoreGauge";
@@ -55,7 +56,8 @@ interface CarSelection {
   trimName: string;
 }
 
-export default function ComparePage() {
+function ComparePageContent() {
+  const searchParams = useSearchParams();
   const [tree, setTree] = useState<BrandTreeItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -76,9 +78,9 @@ export default function ComparePage() {
   }, []);
 
   // Seçilen araç verisini hiyerarşik ağaçtan çözümleyen yardımcı
-  const resolveCarData = (sel: CarSelection) => {
+  const resolveCarDataFromTree = (dataTree: BrandTreeItem[], sel: CarSelection) => {
     if (!sel.brandName || !sel.modelId) return null;
-    const brand = tree.find((b) => b.brand_name === sel.brandName);
+    const brand = dataTree.find((b) => b.brand_name === sel.brandName);
     if (!brand) return null;
     const model = brand.models.find((m) => m.id === sel.modelId);
     if (!model) return null;
@@ -100,6 +102,47 @@ export default function ComparePage() {
       arabamUrl,
     };
   };
+
+  // Ana sayfadaki "Popüler Karşılaştırmalar" bağlantısından gelen c1 ve c2 parametrelerini otomatik yükle
+  useEffect(() => {
+    if (!tree.length) return;
+    const q1 = searchParams.get("c1");
+    const q2 = searchParams.get("c2");
+    if (!q1 || !q2) return;
+
+    const findCarByQuery = (queryStr: string): CarSelection | null => {
+      const qLower = queryStr.toLowerCase();
+      for (const b of tree) {
+        for (const m of b.models) {
+          const full = `${b.brand_name} ${m.name}`.toLowerCase();
+          if (full.includes(qLower) || m.name.toLowerCase().includes(qLower)) {
+            return {
+              brandName: b.brand_name,
+              modelId: m.id,
+              variantId: m.variants[0]?.id || "",
+              trimName: m.trim_packages[0]?.name || "",
+            };
+          }
+        }
+      }
+      return null;
+    };
+
+    const sel1 = findCarByQuery(q1);
+    const sel2 = findCarByQuery(q2);
+    if (sel1 && sel2) {
+      setCar1(sel1);
+      setCar2(sel2);
+      const resolved1 = resolveCarDataFromTree(tree, sel1);
+      const resolved2 = resolveCarDataFromTree(tree, sel2);
+      if (resolved1 && resolved2) {
+        setComparedCars([resolved1, resolved2]);
+      }
+    }
+  }, [tree, searchParams]);
+
+  // Seçilen araç verisini hiyerarşik ağaçtan çözümleyen yardımcı
+  const resolveCarData = (sel: CarSelection) => resolveCarDataFromTree(tree, sel);
 
   const handleCompare = () => {
     const list = [resolveCarData(car1), resolveCarData(car2), resolveCarData(car3)].filter(Boolean);
@@ -770,5 +813,13 @@ export default function ComparePage() {
         </>
       )}
     </>
+  );
+}
+
+export default function ComparePage() {
+  return (
+    <Suspense fallback={<p className="muted card" style={{ padding: 20 }}>Karşılaştırma modülü yükleniyor…</p>}>
+      <ComparePageContent />
+    </Suspense>
   );
 }

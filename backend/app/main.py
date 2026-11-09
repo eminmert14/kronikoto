@@ -1,4 +1,5 @@
 import uuid
+import difflib
 from urllib.parse import quote_plus
 from pydantic import BaseModel, Field
 
@@ -19,6 +20,104 @@ def _tr_sort_key(s: str) -> str:
     """Türkçe karakterleri doğru alfabetik sıraya sokan anahtar fonksiyonu."""
     tr_map = str.maketrans("çğıöşüÇĞİÖŞÜ", "cgiosuCGIOSU")
     return s.translate(tr_map).lower()
+
+
+# Yaygın Türkçe fonetik yazım hataları / alternatif isimler sözlüğü
+TYPO_ALIASES: dict[str, list[str]] = {
+    "civik": ["Honda Civic FC5"],
+    "sivik": ["Honda Civic FC5"],
+    "civi": ["Honda Civic FC5"],
+    "sity": ["Honda City"],
+    "siti": ["Honda City"],
+    "kuma": ["Ford Puma", "Ford Kuga"],
+    "kuga": ["Ford Puma"],
+    "puna": ["Ford Puma"],
+    "megan": ["Renault Megane 4 Sedan", "Renault Megane 3"],
+    "megane": ["Renault Megane 4 Sedan", "Renault Megane 3"],
+    "pasat": ["Volkswagen Passat B8", "Volkswagen Passat B7"],
+    "korola": ["Toyota Corolla E210", "Toyota Corolla E180"],
+    "korolla": ["Toyota Corolla E210", "Toyota Corolla E180"],
+    "corola": ["Toyota Corolla E210", "Toyota Corolla E180"],
+    "fokus": ["Ford Focus 4", "Ford Focus 3"],
+    "foküs": ["Ford Focus 4", "Ford Focus 3"],
+    "egeya": ["Fiat Egea Sedan", "Fiat Egea Cross"],
+    "ega": ["Fiat Egea Sedan", "Fiat Egea Cross"],
+    "dastır": ["Dacia Duster"],
+    "duster": ["Dacia Duster"],
+    "tuson": ["Hyundai Tucson"],
+    "tukson": ["Hyundai Tucson"],
+    "kaşkai": ["Renault Kadjar", "Renault Austral"],
+    "qashqai": ["Renault Kadjar", "Renault Austral"],
+    "oktavya": ["Skoda Octavia"],
+    "oktavia": ["Skoda Octavia"],
+    "süperb": ["Skoda Superb"],
+    "superp": ["Skoda Superb"],
+    "pejo": ["Peugeot 3008", "Peugeot 208", "Peugeot 301"],
+    "pöjo": ["Peugeot 3008", "Peugeot 208", "Peugeot 301"],
+    "reno": ["Renault Megane 4 Sedan", "Renault Clio 5", "Renault Captur", "Renault Kadjar", "Renault Austral", "Renault Taliant"],
+    "vosvogen": ["Volkswagen Passat B8", "Volkswagen Golf 7", "Volkswagen Polo", "Volkswagen Tiguan", "Volkswagen T-Roc", "Volkswagen Caddy"],
+    "vw": ["Volkswagen Passat B8", "Volkswagen Golf 7", "Volkswagen Polo", "Volkswagen Tiguan", "Volkswagen T-Roc", "Volkswagen Caddy"],
+    "hundai": ["Hyundai i20", "Hyundai i30", "Hyundai Elantra", "Hyundai Tucson", "Hyundai Bayon"],
+    "hyndai": ["Hyundai i20", "Hyundai i30", "Hyundai Elantra", "Hyundai Tucson", "Hyundai Bayon"],
+    "sportaj": ["Kia Sportage"],
+    "siid": ["Kia Ceed"],
+    "sid": ["Kia Ceed"],
+    "kliyo": ["Renault Clio 5", "Renault Clio 4"],
+    "klio": ["Renault Clio 5", "Renault Clio 4"],
+    "talyant": ["Renault Taliant"],
+    "kacar": ["Renault Kadjar"],
+}
+
+
+def _fuzzy_match_model(search_term: str, brand_name: str, model_name: str) -> bool:
+    """Kullanıcının yazdığı metinle marka/model arasında hem alt dize hem de bulanık (fuzzy) eşleşme yapar."""
+    q_norm = _tr_sort_key(search_term.strip())
+    b_norm = _tr_sort_key(brand_name)
+    m_norm = _tr_sort_key(model_name)
+    full_norm = f"{b_norm} {m_norm}"
+
+    # 1. Doğrudan alt dize eşleşmesi
+    if q_norm in full_norm or q_norm in b_norm or q_norm in m_norm:
+        return True
+
+    # 2. Bilinen yazım hatası / fonetik sözlük kontrolü
+    q_tokens = q_norm.split()
+    for tok in [q_norm] + q_tokens:
+        if tok in TYPO_ALIASES:
+            for target in TYPO_ALIASES[tok]:
+                t_norm = _tr_sort_key(target)
+                if t_norm in full_norm or full_norm in t_norm:
+                    return True
+
+    # 3. Kelime bazlı benzerlik (Levenshtein / SequenceMatcher) kontrolü
+    model_tokens = full_norm.split()
+    matched_tokens = 0
+    for qt in q_tokens:
+        if len(qt) < 3:
+            if qt in full_norm:
+                matched_tokens += 1
+            continue
+        best_ratio = max(
+            (difflib.SequenceMatcher(None, qt, mt).ratio() for mt in model_tokens),
+            default=0.0,
+        )
+        # C/K, S/C, Y/I gibi Türkçe okunuş dönüşümüyle ekstra kontrol
+        qt_phonetic = qt.replace("k", "c").replace("s", "c").replace("y", "i").replace("v", "w")
+        best_phonetic = max(
+            (
+                difflib.SequenceMatcher(
+                    None,
+                    qt_phonetic,
+                    mt.replace("k", "c").replace("s", "c").replace("y", "i").replace("v", "w"),
+                ).ratio()
+                for mt in model_tokens
+            ),
+            default=0.0,
+        )
+        if max(best_ratio, best_phonetic) >= 0.72:
+            matched_tokens += 1
+
+    return len(q_tokens) > 0 and matched_tokens == len(q_tokens)
 
 app = FastAPI(title="KronikOto API", version="0.1.0")
 app.add_middleware(
@@ -241,10 +340,9 @@ def search(
         if mo.brand.name.lower() in excl_b or mo.name.lower() in excl_m:
             continue
 
-        # Marka veya model serbest metin araması
+        # Marka veya model serbest metin + akıllı tahmin (fuzzy) araması
         if search_term:
-            full_title = f"{mo.brand.name} {mo.name}".lower()
-            if search_term not in full_title and search_term not in mo.brand.name.lower() and search_term not in mo.name.lower():
+            if not _fuzzy_match_model(search_term, mo.brand.name, mo.name):
                 continue
 
         vs = [v for v in mo.variants if v.is_active]
