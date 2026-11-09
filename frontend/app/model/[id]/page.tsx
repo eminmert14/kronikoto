@@ -100,7 +100,7 @@ function ModelDetailContent() {
 
       <div className="row" style={{ marginTop: 14, alignItems: "center" }}>
         <div>
-          <h1 style={{ margin: "4px 0", fontSize: "2rem", color: "#0f172a" }}>
+          <h1 style={{ margin: "4px 0", fontSize: "2rem", color: "var(--text)" }}>
             {model.brand} {model.name}
           </h1>
           <p className="muted" style={{ margin: 0, fontSize: "0.95rem" }}>
@@ -123,9 +123,9 @@ function ModelDetailContent() {
       </div>
 
       {/* MODEL RESMİ TEK FOTOĞRAF KARTI */}
-      <div className="card" style={{ marginTop: 20, background: "#ffffff", border: "1px solid #e2e8f0", overflow: "hidden", padding: 0 }}>
+      <div className="card" style={{ marginTop: 20, border: "1px solid var(--border)", overflow: "hidden", padding: 0 }}>
         <div style={{ display: "grid", gridTemplateColumns: "minmax(280px, 380px) 1fr", gap: 0, alignItems: "stretch" }}>
-          <div style={{ background: "#ffffff", borderRight: "1px solid #e2e8f0", position: "relative", minHeight: 220, display: "flex", alignItems: "center", justifyContent: "center", padding: 12 }}>
+          <div style={{ background: "#ffffff", borderRight: "1px solid var(--border)", position: "relative", minHeight: 220, display: "flex", alignItems: "center", justifyContent: "center", padding: 12 }}>
             {carPhoto.photoUrl ? (
               <img
                 src={carPhoto.photoUrl}
@@ -157,14 +157,14 @@ function ModelDetailContent() {
           <div style={{ padding: "20px 24px", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 14 }}>
             <div>
               <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 6 }}>
-                <span className="badge" style={{ background: "#eff6ff", color: "#1d4ed8" }}>
+                <span className="badge" style={{ background: "var(--accent-light)", color: "var(--accent)" }}>
                   {BODY_TYPE_LABEL[model.body_type] ?? model.body_type}
                 </span>
-                <span className="badge" style={{ background: "#f1f5f9", color: "#475569" }}>
+                <span className="badge" style={{ background: "var(--card-alt)", color: "var(--text-secondary)", border: "1px solid var(--border)" }}>
                   {model.year_start}–{model.year_end ?? "devam"}
                 </span>
               </div>
-              <h3 style={{ fontSize: "1.4rem", margin: 0, color: "#0f172a" }}>
+              <h3 style={{ fontSize: "1.4rem", margin: 0, color: "var(--text)" }}>
                 {model.brand} {model.name}
               </h3>
               <p className="small muted" style={{ margin: "6px 0 0", lineHeight: 1.5 }}>
@@ -261,8 +261,8 @@ function ModelDetailContent() {
             })}
           </div>
 
-          {/* Model yılına göre değişiklikler uyarısı (küçük siyah) */}
-          <p style={{ fontSize: "0.8rem", color: "#000000", marginTop: 14, fontWeight: 500 }}>
+          {/* Model yılına göre değişiklikler uyarısı */}
+          <p style={{ fontSize: "0.8rem", color: "var(--muted)", marginTop: 14, fontWeight: 500 }}>
             * Modelin yılına göre değişiklikler olabilir.
           </p>
         </div>
@@ -287,11 +287,11 @@ function ModelDetailContent() {
               className="card row"
               style={{
                 transition: "transform 0.15s, box-shadow 0.15s",
-                border: "1px solid #e2e8f0",
+                border: "1px solid var(--border)",
               }}
             >
               <div>
-                <strong style={{ fontSize: "1.05rem", color: "#0f172a" }}>{v.engine}</strong> + {v.transmission}
+                <strong style={{ fontSize: "1.05rem", color: "var(--text)" }}>{v.engine}</strong> + {v.transmission}
                 <div className="muted small" style={{ marginTop: 4 }}>
                   {FUEL_TYPE_LABEL[v.fuel_type] ?? v.fuel_type} · {v.year_start}–
                   {v.year_end ?? "devam"}
@@ -307,8 +307,8 @@ function ModelDetailContent() {
       </div>
 
       {/* GÜNCEL PİYASA İLANLARI (EN ALTA TAŞINDI) */}
-      <div className="card" style={{ marginTop: 36, background: "#ffffff", border: "2px solid #e2e8f0" }}>
-        <div style={{ fontWeight: 800, marginBottom: 6, fontSize: "1.15rem", color: "#0f172a" }}>
+      <div className="card" style={{ marginTop: 36, border: "2px solid var(--border)" }}>
+        <div style={{ fontWeight: 800, marginBottom: 6, fontSize: "1.15rem", color: "var(--text)" }}>
           🚗 Güncel Canlı İlanlar: {model.brand} {model.name} İlanlarını Nerede İncelemek İstersiniz?
         </div>
         <p className="muted small" style={{ marginBottom: 12 }}>

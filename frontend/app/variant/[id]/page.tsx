@@ -144,11 +144,11 @@ function VariantContent() {
       {/* Başlık ve Hız Göstergesi */}
       <div className="row" style={{ marginTop: 14, alignItems: "center" }}>
         <div>
-          <h1 style={{ margin: "4px 0", fontSize: "2rem", color: "#0f172a" }}>
+          <h1 style={{ margin: "4px 0", fontSize: "2rem", color: "var(--text)" }}>
             {v.brand} {v.model} – {v.engine}
           </h1>
           <div className="muted small" style={{ fontSize: "0.95rem" }}>
-            Şanzıman: <strong style={{ color: "#0f172a" }}>{v.transmission}</strong> · Üretim: {v.year_start}–{v.year_end ?? "devam"}
+            Şanzıman: <strong style={{ color: "var(--text)" }}>{v.transmission}</strong> · Üretim: {v.year_start}–{v.year_end ?? "devam"}
             {v.used_price_tl ? ` · Tahmini Piyasa: ~${tl(v.used_price_tl)}` : ""}
           </div>
         </div>
@@ -174,49 +174,49 @@ function VariantContent() {
           {/* Model Karakteristik Analizi (Performans, Yakıt, Yol Tutuşu, İç Hacim, Kalite, Yalıtım) */}
           {media?.characteristics && (
             <div className="card">
-              <h3 style={{ margin: "0 0 14px 0", fontSize: "1.1rem", borderBottom: "1px solid #e2e8f0", paddingBottom: 8 }}>
+              <h3 style={{ margin: "0 0 14px 0", fontSize: "1.1rem", borderBottom: "1px solid var(--border)", paddingBottom: 8 }}>
                 📊 Araç Karakteristik Analizi
               </h3>
               
               <div style={{ display: "grid", gap: 10, fontSize: "0.85rem" }}>
                 <div>
-                  <strong style={{ color: "#334155" }}>⚡ Motor Performansı:</strong>
-                  <div style={{ color: "#0f172a", marginTop: 2, fontWeight: 500 }}>
+                  <strong style={{ color: "var(--text-secondary)" }}>⚡ Motor Performansı:</strong>
+                  <div style={{ color: "var(--text)", marginTop: 2, fontWeight: 500 }}>
                     {media.characteristics.motor_performansi}
                   </div>
                 </div>
 
                 <div>
-                  <strong style={{ color: "#334155" }}>⛽ Yakıt Tüketimi:</strong>
-                  <div style={{ color: "#0f172a", marginTop: 2, fontWeight: 500 }}>
+                  <strong style={{ color: "var(--text-secondary)" }}>⛽ Yakıt Tüketimi:</strong>
+                  <div style={{ color: "var(--text)", marginTop: 2, fontWeight: 500 }}>
                     {media.characteristics.yakit_tuketimi}
                   </div>
                 </div>
 
                 <div>
-                  <strong style={{ color: "#334155" }}>🎯 Yol Tutuşu & Şasi:</strong>
-                  <div style={{ color: "#0f172a", marginTop: 2, fontWeight: 500 }}>
+                  <strong style={{ color: "var(--text-secondary)" }}>🎯 Yol Tutuşu & Şasi:</strong>
+                  <div style={{ color: "var(--text)", marginTop: 2, fontWeight: 500 }}>
                     {media.characteristics.yol_tutusu}
                   </div>
                 </div>
 
                 <div>
-                  <strong style={{ color: "#334155" }}>🛋️ İç Hacim & Yaşam Alanı:</strong>
-                  <div style={{ color: "#0f172a", marginTop: 2, fontWeight: 500 }}>
+                  <strong style={{ color: "var(--text-secondary)" }}>🛋️ İç Hacim & Yaşam Alanı:</strong>
+                  <div style={{ color: "var(--text)", marginTop: 2, fontWeight: 500 }}>
                     {media.characteristics.ic_hacim}
                   </div>
                 </div>
 
                 <div>
-                  <strong style={{ color: "#334155" }}>✨ İç Malzeme Kalitesi:</strong>
-                  <div style={{ color: "#0f172a", marginTop: 2, fontWeight: 500 }}>
+                  <strong style={{ color: "var(--text-secondary)" }}>✨ İç Malzeme Kalitesi:</strong>
+                  <div style={{ color: "var(--text)", marginTop: 2, fontWeight: 500 }}>
                     {media.characteristics.malzeme_kalitesi}
                   </div>
                 </div>
 
                 <div>
-                  <strong style={{ color: "#334155" }}>🔇 Kabin & Yol Yalıtımı:</strong>
-                  <div style={{ color: "#0f172a", marginTop: 2, fontWeight: 500 }}>
+                  <strong style={{ color: "var(--text-secondary)" }}>🔇 Kabin & Yol Yalıtımı:</strong>
+                  <div style={{ color: "var(--text)", marginTop: 2, fontWeight: 500 }}>
                     {media.characteristics.yalitim}
                   </div>
                 </div>
@@ -229,7 +229,7 @@ function VariantContent() {
             <h3 style={{ margin: "0 0 10px 0", fontSize: "1.05rem", color: "#16a34a" }}>
               👍 Modelin Güçlü Yönleri (Artıları)
             </h3>
-            <ul className="small" style={{ margin: 0, paddingLeft: 18, color: "#334155", display: "grid", gap: 6 }}>
+            <ul className="small" style={{ margin: 0, paddingLeft: 18, color: "var(--text-secondary)", display: "grid", gap: 6 }}>
               {media?.advantages?.map((adv, idx) => (
                 <li key={idx}>{adv}</li>
               ))}
@@ -238,7 +238,7 @@ function VariantContent() {
             <h3 style={{ margin: "16px 0 10px 0", fontSize: "1.05rem", color: "#ea580c" }}>
               👎 Dikkat Edilmesi Gerekenler (Eksileri)
             </h3>
-            <ul className="small" style={{ margin: 0, paddingLeft: 18, color: "#334155", display: "grid", gap: 6 }}>
+            <ul className="small" style={{ margin: 0, paddingLeft: 18, color: "var(--text-secondary)", display: "grid", gap: 6 }}>
               {media?.disadvantages?.map((dis, idx) => (
                 <li key={idx}>{dis}</li>
               ))}
@@ -321,21 +321,21 @@ function VariantContent() {
                       </span>
                     </div>
 
-                    <p style={{ margin: "8px 0", color: "#334155" }}>{f.description}</p>
+                    <p style={{ margin: "8px 0", color: "var(--text-secondary)" }}>{f.description}</p>
 
                     <div className="muted small">
                       Oluşum Aralığı: <strong>{km(f.occurrence_km[0])}–{km(f.occurrence_km[1])} km</strong> · Ortalama Masraf:{" "}
-                      <strong style={{ color: "#0f172a" }}>{tl(f.avg_repair_cost_tl)}</strong>
+                      <strong style={{ color: "var(--text)" }}>{tl(f.avg_repair_cost_tl)}</strong>
                       {f.max_repair_cost_tl ? ` (maks. ${tl(f.max_repair_cost_tl)})` : ""}
                       {f.report_count ? ` · ~${f.report_count} kullanıcı bildirimi` : ""}
                     </div>
 
                     {f.checklist.length > 0 && (
-                      <div style={{ marginTop: 10, background: "#f8fafc", border: "1px solid #e2e8f0", padding: 10, borderRadius: 8 }}>
+                      <div style={{ marginTop: 10, background: "var(--card-alt)", border: "1px solid var(--border)", padding: 10, borderRadius: 8 }}>
                         <div className="small">
                           <strong>🔍 Ekspertizde & Satın Alırken Özellikle Bakılacaklar:</strong>
                         </div>
-                        <ul className="small" style={{ color: "#334155" }}>
+                        <ul className="small" style={{ color: "var(--text-secondary)" }}>
                           {f.checklist.map((c, i) => (
                             <li key={i}>{c}</li>
                           ))}
@@ -420,8 +420,8 @@ function VariantContent() {
                 })}
               </div>
 
-              {/* Kullanıcı isteği: modelin yılına göre değişiklikler uyarısı (küçük siyah) */}
-              <p style={{ fontSize: "0.8rem", color: "#000000", marginTop: 14, fontWeight: 500 }}>
+              {/* Kullanıcı isteği: modelin yılına göre değişiklikler uyarısı */}
+              <p style={{ fontSize: "0.8rem", color: "var(--muted)", marginTop: 14, fontWeight: 500 }}>
                 * Modelin yılına göre değişiklikler olabilir.
               </p>
             </div>
@@ -509,7 +509,7 @@ function VariantContent() {
                         </span>
                       </div>
                     </div>
-                    <p style={{ margin: "8px 0 0", color: "#334155", lineHeight: 1.5 }}>{c.body}</p>
+                    <p style={{ margin: "8px 0 0", color: "var(--text-secondary)", lineHeight: 1.5 }}>{c.body}</p>
                     <div className="muted small" style={{ marginTop: 6, fontSize: "0.75rem" }}>
                       Tarih: {c.created_at}
                     </div>

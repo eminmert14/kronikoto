@@ -149,7 +149,7 @@ function EkspertizContent() {
         <Link href="/" className="muted small" style={{ fontWeight: 600 }}>
           ← Ana Sayfaya Dön
         </Link>
-        <h1 style={{ fontSize: "2rem", margin: "6px 0 2px 0", color: "#0f172a", fontWeight: 800 }}>
+        <h1 style={{ fontSize: "2rem", margin: "6px 0 2px 0", color: "var(--text)", fontWeight: 800 }}>
           🛡️ İlan Analiz & Ekspertiz Danışmanı
         </h1>
         <p className="muted small" style={{ margin: 0 }}>
@@ -158,8 +158,8 @@ function EkspertizContent() {
       </div>
 
       {/* GİRİŞ FORMU */}
-      <div className="card" style={{ background: "#ffffff", border: "2px solid #e2e8f0", marginBottom: 24 }}>
-        <h3 style={{ margin: "0 0 14px 0", fontSize: "1.15rem", color: "#0f172a" }}>
+      <div className="card" style={{ border: "2px solid var(--border)", marginBottom: 24 }}>
+        <h3 style={{ margin: "0 0 14px 0", fontSize: "1.15rem", color: "var(--text)" }}>
           🚗 İncelemek İstediğiniz Aracın Bilgileri
         </h3>
 
@@ -298,8 +298,7 @@ function EkspertizContent() {
           <div
             className="card"
             style={{
-              background: "#ffffff",
-              border: "2px solid #3b82f6",
+              border: "2px solid var(--accent)",
               borderRadius: 14,
               padding: "20px 24px",
             }}
@@ -309,21 +308,21 @@ function EkspertizContent() {
                 <span className="small muted" style={{ fontWeight: 700, textTransform: "uppercase" }}>
                   Ekspertiz Satın Alma Karnesi
                 </span>
-                <h2 style={{ fontSize: "1.6rem", margin: "4px 0", color: "#0f172a" }}>
+                <h2 style={{ fontSize: "1.6rem", margin: "4px 0", color: "var(--text)" }}>
                   {expertProfile.title} ({year})
                 </h2>
-                <div style={{ color: "#475569", fontSize: "0.95rem" }}>
+                <div style={{ color: "var(--text-secondary)", fontSize: "0.95rem" }}>
                   {Number(kmNum).toLocaleString("tr-TR")} KM · {transmission.toUpperCase()} · {fuelType.toUpperCase()}
                   {priceDisplay && ` · ${priceDisplay} TL İlan Fiyatı`}
                 </div>
               </div>
 
               <div style={{ textAlign: "right" }}>
-                <div style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700 }}>
+                <div style={{ fontSize: "0.85rem", color: "var(--muted)", fontWeight: 700 }}>
                   Satın Alma Güven Skoru
                 </div>
                 <div style={{ fontSize: "2.4rem", fontWeight: 900, color: score >= 80 ? "#16a34a" : score >= 65 ? "#d97706" : "#dc2626", lineHeight: 1.1 }}>
-                  {score}<span style={{ fontSize: "1.2rem", color: "#64748b" }}>/100</span>
+                  {score}<span style={{ fontSize: "1.2rem", color: "var(--muted)" }}>/100</span>
                 </div>
                 <span
                   style={{
@@ -343,14 +342,14 @@ function EkspertizContent() {
             </div>
 
             {/* Modelin Kritik Motor & Şanzıman Özeti */}
-            <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid #f1f5f9", display: "grid", gap: 6, fontSize: "0.9rem" }}>
+            <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid var(--border)", display: "grid", gap: 6, fontSize: "0.9rem" }}>
               <div>
-                <strong style={{ color: "#0f172a" }}>🔧 Motor Değerlendirmesi: </strong>
-                <span style={{ color: "#475569" }}>{expertProfile.engineKeyCheck}</span>
+                <strong style={{ color: "var(--text)" }}>🔧 Motor Değerlendirmesi: </strong>
+                <span style={{ color: "var(--text-secondary)" }}>{expertProfile.engineKeyCheck}</span>
               </div>
               <div>
-                <strong style={{ color: "#0f172a" }}>⚙️ Şanzıman Değerlendirmesi: </strong>
-                <span style={{ color: "#475569" }}>{expertProfile.gearboxKeyCheck}</span>
+                <strong style={{ color: "var(--text)" }}>⚙️ Şanzıman Değerlendirmesi: </strong>
+                <span style={{ color: "var(--text-secondary)" }}>{expertProfile.gearboxKeyCheck}</span>
               </div>
             </div>
           </div>
@@ -359,8 +358,7 @@ function EkspertizContent() {
           <div
             className="card"
             style={{
-              background: kmStatus.bg,
-              border: `1px solid ${kmStatus.color}40`,
+              border: `1px solid ${kmStatus.color}`,
               borderLeft: `6px solid ${kmStatus.color}`,
             }}
           >
@@ -369,16 +367,16 @@ function EkspertizContent() {
                 ⚠️ Kilometre Analizi: {kmStatus.title}
               </strong>
             </div>
-            <p style={{ margin: 0, color: "#1e293b", fontSize: "0.95rem", lineHeight: 1.5 }}>
+            <p style={{ margin: 0, color: "var(--text)", fontSize: "0.95rem", lineHeight: 1.5 }}>
               {kmStatus.text}
             </p>
           </div>
 
           {/* 3. İNTERAKTİF VE ŞİKAYETVAR ODAKLI EKSPERTİZ KONTROL LİSTESİ */}
-          <div className="card" style={{ background: "#ffffff", border: "1px solid #e2e8f0" }}>
+          <div className="card" style={{ border: "1px solid var(--border)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
               <div>
-                <h3 style={{ margin: 0, fontSize: "1.2rem", color: "#0f172a" }}>
+                <h3 style={{ margin: 0, fontSize: "1.2rem", color: "var(--text)" }}>
                   📝 {expertProfile.title} Modeline Özel Ekspertiz Kontrol Maddeleri
                 </h3>
                 <p className="muted small" style={{ margin: "2px 0 0" }}>
@@ -392,8 +390,9 @@ function EkspertizContent() {
                   fontSize: "0.85rem",
                   padding: "6px 14px",
                   borderRadius: 6,
-                  background: "#f1f5f9",
-                  border: "1px solid #cbd5e1",
+                  background: "var(--card-alt)",
+                  color: "var(--text)",
+                  border: "1px solid var(--border)",
                   cursor: "pointer",
                   fontWeight: 600,
                 }}
@@ -415,8 +414,8 @@ function EkspertizContent() {
                       gap: 12,
                       padding: "14px",
                       borderRadius: 10,
-                      border: isChecked ? "1px solid #86efac" : "1px solid #e2e8f0",
-                      background: isChecked ? "#f0fdf4" : "#ffffff",
+                      border: isChecked ? "1px solid #16a34a" : "1px solid var(--border)",
+                      background: "var(--card-alt)",
                       cursor: "pointer",
                       transition: "all 0.15s",
                     }}
@@ -429,23 +428,23 @@ function EkspertizContent() {
                     />
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                        <strong style={{ color: isChecked ? "#166534" : "#0f172a", textDecoration: isChecked ? "line-through" : "none" }}>
+                        <strong style={{ color: isChecked ? "#22c55e" : "var(--text)", textDecoration: isChecked ? "line-through" : "none" }}>
                           {item.title}
                         </strong>
-                        <span className="small muted" style={{ fontSize: "0.75rem", background: "#f1f5f9", padding: "1px 6px", borderRadius: 4 }}>
+                        <span className="small muted" style={{ fontSize: "0.75rem", background: "var(--card)", border: "1px solid var(--border)", padding: "1px 6px", borderRadius: 4 }}>
                           {item.category}
                         </span>
                         {item.critical && (
-                          <span style={{ fontSize: "0.7rem", color: "#dc2626", fontWeight: 700, background: "#fee2e2", padding: "1px 6px", borderRadius: 4 }}>
+                          <span style={{ fontSize: "0.7rem", color: "#ffffff", fontWeight: 700, background: "#dc2626", padding: "1px 6px", borderRadius: 4 }}>
                             KRİTİK
                           </span>
                         )}
                       </div>
-                      <p style={{ margin: "4px 0 0", fontSize: "0.88rem", color: "#475569", lineHeight: 1.4 }}>
+                      <p style={{ margin: "4px 0 0", fontSize: "0.88rem", color: "var(--text-secondary)", lineHeight: 1.4 }}>
                         {item.desc}
                       </p>
                       {item.sikayetvarIssue && (
-                        <div style={{ marginTop: 6, fontSize: "0.78rem", color: "#ea580c", background: "#fff7ed", padding: "3px 8px", borderRadius: 4, display: "inline-block" }}>
+                        <div style={{ marginTop: 6, fontSize: "0.78rem", color: "#ea580c", background: "#fff7ed", padding: "3px 8px", borderRadius: 4, display: "inline-block", fontWeight: 600 }}>
                           💬 Şikayetvar Bildirimi: &quot;{item.sikayetvarIssue}&quot;
                         </div>
                       )}
@@ -457,11 +456,11 @@ function EkspertizContent() {
           </div>
 
           {/* 4. MODELE ÖZEL PAZARLIK TAVSİYESİ */}
-          <div className="card" style={{ background: "#ffffff", border: "1px solid #e2e8f0" }}>
+          <div className="card" style={{ border: "1px solid var(--border)" }}>
             <h3 style={{ margin: "0 0 10px 0", fontSize: "1.1rem", color: "#16a34a" }}>
               🤝 Modele Özel Ekspertiz Pazarlık Tavsiyesi
             </h3>
-            <p className="small" style={{ color: "#334155", lineHeight: 1.5, margin: "0 0 10px 0" }}>
+            <p className="small" style={{ color: "var(--text-secondary)", lineHeight: 1.5, margin: "0 0 10px 0" }}>
               {expertProfile.negotiationSuggestion.notes}
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 12 }}>

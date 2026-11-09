@@ -186,6 +186,18 @@ html[data-theme="dark"] table td {
   border-color: var(--border) !important;
 }
 
+html[data-theme="dark"] .feature-chip {
+  background: var(--card-alt) !important;
+  border-color: var(--border) !important;
+  color: var(--text-secondary) !important;
+}
+
+html[data-theme="dark"] .badge.cat {
+  background: var(--card-alt) !important;
+  border-color: var(--border) !important;
+  color: var(--text-secondary) !important;
+}
+
 html[data-theme="dark"] .tab {
   background: var(--card-alt);
   color: var(--text-secondary);

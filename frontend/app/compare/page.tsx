@@ -111,16 +111,24 @@ function ComparePageContent() {
     if (!q1 || !q2) return;
 
     const findCarByQuery = (queryStr: string): CarSelection | null => {
-      const qLower = queryStr.toLowerCase();
+      const qLower = queryStr.trim().toLowerCase();
       for (const b of tree) {
         for (const m of b.models) {
           const full = `${b.brand_name} ${m.name}`.toLowerCase();
-          if (full.includes(qLower) || m.name.toLowerCase().includes(qLower)) {
+          const mLower = m.name.toLowerCase();
+          if (full === qLower || mLower === qLower || full.includes(qLower) || mLower.includes(qLower)) {
+            // En düşük güçteki (veya ilk) motoru ve en düşük (giriş) donanım paketini otomatik seç
+            const sortedVariants = [...m.variants].sort((a, b) => (a.power_hp || 0) - (b.power_hp || 0));
+            const lowestVariant = sortedVariants[0] || m.variants[0];
+            const lowestTrim =
+              m.trim_packages.find((t) => t.level === "dusuk") ||
+              m.trim_packages[0];
+
             return {
               brandName: b.brand_name,
               modelId: m.id,
-              variantId: m.variants[0]?.id || "",
-              trimName: m.trim_packages[0]?.name || "",
+              variantId: lowestVariant?.id || "",
+              trimName: lowestTrim?.name || "",
             };
           }
         }
@@ -235,11 +243,14 @@ function ComparePageContent() {
               onChange={(e) => {
                 const mId = e.target.value;
                 const mObj = availableModels.find((m) => m.id === mId);
+                const sortedVars = mObj ? [...mObj.variants].sort((a, b) => (a.power_hp || 0) - (b.power_hp || 0)) : [];
+                const lowestVar = sortedVars[0] || mObj?.variants[0];
+                const lowestTrim = mObj?.trim_packages.find((t) => t.level === "dusuk") || mObj?.trim_packages[0];
                 setCar((prev) => ({
                   ...prev,
                   modelId: mId,
-                  variantId: mObj?.variants[0]?.id || "",
-                  trimName: mObj?.trim_packages[0]?.name || "",
+                  variantId: lowestVar?.id || "",
+                  trimName: lowestTrim?.name || "",
                 }));
               }}
             >
@@ -754,14 +765,8 @@ function ComparePageContent() {
                           {(c.trim?.features || ["Klima", "Bluetooth", "Yokuş Kalkış"]).map((f: string, fi: number) => (
                             <span
                               key={fi}
-                              style={{
-                                background: "#f1f5f9",
-                                color: "#334155",
-                                padding: "2px 8px",
-                                borderRadius: "4px",
-                                fontSize: "0.8rem",
-                                fontWeight: 500,
-                              }}
+                              className="feature-chip"
+                              style={{ margin: 0 }}
                             >
                               ✓ {f}
                             </span>
