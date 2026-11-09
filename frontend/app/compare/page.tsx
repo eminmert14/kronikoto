@@ -468,7 +468,7 @@ function ComparePageContent() {
                       <td key={i} style={{ padding: "14px 20px" }}>
                         {c.comfortScore !== null ? (
                           <div style={{ display: "inline-block" }}>
-                            <ScoreGauge score={c.comfortScore} size="sm" showTicks={false} label="" />
+                            <ScoreGauge score={c.comfortScore} brand={c.brandName} size="sm" showTicks={false} label="" />
                           </div>
                         ) : (
                           "Hesaplanıyor"

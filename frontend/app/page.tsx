@@ -102,103 +102,6 @@ const PHONETIC_SUGGESTIONS: Record<string, string[]> = {
   "kacar": ["Renault Kadjar"],
 };
 
-// Marka Logoları (Temiz SVG İkonlar + Mavi Doluluk Yarım Daire Gösterge için)
-function BrandLogoBadge({ brand }: { brand: string }) {
-  const b = brand.toLowerCase();
-  const logoMap: Record<string, string> = {
-    skoda: "https://cdn.simpleicons.org/skoda/2563eb",
-    volkswagen: "https://cdn.simpleicons.org/volkswagen/2563eb",
-    toyota: "https://cdn.simpleicons.org/toyota/2563eb",
-    honda: "https://cdn.simpleicons.org/honda/2563eb",
-    peugeot: "https://cdn.simpleicons.org/peugeot/2563eb",
-    renault: "https://cdn.simpleicons.org/renault/2563eb",
-    fiat: "https://cdn.simpleicons.org/fiat/2563eb",
-    ford: "https://cdn.simpleicons.org/ford/2563eb",
-    hyundai: "https://cdn.simpleicons.org/hyundai/2563eb",
-    kia: "https://cdn.simpleicons.org/kia/2563eb",
-    opel: "https://cdn.simpleicons.org/opel/2563eb",
-    dacia: "https://cdn.simpleicons.org/dacia/2563eb",
-  };
-  const src = logoMap[b];
-
-  return (
-    <div
-      style={{
-        width: 44,
-        height: 44,
-        borderRadius: "50%",
-        border: "2px solid var(--border)",
-        background: "var(--card-alt)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-      }}
-    >
-      {src ? (
-        <img
-          src={src}
-          alt={brand}
-          style={{ width: 24, height: 24, objectFit: "contain" }}
-          onError={(e) => {
-            (e.target as HTMLElement).style.display = "none";
-          }}
-        />
-      ) : (
-        <span style={{ fontWeight: 800, fontSize: "0.85rem", color: "var(--accent)" }}>
-          {brand.slice(0, 2).toUpperCase()}
-        </span>
-      )}
-    </div>
-  );
-}
-
-// 2. SS'teki gibi Puana Göre Doluluk Oranı Olan Mavi Yarım Daire + Ortada Marka Logosu
-function BlueFillArcWithLogo({ score, brand }: { score: number; brand: string }) {
-  const clamped = Math.max(0, Math.min(10, score));
-  const cx = 100;
-  const cy = 80;
-  const r = 64;
-  const arcLength = Math.PI * r;
-  const fillLength = (clamped / 10) * arcLength;
-
-  return (
-    <div style={{ position: "relative", width: 170, height: 95, margin: "6px auto 2px auto" }}>
-      <svg viewBox="0 0 200 95" width={170} height={95} style={{ display: "block", overflow: "visible" }}>
-        {/* Gri / Koyu Arka Plan Yayı */}
-        <path
-          d={`M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`}
-          fill="none"
-          stroke="var(--border)"
-          strokeWidth={14}
-          strokeLinecap="round"
-        />
-        {/* Puana Göre Dolan Mavi Yay */}
-        <path
-          d={`M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`}
-          fill="none"
-          stroke="var(--accent)"
-          strokeWidth={14}
-          strokeDasharray={`${fillLength} ${arcLength}`}
-          strokeDashoffset={0}
-          strokeLinecap="round"
-        />
-      </svg>
-      {/* Yayın Ortasında Marka Logosu */}
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          bottom: "6px",
-          transform: "translateX(-50%)",
-        }}
-      >
-        <BrandLogoBadge brand={brand} />
-      </div>
-    </div>
-  );
-}
-
 const POPULAR_COMPARISONS = [
   {
     title: "Fiat Egea vs Renault Megane",
@@ -921,38 +824,54 @@ export default function Home() {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
-                    gap: 12,
+                    gap: 10,
+                    border: "1px solid var(--border)",
+                    textAlign: "center",
+                    padding: "20px 20px 16px 20px",
                     transition: "transform 0.15s, box-shadow 0.15s",
                   }}
                 >
-                  <div className="row" style={{ alignItems: "flex-start" }}>
-                    <div>
-                      <strong style={{ fontSize: "1.15rem", display: "block", color: "var(--text)" }}>
-                        {r.brand} {r.name}
-                      </strong>
-                      <div className="muted small" style={{ marginTop: 2 }}>
-                        {BODY_TYPE_LABEL[r.body_type] ?? r.body_type} · {r.year_start}–
-                        {r.year_end ?? "devam"}
-                      </div>
+                  {/* Üst Başlık: Marka Model - Puan + Kasa Tipi · Yıl */}
+                  <div>
+                    <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--text)" }}>
+                      {r.brand} {r.name}{" "}
+                      {r.comfort_score !== null && (
+                        <span style={{ fontWeight: 700, color: "var(--accent)" }}>
+                          - {r.comfort_score.toFixed(1)}/10
+                        </span>
+                      )}
                     </div>
-
-                    {r.comfort_score !== null && (
-                      <ScoreGauge
-                        score={r.comfort_score}
-                        size="sm"
-                        label=""
-                        showTicks={false}
-                      />
-                    )}
+                    <div className="muted small" style={{ marginTop: 4 }}>
+                      {BODY_TYPE_LABEL[r.body_type] ?? r.body_type} · {r.year_start}–
+                      {r.year_end ?? "devam"}
+                    </div>
                   </div>
 
-                  <div className="row" style={{ borderTop: "1px solid var(--border)", paddingTop: 10 }}>
+                  {/* Orta Kısım: Puana Göre Doluluk Oranlı Mavi Yarım Daire + Marka Logosu */}
+                  <div style={{ margin: "4px auto" }}>
+                    <ScoreGauge
+                      score={r.comfort_score ?? 7.5}
+                      brand={r.brand}
+                      size="md"
+                      showScoreText={false}
+                    />
+                  </div>
+
+                  {/* Alt Çizgi: Sol tarafta X motor/şanzıman, Sağ tarafta İncele & İlanlar -> */}
+                  <div
+                    className="row"
+                    style={{
+                      borderTop: "1px solid var(--border)",
+                      paddingTop: 12,
+                      marginTop: 4,
+                    }}
+                  >
                     <span className="small muted">
                       {r.variants_count > 0
                         ? `${r.variants_count} motor/şanzıman`
                         : "Motor verisi hazırlanıyor"}
                     </span>
-                    <span style={{ color: "var(--accent)", fontSize: "0.85rem", fontWeight: 700 }}>
+                    <span style={{ color: "var(--accent)", fontSize: "0.88rem", fontWeight: 800 }}>
                       İncele & İlanlar →
                     </span>
                   </div>
@@ -1010,7 +929,14 @@ export default function Home() {
               </div>
 
               {/* Orta Kısım: Puana Göre Doluluk Oranlı Mavi Yarım Daire + Marka Logosu */}
-              <BlueFillArcWithLogo score={car.comfort_score ?? 8.0} brand={car.brand} />
+              <div style={{ margin: "4px auto" }}>
+                <ScoreGauge
+                  score={car.comfort_score ?? 8.0}
+                  brand={car.brand}
+                  size="md"
+                  showScoreText={false}
+                />
+              </div>
 
               {/* Alt Çizgi: Sol tarafta X motor/şanzıman, Sağ tarafta İncele & İlanlar -> */}
               <div

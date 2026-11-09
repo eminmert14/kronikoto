@@ -321,7 +321,7 @@ function EkspertizContent() {
                 <div style={{ fontSize: "0.85rem", color: "var(--muted)", fontWeight: 700 }}>
                   Satın Alma Güven Skoru
                 </div>
-                <div style={{ fontSize: "2.4rem", fontWeight: 900, color: score >= 80 ? "#16a34a" : score >= 65 ? "#d97706" : "#dc2626", lineHeight: 1.1 }}>
+                <div style={{ fontSize: "2.4rem", fontWeight: 900, color: "var(--accent)", lineHeight: 1.1 }}>
                   {score}<span style={{ fontSize: "1.2rem", color: "var(--muted)" }}>/100</span>
                 </div>
                 <span
@@ -330,13 +330,13 @@ function EkspertizContent() {
                     marginTop: 4,
                     fontSize: "0.8rem",
                     fontWeight: 700,
-                    color: score >= 80 ? "#166534" : "#92400e",
-                    background: score >= 80 ? "#dcfce7" : "#fef3c7",
-                    padding: "2px 8px",
+                    color: "#ffffff",
+                    background: "var(--accent)",
+                    padding: "3px 10px",
                     borderRadius: 6,
                   }}
                 >
-                  {score >= 80 ? "✓ Alınabilir Seviyede" : "⚠️ Titiz Kontrol Şart"}
+                  {score >= 80 ? "✓ Alınabilir Seviyede" : "🛡️ Detaylı Ekspertiz Önerilir"}
                 </span>
               </div>
             </div>

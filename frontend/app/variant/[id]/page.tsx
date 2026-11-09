@@ -153,11 +153,12 @@ function VariantContent() {
           </div>
         </div>
 
-        {/* Kusursuz Düzeltilmiş Hız Göstergesi (0-5 Kırmızı, 5-8 Sarı, 8-10 Yeşil) */}
+        {/* Mavi Doluluk Oranlı & Marka Logolu Konfor Göstergesi */}
         {v.comfort_score !== null && (
-          <div className="card" style={{ padding: "10px 18px" }}>
+          <div className="card" style={{ padding: "12px 20px" }}>
             <ScoreGauge
               score={v.comfort_score}
+              brand={v.brand}
               size="md"
               label="Konfor & Yalıtım Puanı"
               showTicks={true}

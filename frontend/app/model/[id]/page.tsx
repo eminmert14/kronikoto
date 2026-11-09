@@ -109,11 +109,12 @@ function ModelDetailContent() {
           </p>
         </div>
 
-        {/* Renkli Hız Göstergesi */}
+        {/* Mavi Doluluk Oranlı & Marka Logolu Konfor Göstergesi */}
         {model.comfort_score !== null && (
-          <div className="card" style={{ padding: "10px 18px" }}>
+          <div className="card" style={{ padding: "12px 20px" }}>
             <ScoreGauge
               score={model.comfort_score}
+              brand={model.brand}
               size="md"
               label="Model Konfor Puanı"
               showTicks={true}
