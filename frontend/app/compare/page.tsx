@@ -180,9 +180,9 @@ function ComparePageContent() {
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <strong style={{ fontSize: "1.05rem", color: "#0f172a" }}>🚗 {title}</strong>
+          <strong style={{ fontSize: "1.05rem", color: "var(--text)" }}>🚗 {title}</strong>
           {isOptional ? (
-            <span className="small muted" style={{ fontSize: "0.75rem", background: "#f1f5f9", padding: "2px 6px", borderRadius: 4 }}>
+            <span className="small muted" style={{ fontSize: "0.75rem", background: "var(--card-alt)", padding: "2px 6px", borderRadius: 4, border: "1px solid var(--border)" }}>
               Opsiyonel
             </span>
           ) : (
@@ -195,11 +195,11 @@ function ComparePageContent() {
         <div style={{ display: "grid", gap: 12 }}>
           {/* 1. Marka */}
           <div>
-            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569", display: "block", marginBottom: 4 }}>
+            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--text-secondary)", display: "block", marginBottom: 4 }}>
               Marka:
             </label>
             <select
-              style={{ width: "100%", padding: "8px 10px", borderRadius: 8, border: "1px solid #cbd5e1" }}
+              style={{ width: "100%", padding: "8px 10px", borderRadius: 8, border: "1px solid var(--border)" }}
               value={car.brandName}
               onChange={(e) => {
                 const bName = e.target.value;
@@ -217,7 +217,7 @@ function ComparePageContent() {
 
           {/* 2. Model */}
           <div>
-            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569", display: "block", marginBottom: 4 }}>
+            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--text-secondary)", display: "block", marginBottom: 4 }}>
               Model:
             </label>
             <select
@@ -226,8 +226,10 @@ function ComparePageContent() {
                 width: "100%",
                 padding: "8px 10px",
                 borderRadius: 8,
-                border: "1px solid #cbd5e1",
-                background: !car.brandName ? "#f8fafc" : "#ffffff",
+                border: "1px solid var(--border)",
+                background: "var(--card-alt)",
+                color: "var(--text)",
+                opacity: !car.brandName ? 0.55 : 1,
               }}
               value={car.modelId}
               onChange={(e) => {
@@ -252,7 +254,7 @@ function ComparePageContent() {
 
           {/* 3. Motor & Şanzıman */}
           <div>
-            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569", display: "block", marginBottom: 4 }}>
+            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--text-secondary)", display: "block", marginBottom: 4 }}>
               Motor & Şanzıman:
             </label>
             <select
@@ -261,8 +263,10 @@ function ComparePageContent() {
                 width: "100%",
                 padding: "8px 10px",
                 borderRadius: 8,
-                border: "1px solid #cbd5e1",
-                background: !car.modelId ? "#f8fafc" : "#ffffff",
+                border: "1px solid var(--border)",
+                background: "var(--card-alt)",
+                color: "var(--text)",
+                opacity: !car.modelId ? 0.55 : 1,
               }}
               value={car.variantId}
               onChange={(e) => setCar((prev) => ({ ...prev, variantId: e.target.value }))}
@@ -281,7 +285,7 @@ function ComparePageContent() {
 
           {/* 4. Donanım Paketi */}
           <div>
-            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "#475569", display: "block", marginBottom: 4 }}>
+            <label style={{ fontSize: "0.8rem", fontWeight: 700, color: "var(--text-secondary)", display: "block", marginBottom: 4 }}>
               Donanım Paketi (Opsiyonel):
             </label>
             <select
@@ -290,8 +294,10 @@ function ComparePageContent() {
                 width: "100%",
                 padding: "8px 10px",
                 borderRadius: 8,
-                border: "1px solid #cbd5e1",
-                background: !car.modelId ? "#f8fafc" : "#ffffff",
+                border: "1px solid var(--border)",
+                background: "var(--card-alt)",
+                color: "var(--text)",
+                opacity: !car.modelId ? 0.55 : 1,
               }}
               value={car.trimName}
               onChange={(e) => setCar((prev) => ({ ...prev, trimName: e.target.value }))}

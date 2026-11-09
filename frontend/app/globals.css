@@ -18,10 +18,11 @@
 }
 
 html[data-theme="dark"] {
+  color-scheme: dark;
   --bg: #0b1120;
   --card: #131c2e;
   --card-alt: #1e293b;
-  --border: #1e293b;
+  --border: #334155;
   --text: #f8fafc;
   --text-secondary: #cbd5e1;
   --muted: #94a3b8;
@@ -141,6 +142,19 @@ input, select, textarea, button {
   font: inherit;
   font-size: 0.95rem;
   transition: border-color 0.15s, box-shadow 0.15s, background-color 0.2s;
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+html[data-theme="dark"] select option {
+  background-color: #131c2e !important;
+  color: #f8fafc !important;
 }
 
 html[data-theme="dark"] h1,
