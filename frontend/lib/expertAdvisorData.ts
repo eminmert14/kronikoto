@@ -477,6 +477,136 @@ export const EXPERT_MODEL_PROFILES: Record<string, ExpertModelProfile> = {
       notes: "C sütunu göçüğü olan araçlarda değer kaybı pazarlığı yapılmalıdır.",
     },
   },
+
+  // BMW 3 SERİSİ
+  "3 serisi": {
+    title: "BMW 3 Serisi",
+    reliabilityScoreBase: 83,
+    engineKeyCheck: "N13/B48 1.6 Turbo motorlarda motor arkası su flanşı, yağ filtre kütüğü ve genleşme tankı geri dönüş hortumu kaçakları; B47 2.0d motorlarda EGR soğutucu kontrolü.",
+    gearboxKeyCheck: "ZF 8HP 8 ileri tork konvertörlü şanzıman sınıfının en sağlamıdır; 80.000-100.000 km'de filtreli karter ve ZF Lifeguard 8 yağ değişimi yapılmış olmalıdır.",
+    kmThresholds: {
+      lowRiskUpTo: 75000,
+      mediumRiskUpTo: 135000,
+      heavyMaintenanceAt: 100000,
+      chainOrBeltName: "Triger Zinciri & Soğutma Flanş Seti",
+      chainOrBeltInterval: "120.000 – 150.000 km ağır soğutma ve zincir kontrolü",
+    },
+    modelSpecificChecks: [
+      {
+        id: "bmw3-1",
+        category: "Motor Soğutma",
+        title: "Su Flanşı, Yağ Filtre Kütüğü & Yedek Su Deposu Hortumu",
+        desc: "Motorun arka kısmındaki plastik su flanşında ve yağ soğutucu kütüğünde antifriz/yağ terlemesi olup olmadığını lifte kaldırıp inceletin.",
+        critical: true,
+        sikayetvarIssue: "Tahrik arızası uyarısı ve plastik su borularının gevreyip su eksiltmesi.",
+      },
+      {
+        id: "bmw3-2",
+        category: "İç Mekan & Trim",
+        title: "İç Kapı Çekme Kollarında Erime & Sunroof Fitili",
+        desc: "Sağ ön ve arka iç kapı tutamaklarının kauçuk yüzeyinde erime/yapışkanlık ve sunroof fitilinden gelen tıkırtıyı kontrol edin.",
+        critical: false,
+        sikayetvarIssue: "İç kapı kollarının sıcaktan eriyip ele yapışması.",
+      },
+      {
+        id: "bmw3-3",
+        category: "Şanzıman & Diferansiyel",
+        title: "ZF 8 İleri Şanzıman Karter Terlemesi & Şaft Kösele Lastiği",
+        desc: "Alt kontrolde şanzıman plastik karterinde yağ sızıntısı ve şaft bağlantı köselesinde (guibo) çatlak olup olmadığına baktırın.",
+        critical: true,
+        sikayetvarIssue: "D ve R geçişlerinde şaft boşluk sesi ve karter terlemesi.",
+      },
+    ],
+    negotiationSuggestion: {
+      normalRange: "25.000 – 45.000 TL",
+      criticalDefectRange: "60.000 – 110.000 TL",
+      notes: "Soğutma hortumları, su flanşı ve ZF şanzıman yağ bakımı yapılmamışsa ağır bakım bedeli fiyattan düşülmelidir.",
+    },
+  },
+
+  // MERCEDES-BENZ C SERİSİ
+  "c serisi": {
+    title: "Mercedes-Benz C Serisi",
+    reliabilityScoreBase: 85,
+    engineKeyCheck: "M274 1.6 Turbo motorda soğuk marşta eksantrik dişlisi (Vanus) sesi ve termostat arızası; C200d 1.6 dizelde NOx sensörü ve AdBlue ısıtıcı kontrolü.",
+    gearboxKeyCheck: "9G-Tronic / 7G-Tronic tork konvertörlü şanzımanlarda 60.000 km periyodik şanzıman yağı ve karter filtre değişimi sorgulanmalıdır.",
+    kmThresholds: {
+      lowRiskUpTo: 80000,
+      mediumRiskUpTo: 145000,
+      heavyMaintenanceAt: 100000,
+      chainOrBeltName: "Eksantrik Zinciri & Dişli (Vanus) Sistemi",
+      chainOrBeltInterval: "120.000 – 150.000 km (Soğuk marşta ses dinlenmeli)",
+    },
+    modelSpecificChecks: [
+      {
+        id: "mbc-1",
+        category: "Motor Mekanik",
+        title: "Soğuk Marşta Eksantrik Dişlisi (Vanus) Şakırtısı",
+        desc: "Motor tamamen soğukken ilk çalıştırmada 3-5 saniye süren metalik zincir/dişli şakırtısı olup olmadığını mutlaka dinleyin.",
+        critical: true,
+        sikayetvarIssue: "Sabah ilk çalıştırmada eksantrik dişlisinden gelen metalik ses ve hararet termostat arızası.",
+      },
+      {
+        id: "mbc-2",
+        category: "Gövde & Donanım",
+        title: "Panoramik Cam Tavan Kızakları & Perde Mekanizması",
+        desc: "Cam tavanı sonuna kadar açıp kapatın; kızak ayaklarında takılma, kasılma veya tıkırtı olup olmadığını test edin.",
+        critical: true,
+        sikayetvarIssue: "Panoramik cam tavanın kasılarak kapanmaması ve kızak kırılması.",
+      },
+      {
+        id: "mbc-3",
+        category: "Emisyon & Sensör (Dizel)",
+        title: "NOx Sensörü & AdBlue Sistemi (C200d)",
+        desc: "Xentry/OBD cihazı ile NOx sensörü ve AdBlue geri sayım hatası geçmişini taratın.",
+        critical: true,
+        sikayetvarIssue: "Motor arıza lambası ve NOx sensörü / AdBlue arızası.",
+      },
+    ],
+    negotiationSuggestion: {
+      normalRange: "30.000 – 50.000 TL",
+      criticalDefectRange: "65.000 – 120.000 TL",
+      notes: "Eksantrik dişlisi sesi veya cam tavan takılması varsa onarım maliyeti yüksek olduğundan fiyattan düşülmelidir.",
+    },
+  },
+
+  // AUDI A3 SEDAN
+  "a3": {
+    title: "Audi A3 Sedan",
+    reliabilityScoreBase: 85,
+    engineKeyCheck: "35 TFSI (1.5 TSI) ve 1.6 TDI motorlarda elektronik devirdaim su pompası ve termostat gövdesi terlemesi kontrol edilmelidir.",
+    gearboxKeyCheck: "7 ileri S-Tronic çift kavramalı şanzımanda mekatronik basınç tüpü ve 1-2 vites kavrama titremesi test edilmelidir.",
+    kmThresholds: {
+      lowRiskUpTo: 75000,
+      mediumRiskUpTo: 135000,
+      heavyMaintenanceAt: 120000,
+      chainOrBeltName: "Triger Kayışı & Devirdaim Seti",
+      chainOrBeltInterval: "120.000 km veya 5 yıl",
+    },
+    modelSpecificChecks: [
+      {
+        id: "a3-1",
+        category: "Şanzıman (S-Tronic)",
+        title: "S-Tronic Mekatronik Basınç & Kavrama Payı",
+        desc: "Yokuş yukarı kalkışta ve D1-D2 geçişlerinde titreme olup olmadığını test edin; cihazla kavrama kalan ömrünü okutun.",
+        critical: true,
+        sikayetvarIssue: "S-Tronic vites geçişlerinde silkeleme ve mekatronik basınç tüpü arızası.",
+      },
+      {
+        id: "a3-2",
+        category: "Motor Soğutma",
+        title: "Termostat & Devirdaim Pompası Antifriz Kaçağı",
+        desc: "Motor alt muhafazasını sökerek devirdaim pompası çevresinde pembe antifriz kalıntısı olup olmadığına baktırın.",
+        critical: true,
+        sikayetvarIssue: "Soğutma suyu eksiltme uyarısı ve devirdaim pompası sızıntısı.",
+      },
+    ],
+    negotiationSuggestion: {
+      normalRange: "20.000 – 35.000 TL",
+      criticalDefectRange: "45.000 – 85.000 TL",
+      notes: "S-Tronic kavrama titremesi veya devirdaim su kaçağı tespit edilirse revizyon bedeli pazarlıkta düşülmelidir.",
+    },
+  },
 };
 
 /**

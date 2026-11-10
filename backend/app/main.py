@@ -5,16 +5,18 @@ from pydantic import BaseModel, Field
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import select, desc
+from sqlalchemy import select, desc, func
 from sqlalchemy.orm import Session, joinedload
 
 from . import models as m
 from .config import settings
-from .database import engine, get_db
+from .database import engine, get_db, SessionLocal
 from .models import Base, UserComment
 from .scoring import SEVERITY_ORDER, fault_severity
 from .car_media_specs import get_variant_media_specs
 from .car_model_reviews import get_model_sikayetvar_reviews
+from .full_50_data import ALL_MODELS
+from .seed import run as seed_run
 
 def _tr_sort_key(s: str) -> str:
     """Türkçe karakterleri doğru alfabetik sıraya sokan anahtar fonksiyonu."""
@@ -30,42 +32,80 @@ TYPO_ALIASES: dict[str, list[str]] = {
     "sity": ["Honda City"],
     "siti": ["Honda City"],
     "kuma": ["Ford Puma", "Ford Kuga"],
-    "kuga": ["Ford Puma"],
+    "kuga": ["Ford Kuga"],
     "puna": ["Ford Puma"],
     "megan": ["Renault Megane 4 Sedan", "Renault Megane 3"],
     "megane": ["Renault Megane 4 Sedan", "Renault Megane 3"],
+    "fluens": ["Renault Fluence"],
+    "fluan": ["Renault Fluence"],
+    "fiyorino": ["Fiat Fiorino Combi"],
+    "fiorino": ["Fiat Fiorino Combi"],
     "pasat": ["Volkswagen Passat B8", "Volkswagen Passat B7"],
+    "cetta": ["Volkswagen Jetta"],
+    "taygo": ["Volkswagen Taigo"],
     "korola": ["Toyota Corolla E210", "Toyota Corolla E180"],
     "korolla": ["Toyota Corolla E210", "Toyota Corolla E180"],
     "corola": ["Toyota Corolla E210", "Toyota Corolla E180"],
+    "oris": ["Toyota Auris"],
     "fokus": ["Ford Focus 4", "Ford Focus 3"],
     "foküs": ["Ford Focus 4", "Ford Focus 3"],
+    "kurye": ["Ford Tourneo Courier"],
+    "kuriyer": ["Ford Tourneo Courier"],
+    "courier": ["Ford Tourneo Courier"],
     "egeya": ["Fiat Egea Sedan", "Fiat Egea Cross"],
     "ega": ["Fiat Egea Sedan", "Fiat Egea Cross"],
     "dastır": ["Dacia Duster"],
     "duster": ["Dacia Duster"],
     "tuson": ["Hyundai Tucson"],
     "tukson": ["Hyundai Tucson"],
+    "aksent": ["Hyundai Accent Blue"],
+    "accent": ["Hyundai Accent Blue"],
     "kaşkai": ["Renault Kadjar", "Renault Austral"],
     "qashqai": ["Renault Kadjar", "Renault Austral"],
     "oktavya": ["Skoda Octavia"],
     "oktavia": ["Skoda Octavia"],
     "süperb": ["Skoda Superb"],
     "superp": ["Skoda Superb"],
-    "pejo": ["Peugeot 3008", "Peugeot 208", "Peugeot 301"],
-    "pöjo": ["Peugeot 3008", "Peugeot 208", "Peugeot 301"],
-    "reno": ["Renault Megane 4 Sedan", "Renault Clio 5", "Renault Captur", "Renault Kadjar", "Renault Austral", "Renault Taliant"],
-    "vosvogen": ["Volkswagen Passat B8", "Volkswagen Golf 7", "Volkswagen Polo", "Volkswagen Tiguan", "Volkswagen T-Roc", "Volkswagen Caddy"],
-    "vw": ["Volkswagen Passat B8", "Volkswagen Golf 7", "Volkswagen Polo", "Volkswagen Tiguan", "Volkswagen T-Roc", "Volkswagen Caddy"],
-    "hundai": ["Hyundai i20", "Hyundai i30", "Hyundai Elantra", "Hyundai Tucson", "Hyundai Bayon"],
-    "hyndai": ["Hyundai i20", "Hyundai i30", "Hyundai Elantra", "Hyundai Tucson", "Hyundai Bayon"],
+    "kamyk": ["Skoda Kamiq"],
+    "kamik": ["Skoda Kamiq"],
+    "karok": ["Skoda Karoq"],
+    "kodyak": ["Skoda Kodiaq"],
+    "kodiyak": ["Skoda Kodiaq"],
+    "insignya": ["Opel Insignia"],
+    "insignia": ["Opel Insignia"],
+    "pejo": ["Peugeot 3008", "Peugeot 2008", "Peugeot 408", "Peugeot 508", "Peugeot 208", "Peugeot 301"],
+    "pöjo": ["Peugeot 3008", "Peugeot 2008", "Peugeot 408", "Peugeot 508", "Peugeot 208", "Peugeot 301"],
+    "reno": ["Renault Megane 4 Sedan", "Renault Fluence", "Renault Clio 5", "Renault Captur", "Renault Kadjar", "Renault Austral", "Renault Taliant"],
+    "vosvogen": ["Volkswagen Passat B8", "Volkswagen Jetta", "Volkswagen Golf 7", "Volkswagen Polo", "Volkswagen Taigo", "Volkswagen Tiguan", "Volkswagen T-Roc", "Volkswagen Caddy"],
+    "vw": ["Volkswagen Passat B8", "Volkswagen Jetta", "Volkswagen Golf 7", "Volkswagen Polo", "Volkswagen Taigo", "Volkswagen Tiguan", "Volkswagen T-Roc", "Volkswagen Caddy"],
+    "hundai": ["Hyundai i20", "Hyundai i30", "Hyundai Accent Blue", "Hyundai Elantra", "Hyundai Tucson", "Hyundai Kona", "Hyundai Bayon"],
+    "hyndai": ["Hyundai i20", "Hyundai i30", "Hyundai Accent Blue", "Hyundai Elantra", "Hyundai Tucson", "Hyundai Kona", "Hyundai Bayon"],
     "sportaj": ["Kia Sportage"],
-    "siid": ["Kia Ceed"],
-    "sid": ["Kia Ceed"],
+    "siid": ["Kia Ceed", "Kia XCeed"],
+    "sid": ["Kia Ceed", "Kia XCeed"],
+    "iksceed": ["Kia XCeed"],
+    "pikanto": ["Kia Picanto"],
     "kliyo": ["Renault Clio 5", "Renault Clio 4"],
     "klio": ["Renault Clio 5", "Renault Clio 4"],
     "talyant": ["Renault Taliant"],
     "kacar": ["Renault Kadjar"],
+    "mersedes": ["Mercedes-Benz C Serisi", "Mercedes-Benz E Serisi", "Mercedes-Benz A Serisi", "Mercedes-Benz CLA", "Mercedes-Benz GLA"],
+    "mercedes": ["Mercedes-Benz C Serisi", "Mercedes-Benz E Serisi", "Mercedes-Benz A Serisi", "Mercedes-Benz CLA", "Mercedes-Benz GLA"],
+    "merco": ["Mercedes-Benz C Serisi", "Mercedes-Benz E Serisi", "Mercedes-Benz A Serisi", "Mercedes-Benz CLA", "Mercedes-Benz GLA"],
+    "c180": ["Mercedes-Benz C Serisi"],
+    "c200": ["Mercedes-Benz C Serisi"],
+    "e180": ["Mercedes-Benz E Serisi"],
+    "e200": ["Mercedes-Benz E Serisi"],
+    "a180": ["Mercedes-Benz A Serisi"],
+    "bemve": ["BMW 3 Serisi", "BMW 5 Serisi", "BMW 1 Serisi", "BMW X1", "BMW X3"],
+    "bmv": ["BMW 3 Serisi", "BMW 5 Serisi", "BMW 1 Serisi", "BMW X1", "BMW X3"],
+    "320i": ["BMW 3 Serisi"],
+    "320d": ["BMW 3 Serisi"],
+    "520i": ["BMW 5 Serisi"],
+    "520d": ["BMW 5 Serisi"],
+    "118i": ["BMW 1 Serisi"],
+    "116d": ["BMW 1 Serisi"],
+    "avdi": ["Audi A3 Sedan", "Audi A4 Sedan", "Audi A6 Sedan", "Audi Q2", "Audi Q3"],
 }
 
 
@@ -131,6 +171,10 @@ app.add_middleware(
 @app.on_event("startup")
 def _startup():
     Base.metadata.create_all(engine)
+    with SessionLocal() as db:
+        current_count = db.scalar(select(func.count(m.CarModel.id))) or 0
+        if current_count < len(ALL_MODELS):
+            seed_run(reset=True)
 
 
 # ---------- yardımcılar ----------

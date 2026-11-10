@@ -8,9 +8,11 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "linea": "/cars/fiat-linea.jpg",
   "egea": "/cars/fiat-egea.jpg",
   "doblo": "/cars/fiat-doblo.jpg",
+  "fiorino": "/cars/fiat-fiorino.jpg",
 
   // Renault
   "megane": "/cars/renault-megane.jpg",
+  "fluence": "/cars/renault-fluence.jpg",
   "clio": "/cars/renault-clio.jpg",
   "captur": "/cars/renault-captur.jpg",
   "kadjar": "/cars/renault-kadjar.jpg",
@@ -19,8 +21,10 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
 
   // Volkswagen
   "passat": "/cars/vw-passat.jpg",
+  "jetta": "/cars/vw-jetta.jpg",
   "golf": "/cars/vw-golf.jpg",
   "polo": "/cars/vw-polo.jpg",
+  "taigo": "/cars/vw-taigo.jpg",
   "tiguan": "/cars/vw-tiguan.jpg",
   "t-roc": "/cars/vw-t-roc.jpg",
   "caddy": "/cars/vw-caddy.jpg",
@@ -31,6 +35,7 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
 
   // Toyota
   "corolla": "/cars/toyota-corolla.jpg",
+  "auris": "/cars/toyota-auris.jpg",
   "c-hr": "/cars/toyota-c-hr.jpg",
   "yaris": "/cars/toyota-yaris.jpg",
   "rav4": "/cars/toyota-rav4.jpg",
@@ -39,32 +44,44 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "civic": "/cars/honda-civic.jpg",
   "city": "/cars/honda-city.jpg",
   "cr-v": "/cars/honda-cr-v.jpg",
+  "hr-v": "/cars/honda-hr-v.jpg",
   "jazz": "/cars/honda-jazz.jpg",
 
   // Hyundai
   "i20": "/cars/hyundai-i20.jpg",
   "i30": "/cars/hyundai-i30.jpg",
+  "accent": "/cars/hyundai-accent-blue.jpg",
   "elantra": "/cars/hyundai-elantra.jpg",
   "tucson": "/cars/hyundai-tucson.jpg",
+  "kona": "/cars/hyundai-kona.jpg",
   "bayon": "/cars/hyundai-bayon.jpg",
 
-  // Kia
+  // Kia (xceed must precede ceed)
   "sportage": "/cars/kia-sportage.jpg",
+  "xceed": "/cars/kia-xcivic.jpg",
   "ceed": "/cars/kia-ceed.jpg",
   "rio": "/cars/kia-rio.jpg",
+  "picanto": "/cars/kia-picanto.jpg",
   "stonic": "/cars/kia-stonic.jpg",
 
   // Ford
   "focus": "/cars/ford-focus.jpg",
   "fiesta": "/cars/ford-fiesta.jpg",
   "puma": "/cars/ford-puma.jpg",
+  "kuga": "/cars/ford-kuga.jpg",
+  "courier": "/cars/ford-courier.jpg",
 
   // Peugeot
-  "208": "/cars/peugeot-208.jpg",
+  "2008": "/cars/peugeot-2008.jpg",
   "3008": "/cars/peugeot-3008.jpg",
+  "408": "/cars/peugeot-408.jpg",
+  "508": "/cars/peugeot-508.jpg",
+  "208": "/cars/peugeot-208.jpg",
   "301": "/cars/peugeot-301.jpg",
 
   // Opel
+  "insignia": "/cars/opel-insignia.jpg",
+  "grandland": "/cars/opel-grandland.jpg",
   "astra": "/cars/opel-astra.jpg",
   "corsa": "/cars/opel-corsa.jpg",
   "mokka": "/cars/opel-mokka.jpg",
@@ -72,6 +89,30 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   // Skoda
   "octavia": "/cars/skoda-octavia.jpg",
   "superb": "/cars/skoda-superb.jpg",
+  "kamiq": "/cars/skoda-kamiq.jpg",
+  "karoq": "/cars/skoda-karoq.jpg",
+  "kodiaq": "/cars/skoda-kodiaq.jpg",
+
+  // Audi
+  "a3": "/cars/audi-a3.jpg",
+  "a4": "/cars/audi-a4.jpg",
+  "a6": "/cars/audi-a6.jpg",
+  "q2": "/cars/audi-q2.jpg",
+  "q3": "/cars/audi-q3.jpg",
+
+  // BMW
+  "1 serisi": "/cars/bmw-1.jpg",
+  "3 serisi": "/cars/bmw-3.jpg",
+  "5 serisi": "/cars/bmw-5.jpg",
+  "x1": "/cars/bmw-x1.jpg",
+  "x3": "/cars/bmw-x3.jpg",
+
+  // Mercedes-Benz
+  "a serisi": "/cars/mercedes-a.jpg",
+  "c serisi": "/cars/mercedes-c.jpg",
+  "e serisi": "/cars/mercedes-e.jpg",
+  "cla": "/cars/mercedes-cla.jpg",
+  "gla": "/cars/mercedes-gla.jpg",
 };
 
 /**

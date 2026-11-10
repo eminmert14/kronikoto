@@ -71,35 +71,51 @@ const PHONETIC_SUGGESTIONS: Record<string, string[]> = {
   "siti": ["Honda City"],
   "ford kuma": ["Ford Puma", "Ford Kuga"],
   "kuma": ["Ford Puma", "Ford Kuga"],
-  "kuga": ["Ford Puma"],
   "puna": ["Ford Puma"],
   "megan": ["Renault Megane"],
+  "fluens": ["Renault Fluence"],
+  "fiyorino": ["Fiat Fiorino Combi"],
   "pasat": ["Volkswagen Passat"],
+  "cetta": ["Volkswagen Jetta"],
+  "taygo": ["Volkswagen Taigo"],
   "korola": ["Toyota Corolla"],
   "korolla": ["Toyota Corolla"],
   "corola": ["Toyota Corolla"],
+  "oris": ["Toyota Auris"],
   "fokus": ["Ford Focus"],
   "foküs": ["Ford Focus"],
+  "kurye": ["Ford Tourneo Courier"],
   "egeya": ["Fiat Egea"],
   "dastır": ["Dacia Duster"],
   "tuson": ["Hyundai Tucson"],
   "tukson": ["Hyundai Tucson"],
+  "aksent": ["Hyundai Accent Blue"],
   "kaşkai": ["Renault Kadjar", "Renault Austral"],
   "qashqai": ["Renault Kadjar", "Renault Austral"],
   "oktavya": ["Skoda Octavia"],
   "oktavia": ["Skoda Octavia"],
   "süperb": ["Skoda Superb"],
   "superp": ["Skoda Superb"],
-  "pejo": ["Peugeot 3008", "Peugeot 208", "Peugeot 301"],
-  "pöjo": ["Peugeot 3008", "Peugeot 208"],
-  "reno": ["Renault Megane", "Renault Clio"],
-  "vosvogen": ["Volkswagen Passat", "Volkswagen Golf"],
-  "hundai": ["Hyundai i20", "Hyundai Tucson"],
+  "kamyk": ["Skoda Kamiq"],
+  "kamik": ["Skoda Kamiq"],
+  "karok": ["Skoda Karoq"],
+  "kodyak": ["Skoda Kodiaq"],
+  "insignya": ["Opel Insignia"],
+  "pejo": ["Peugeot 3008", "Peugeot 2008", "Peugeot 408", "Peugeot 508", "Peugeot 208"],
+  "pöjo": ["Peugeot 3008", "Peugeot 2008", "Peugeot 408"],
+  "reno": ["Renault Megane", "Renault Clio", "Renault Fluence"],
+  "vosvogen": ["Volkswagen Passat", "Volkswagen Golf", "Volkswagen Tiguan"],
+  "hundai": ["Hyundai i20", "Hyundai Tucson", "Hyundai Accent Blue"],
   "sportaj": ["Kia Sportage"],
   "kliyo": ["Renault Clio"],
   "klio": ["Renault Clio"],
   "talyant": ["Renault Taliant"],
   "kacar": ["Renault Kadjar"],
+  "mersedes": ["Mercedes-Benz C Serisi", "Mercedes-Benz E Serisi", "Mercedes-Benz A Serisi", "Mercedes-Benz CLA"],
+  "merco": ["Mercedes-Benz C Serisi", "Mercedes-Benz E Serisi", "Mercedes-Benz CLA"],
+  "bemve": ["BMW 3 Serisi", "BMW 5 Serisi", "BMW 1 Serisi"],
+  "bmv": ["BMW 3 Serisi", "BMW 5 Serisi", "BMW 1 Serisi"],
+  "avdi": ["Audi A3 Sedan", "Audi A4 Sedan", "Audi A6 Sedan"],
 };
 
 const POPULAR_COMPARISONS = [
@@ -376,10 +392,8 @@ export default function Home() {
 
   // Önerilen kelimeye ("Bunu mu demek istediniz?") tıklanınca otomatik arama yap
   const applySuggestion = (suggestedText: string) => {
-    // Eğer "Ford Kuga" gibi katalogda Puma karşılığı olan bir öneriyse veya doğrudan modelse
-    const queryForApi = suggestedText.toLowerCase().includes("kuga") ? "Ford Puma" : suggestedText;
     setSearchQuery(suggestedText);
-    executeSearch(queryForApi);
+    executeSearch(suggestedText);
   };
 
   const isListOpenWithSameFilters = useMemo(() => {

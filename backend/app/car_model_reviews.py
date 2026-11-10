@@ -459,7 +459,7 @@ MODEL_REVIEWS_CATALOG: Dict[str, List[Dict[str, Any]]] = {
             "created_at": "06.09.2025",
         },
     ],
-    "bmw3": [
+    "3 serisi": [
         {
             "id": "rv-bmw3-1",
             "author_name": "BMW 320i M Sport Sahibi",
@@ -491,7 +491,7 @@ MODEL_REVIEWS_CATALOG: Dict[str, List[Dict[str, Any]]] = {
             "created_at": "27.09.2025",
         },
     ],
-    "cclass": [
+    "c serisi": [
         {
             "id": "rv-cclass-1",
             "author_name": "Mercedes C200d AMG Sahibi",
@@ -521,6 +521,28 @@ MODEL_REVIEWS_CATALOG: Dict[str, List[Dict[str, Any]]] = {
             "recommend": True,
             "body": "EQ Boost hafif hibrit sistemi sayesinde ilk kalkışlar çok canlı. Şehir içinde tüketim 9.8 litre civarında. Multimedya ekranı bazen açılışta geç tepki veriyor.",
             "created_at": "14.10.2025",
+        },
+    ],
+    "a3": [
+        {
+            "id": "rv-a3-1",
+            "author_name": "Audi A3 35 TFSI S Line Sahibi",
+            "ownership_status": "Sahibiyim",
+            "mileage_km": 54000,
+            "rating": 4,
+            "recommend": True,
+            "body": "Malzeme kalitesi, tuşların basma hissi ve 150 beygirlik 35 TFSI motorun ivmelenmesi harika. Ancak S-Tronic şanzıman yoğun dur-kalk trafikte 1'den 2'ye geçerken hafif silkeleme yapabiliyor.",
+            "created_at": "19.01.2026",
+        },
+        {
+            "id": "rv-a3-2",
+            "author_name": "Audi A3 1.6 TDI S-Tronic Sürücüsü",
+            "ownership_status": "Sahibiyim",
+            "mileage_km": 132000,
+            "rating": 3,
+            "recommend": True,
+            "body": "Yakıt tüketimi çok ekonomik, uzun yolda 4.5 litre. Fakat 95 bin km'de mekatronik basınç tüpü gevşemesi nedeniyle şanzıman arızası verdi, güçlendirilmiş tüp ile çözdük.",
+            "created_at": "04.12.2025",
         },
     ],
 }

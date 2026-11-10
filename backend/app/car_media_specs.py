@@ -33,37 +33,38 @@ def get_variant_media_specs(brand: str, model_name: str, fuel_type: str, body_ty
         fuel_eval = "Normal (~6.0 - 7.2 lt / 100km)"
 
     # 4. Yol Tutuşu (Parantezsiz)
-    if "focus" in model_name.lower() or "golf" in model_name.lower():
+    m_low = model_name.lower()
+    if any(k in m_low for k in ["focus", "golf", "3 serisi", "5 serisi", "a4", "a6", "c serisi", "e serisi", "508", "insignia"]):
         handling = "Üst Düzey"
     elif body_type.lower() in ["suv", "kombi"]:
         handling = "Dengeli"
-    elif "egea" in model_name.lower() or "linea" in model_name.lower() or "taliant" in model_name.lower():
+    elif any(k in m_low for k in ["egea", "linea", "taliant", "accent", "fiorino"]):
         handling = "Standart"
     else:
         handling = "İyi & Dengeli"
 
     # 5. İç Hacim (Parantezsiz)
-    if "superb" in model_name.lower() or "passat" in model_name.lower() or "octavia" in model_name.lower():
+    if any(k in m_low for k in ["superb", "passat", "octavia", "a6", "5 serisi", "e serisi", "kodiaq", "insignia"]):
         interior = "Çok Geniş"
     elif body_type.lower() == "sedan":
         interior = "Geniş"
-    elif body_type.lower() in ["suv", "arazi/suv"]:
+    elif body_type.lower() in ["suv", "arazi/suv", "kombi"]:
         interior = "Ferah & Yüksek"
     else:
         interior = "Kompakt"
 
     # 6. İç Malzeme Kalitesi (Parantezsiz)
-    if brand in ["Volkswagen", "Skoda", "Peugeot"]:
+    if brand in ["Audi", "BMW", "Mercedes-Benz", "Volkswagen", "Skoda", "Peugeot"]:
         quality = "Yüksek"
-    elif brand in ["Toyota", "Honda", "Ford"]:
+    elif brand in ["Toyota", "Honda", "Ford", "Opel", "Kia"]:
         quality = "İyi & Dayanıklı"
     else:
         quality = "Orta"
 
     # 7. Kabin & Yol Yalıtımı (Parantezsiz)
-    if "passat" in model_name.lower() or "superb" in model_name.lower() or "austral" in model_name.lower():
+    if any(k in m_low for k in ["passat", "superb", "austral", "a4", "a6", "3 serisi", "5 serisi", "c serisi", "e serisi", "x3", "q3", "kodiaq", "508", "insignia"]):
         insulation = "Çok Başarılı"
-    elif "megane" in model_name.lower() or "corolla" in model_name.lower() or "focus" in model_name.lower():
+    elif any(k in m_low for k in ["megane", "corolla", "focus", "a3", "1 serisi", "a serisi", "cla", "gla", "x1", "q2", "kuga", "408", "karoq", "tiguan"]):
         insulation = "İyi"
     else:
         insulation = "Orta"

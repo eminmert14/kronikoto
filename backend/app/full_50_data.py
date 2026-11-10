@@ -21,13 +21,17 @@ BRANDS = [
     ("Kia", "Güney Kore"),
     ("Opel", "Almanya"),
     ("Dacia", "Romanya"),
+    ("Audi", "Almanya"),
+    ("BMW", "Almanya"),
+    ("Mercedes-Benz", "Almanya"),
 ]
 
 # (marka, model_adi, kasa_tipi, yil_bas, yil_son, konfor_puani, sahibinden_slug, arabam_slug)
 ALL_MODELS = [
-    # Renault (8)
+    # Renault (9)
     ("Renault", "Megane 4 Sedan", "sedan", 2016, None, 7.9, "renault-megane", "renault/megane"),
     ("Renault", "Megane 3", "sedan", 2008, 2016, 6.8, "renault-megane", "renault/megane"),
+    ("Renault", "Fluence", "sedan", 2009, 2016, 6.6, "renault-fluence", "renault/fluence"),
     ("Renault", "Clio 5", "hatchback", 2019, None, 7.3, "renault-clio", "renault/clio"),
     ("Renault", "Clio 4", "hatchback", 2012, 2019, 6.5, "renault-clio", "renault/clio"),
     ("Renault", "Captur", "suv", 2013, None, 7.2, "renault-captur", "renault/captur"),
@@ -35,69 +39,109 @@ ALL_MODELS = [
     ("Renault", "Austral", "suv", 2022, None, 8.5, "renault-austral", "renault/austral"),
     ("Renault", "Taliant", "sedan", 2021, None, 6.2, "renault-taliant", "renault/taliant"),
 
-    # Fiat (4)
+    # Fiat (5)
     ("Fiat", "Egea Sedan", "sedan", 2015, None, 6.7, "fiat-egea", "fiat/egea"),
     ("Fiat", "Egea Cross", "suv", 2020, None, 6.9, "fiat-egea-cross", "fiat/egea-cross"),
     ("Fiat", "Linea", "sedan", 2007, 2018, 5.8, "fiat-linea", "fiat/linea"),
     ("Fiat", "Doblo", "kombi", 2010, None, 6.0, "fiat-doblo", "fiat/doblo"),
+    ("Fiat", "Fiorino Combi", "kombi", 2008, None, 5.7, "fiat-fiorino", "fiat/fiorino"),
 
-    # Volkswagen (7)
+    # Volkswagen (9)
     ("Volkswagen", "Passat B8", "sedan", 2015, 2023, 8.8, "volkswagen-passat", "volkswagen/passat"),
     ("Volkswagen", "Passat B7", "sedan", 2011, 2015, 8.2, "volkswagen-passat", "volkswagen/passat"),
+    ("Volkswagen", "Jetta", "sedan", 2011, 2018, 7.8, "volkswagen-jetta", "volkswagen/jetta"),
     ("Volkswagen", "Golf 7", "hatchback", 2012, 2020, 8.3, "volkswagen-golf", "volkswagen/golf"),
     ("Volkswagen", "Polo", "hatchback", 2017, None, 7.5, "volkswagen-polo", "volkswagen/polo"),
+    ("Volkswagen", "Taigo", "suv", 2021, None, 7.6, "volkswagen-taigo", "volkswagen/taigo"),
     ("Volkswagen", "Tiguan", "suv", 2016, None, 8.5, "volkswagen-tiguan", "volkswagen/tiguan"),
     ("Volkswagen", "T-Roc", "suv", 2017, None, 7.8, "volkswagen-t-roc", "volkswagen/t-roc"),
     ("Volkswagen", "Caddy", "kombi", 2010, None, 6.6, "volkswagen-caddy", "volkswagen/caddy"),
 
-    # Toyota (5)
+    # Toyota (6)
     ("Toyota", "Corolla E210", "sedan", 2019, None, 8.0, "toyota-corolla", "toyota/corolla"),
     ("Toyota", "Corolla E180", "sedan", 2013, 2018, 7.4, "toyota-corolla", "toyota/corolla"),
+    ("Toyota", "Auris", "hatchback", 2013, 2018, 7.4, "toyota-auris", "toyota/auris"),
     ("Toyota", "C-HR", "suv", 2016, None, 7.8, "toyota-c-hr", "toyota/c-hr"),
     ("Toyota", "Yaris", "hatchback", 2020, None, 7.2, "toyota-yaris", "toyota/yaris"),
     ("Toyota", "RAV4", "suv", 2019, None, 8.6, "toyota-rav4", "toyota/rav4"),
 
-    # Honda (4)
+    # Honda (5)
     ("Honda", "Civic FC5", "sedan", 2016, 2021, 8.1, "honda-civic", "honda/civic"),
     ("Honda", "City", "sedan", 2020, None, 6.9, "honda-city", "honda/city"),
     ("Honda", "CR-V", "suv", 2017, None, 8.6, "honda-cr-v", "honda/cr-v"),
+    ("Honda", "HR-V", "suv", 2015, None, 7.8, "honda-hr-v", "honda/hr-v"),
     ("Honda", "Jazz", "hatchback", 2015, None, 7.3, "honda-jazz", "honda/jazz"),
 
-    # Hyundai (5)
+    # Hyundai (7)
     ("Hyundai", "i20", "hatchback", 2014, None, 7.0, "hyundai-i20", "hyundai/i20"),
     ("Hyundai", "i30", "hatchback", 2012, None, 7.6, "hyundai-i30", "hyundai/i30"),
+    ("Hyundai", "Accent Blue", "sedan", 2011, 2018, 6.4, "hyundai-accent-blue", "hyundai/accent-blue"),
     ("Hyundai", "Elantra", "sedan", 2016, None, 7.7, "hyundai-elantra", "hyundai/elantra"),
     ("Hyundai", "Tucson", "suv", 2015, None, 8.2, "hyundai-tucson", "hyundai/tucson"),
+    ("Hyundai", "Kona", "suv", 2018, None, 7.6, "hyundai-kona", "hyundai/kona"),
     ("Hyundai", "Bayon", "suv", 2021, None, 7.1, "hyundai-bayon", "hyundai/bayon"),
 
-    # Kia (4)
+    # Kia (6)
     ("Kia", "Sportage", "suv", 2016, None, 8.2, "kia-sportage", "kia/sportage"),
+    ("Kia", "XCeed", "suv", 2019, None, 7.9, "kia-xceed", "kia/xceed"),
     ("Kia", "Ceed", "hatchback", 2018, None, 7.7, "kia-ceed", "kia/ceed"),
     ("Kia", "Rio", "hatchback", 2017, None, 6.9, "kia-rio", "kia/rio"),
+    ("Kia", "Picanto", "hatchback", 2017, None, 6.5, "kia-picanto", "kia/picanto"),
     ("Kia", "Stonic", "suv", 2017, None, 7.1, "kia-stonic", "kia/stonic"),
 
-    # Ford (4)
+    # Ford (6)
     ("Ford", "Focus 3", "sedan", 2011, 2018, 7.7, "ford-focus", "ford/focus"),
     ("Ford", "Focus 4", "sedan", 2018, 2025, 8.4, "ford-focus", "ford/focus"),
     ("Ford", "Fiesta", "hatchback", 2008, 2023, 7.1, "ford-fiesta", "ford/fiesta"),
     ("Ford", "Puma", "suv", 2019, None, 7.6, "ford-puma", "ford/puma"),
+    ("Ford", "Kuga", "suv", 2013, None, 8.3, "ford-kuga", "ford/kuga"),
+    ("Ford", "Tourneo Courier", "kombi", 2014, None, 6.3, "ford-tourneo-courier", "ford/tourneo-courier"),
 
-    # Peugeot (3)
+    # Peugeot (6)
     ("Peugeot", "208", "hatchback", 2019, None, 7.5, "peugeot-208", "peugeot/208"),
+    ("Peugeot", "2008", "suv", 2019, None, 7.8, "peugeot-2008", "peugeot/2008"),
     ("Peugeot", "3008", "suv", 2016, None, 8.6, "peugeot-3008", "peugeot/3008"),
+    ("Peugeot", "408", "suv", 2022, None, 8.5, "peugeot-408", "peugeot/408"),
+    ("Peugeot", "508", "sedan", 2018, None, 8.6, "peugeot-508", "peugeot/508"),
     ("Peugeot", "301", "sedan", 2013, None, 5.7, "peugeot-301", "peugeot/301"),
 
-    # Opel (3)
+    # Opel (5)
     ("Opel", "Astra K", "sedan", 2015, 2021, 7.8, "opel-astra", "opel/astra"),
+    ("Opel", "Insignia", "sedan", 2017, 2022, 8.6, "opel-insignia", "opel/insignia"),
     ("Opel", "Corsa F", "hatchback", 2019, None, 7.3, "opel-corsa", "opel/corsa"),
     ("Opel", "Mokka", "suv", 2020, None, 7.8, "opel-mokka", "opel/mokka"),
+    ("Opel", "Grandland", "suv", 2017, None, 8.2, "opel-grandland", "opel/grandland"),
 
     # Dacia (1)
     ("Dacia", "Duster", "suv", 2010, None, 6.3, "dacia-duster", "dacia/duster"),
 
-    # Skoda (2)
+    # Skoda (5)
     ("Skoda", "Octavia", "sedan", 2013, None, 8.4, "skoda-octavia", "skoda/octavia"),
     ("Skoda", "Superb", "sedan", 2015, None, 8.9, "skoda-superb", "skoda/superb"),
+    ("Skoda", "Kamiq", "suv", 2019, None, 7.8, "skoda-kamiq", "skoda/kamiq"),
+    ("Skoda", "Karoq", "suv", 2018, None, 8.3, "skoda-karoq", "skoda/karoq"),
+    ("Skoda", "Kodiaq", "suv", 2017, None, 8.7, "skoda-kodiaq", "skoda/kodiaq"),
+
+    # Audi (5)
+    ("Audi", "A3 Sedan", "sedan", 2013, None, 8.6, "audi-a3", "audi/a3"),
+    ("Audi", "A4 Sedan", "sedan", 2015, None, 9.0, "audi-a4", "audi/a4"),
+    ("Audi", "A6 Sedan", "sedan", 2015, None, 9.4, "audi-a6", "audi/a6"),
+    ("Audi", "Q2", "suv", 2016, None, 8.0, "audi-q2", "audi/q2"),
+    ("Audi", "Q3", "suv", 2018, None, 8.6, "audi-q3", "audi/q3"),
+
+    # BMW (5)
+    ("BMW", "1 Serisi", "hatchback", 2012, None, 8.2, "bmw-1-serisi", "bmw/1-serisi"),
+    ("BMW", "3 Serisi", "sedan", 2012, None, 8.9, "bmw-3-serisi", "bmw/3-serisi"),
+    ("BMW", "5 Serisi", "sedan", 2011, None, 9.4, "bmw-5-serisi", "bmw/5-serisi"),
+    ("BMW", "X1", "suv", 2015, None, 8.3, "bmw-x1", "bmw/x1"),
+    ("BMW", "X3", "suv", 2017, None, 9.0, "bmw-x3", "bmw/x3"),
+
+    # Mercedes-Benz (5)
+    ("Mercedes-Benz", "A Serisi", "hatchback", 2013, None, 8.2, "mercedes-benz-a-serisi", "mercedes-benz/a-serisi"),
+    ("Mercedes-Benz", "C Serisi", "sedan", 2014, None, 9.0, "mercedes-benz-c-serisi", "mercedes-benz/c-serisi"),
+    ("Mercedes-Benz", "E Serisi", "sedan", 2013, None, 9.5, "mercedes-benz-e-serisi", "mercedes-benz/e-serisi"),
+    ("Mercedes-Benz", "CLA", "sedan", 2013, None, 8.1, "mercedes-benz-cla", "mercedes-benz/cla"),
+    ("Mercedes-Benz", "GLA", "suv", 2014, None, 8.3, "mercedes-benz-gla", "mercedes-benz/gla"),
 ]
 
 # (kod, etiket, yakıt, cc, hp, nm, teknoloji)
@@ -173,6 +217,29 @@ ENGINES = {
     "psa_16_hdi": ("DV6DTED", "1.6 HDi 92 HP", "dizel", 1560, 92, 230, "8V Güvenilir Düşük Basınç Dizel"),
     "opel_16_cdti": ("B16DTH", "1.6 CDTI 136 HP (Fısıltı Dizel)", "dizel", 1598, 136, 320, "Motor Arkası Zincirli Dizel"),
     "opel_14_turbo": ("B14XFT", "1.4 Turbo Ecotec 150 HP", "benzin", 1399, 150, 245, "Direkt Enjeksiyon Turbo"),
+    "psa_16_pure180": ("EP6FADTXD", "1.6 PureTech 180 HP", "benzin", 1598, 180, 250, "Twin-Scroll Turbo Direkt Enjeksiyon"),
+    "ford_15_ecob": ("Dragon", "1.5 EcoBoost 182 HP", "benzin", 1497, 182, 240, "Turbo Direkt Enjeksiyon"),
+
+    # Audi
+    "audi_35_tfsi": ("EA211 evo", "35 TFSI 1.5 150 HP", "benzin", 1498, 150, 250, "Silindir Kapama (CoD) Turbo"),
+    "audi_30_tfsi": ("EA211", "30 TFSI 1.0 110 HP", "benzin", 999, 110, 200, "Turbo Direkt Enjeksiyon"),
+    "audi_40_tdi": ("EA288 evo", "40 TDI 2.0 204 HP Quattro", "dizel", 1968, 204, 400, "Mild-Hybrid Common-Rail Quattro"),
+    "audi_45_tfsi": ("EA888 Gen3", "45 TFSI 2.0 245 HP Quattro", "benzin", 1984, 245, 370, "TFSI Quattro Direkt Enjeksiyon"),
+
+    # BMW
+    "bmw_15_b38": ("B38B15", "118i / X1 sDrive18i 1.5 Turbo 140 HP", "benzin", 1499, 140, 220, "TwinPower Turbo 3 Silindir"),
+    "bmw_15_b37d": ("B37C15", "116d 1.5 Dizel 116 HP", "dizel", 1496, 116, 270, "TwinPower Turbo Dizel"),
+    "bmw_16_n13": ("N13B16", "320i ED / 116i 1.6 Turbo 170 HP", "benzin", 1598, 170, 250, "TwinScroll Turbo Valvetronic"),
+    "bmw_16_b48": ("B48B16", "320i / 520i 1.6 Turbo 170 HP", "benzin", 1597, 170, 250, "Yeni Nesil B48 TwinPower Turbo"),
+    "bmw_20_b47d": ("B47D20", "20d 2.0 Dizel 190 HP xDrive", "dizel", 1995, 190, 400, "TwinPower Turbo Dizel"),
+
+    # Mercedes-Benz
+    "mb_13_m282": ("M282", "A180 / A200 / CLA200 / GLA200 1.33 Turbo 163 HP", "benzin", 1332, 163, 250, "Silindir Kapamalı Turbo"),
+    "mb_15_om608": ("OM608", "180d 1.5 Dizel 116 HP", "dizel", 1461, 116, 260, "Common-Rail Turbo Dizel"),
+    "mb_16_m274": ("M274 DE16", "C180 / E180 1.6 Turbo 156 HP", "benzin", 1595, 156, 250, "BlueDIRECT Turbo Enjeksiyon"),
+    "mb_15_m264": ("M264 E15", "C200 / E200 1.5 EQ Boost 184 HP", "hibrit", 1497, 184, 280, "48V EQ Boost Mild-Hybrid"),
+    "mb_16_om626": ("OM626 / OM654", "C200d 1.6 Dizel 136-160 HP", "dizel", 1598, 160, 360, "Turbo Dizel Common-Rail"),
+    "mb_20_om654": ("OM654", "E220d 2.0 Dizel 194 HP", "dizel", 1950, 194, 400, "Nanoslide Alüminyum Blok Dizel"),
 }
 
 TRANSMISSIONS = {
@@ -185,6 +252,12 @@ TRANSMISSIONS = {
     "dsg7_kuru": ("dct", "DSG 7 İleri Kuru Kavrama (DQ200)", 7, "Volkswagen"),
     "dsg6_islak": ("dct", "DSG 6 İleri Islak Kavrama (DQ250)", 6, "Volkswagen"),
     "dsg7_islak": ("dct", "DSG 7 İleri Islak Kavrama (DQ381)", 7, "Volkswagen"),
+    "stronic7": ("dct", "S-Tronic 7 İleri Çift Kavrama", 7, "Audi / VAG"),
+    "zf8": ("otomatik", "ZF 8HP 8 İleri Tork Konvertörlü Steptronic", 8, "ZF Friedrichshafen"),
+    "bmw_7dct": ("dct", "7 İleri Steptronic Çift Kavrama (Getrag 7DCT300)", 7, "Getrag / Magna"),
+    "9gtronic": ("otomatik", "9G-Tronic 9 İleri Tork Konvertörlü Otomatik", 9, "Mercedes-Benz"),
+    "7gtronic": ("otomatik", "7G-Tronic Plus 7 İleri Tork Konvertörlü", 7, "Mercedes-Benz"),
+    "7gdct": ("dct", "7G-DCT 7 İleri Çift Kavrama", 7, "Mercedes-Benz / Getrag"),
     "toy_ecvt": ("cvt", "e-CVT Elektronik Planet Dişli", None, "Toyota"),
     "toy_mds": ("cvt", "Multidrive S Kademeli CVT", None, "Aisin"),
     "toy_mmt": ("amt", "MultiMode Robotize Tek Kavrama", 5, "Toyota"),
@@ -432,6 +505,157 @@ ALL_VARIANTS = [
     ("Skoda", "Superb", "vag_16_tdi", "dsg7_kuru", 2015, 2020, 1_350_000),
     ("Skoda", "Superb", "vag_15_tsi", "dsg7_kuru", 2018, None, 1_680_000),
     ("Skoda", "Superb", "vag_20_tdi", "dsg7_islak", 2015, None, 1_980_000),
+
+    # --- YENİ EKLENEN 35 MODELİN VARYANTLARI ---
+    # Renault Fluence
+    ("Renault", "Fluence", "ren_k9k_110", "edc6", 2011, 2016, 610_000),
+    ("Renault", "Fluence", "ren_k9k_110", "man6", 2009, 2016, 540_000),
+    ("Renault", "Fluence", "ren_16_sce", "man5", 2009, 2015, 480_000),
+
+    # Fiat Fiorino Combi
+    ("Fiat", "Fiorino Combi", "fiat_13_mjet", "man5", 2008, None, 540_000),
+    ("Fiat", "Fiorino Combi", "fiat_14_fire", "man5", 2014, None, 490_000),
+
+    # Volkswagen Jetta
+    ("Volkswagen", "Jetta", "vag_16_tdi_cayc", "dsg7_kuru", 2011, 2015, 790_000),
+    ("Volkswagen", "Jetta", "vag_12_tsi", "dsg7_kuru", 2012, 2017, 770_000),
+    ("Volkswagen", "Jetta", "vag_14_tsi", "dsg7_kuru", 2014, 2018, 920_000),
+
+    # Volkswagen Taigo
+    ("Volkswagen", "Taigo", "vag_10_tsi", "dsg7_kuru", 2021, None, 1_240_000),
+    ("Volkswagen", "Taigo", "vag_15_tsi", "dsg7_kuru", 2021, None, 1_450_000),
+
+    # Toyota Auris
+    ("Toyota", "Auris", "toy_16_valv", "toy_mds", 2013, 2018, 840_000),
+    ("Toyota", "Auris", "toy_14_d4d", "man6", 2013, 2018, 720_000),
+    ("Toyota", "Auris", "toy_18_hyb", "toy_ecvt", 2013, 2018, 910_000),
+
+    # Honda HR-V
+    ("Honda", "HR-V", "hon_15_vtec", "hon_cvt", 2015, 2021, 1_120_000),
+    ("Honda", "HR-V", "hon_15_turbo", "hon_cvt", 2019, 2021, 1_350_000),
+
+    # Hyundai Accent Blue
+    ("Hyundai", "Accent Blue", "hk_16_crdi", "hk_7dct", 2015, 2018, 690_000),
+    ("Hyundai", "Accent Blue", "hk_16_crdi", "man6", 2011, 2018, 610_000),
+    ("Hyundai", "Accent Blue", "hk_14_mpi", "hk_6at", 2011, 2018, 590_000),
+
+    # Hyundai Kona
+    ("Hyundai", "Kona", "hk_10_tgdi", "hk_7dct", 2018, None, 1_050_000),
+    ("Hyundai", "Kona", "hk_16_tgdi", "hk_7dct", 2018, None, 1_190_000),
+    ("Hyundai", "Kona", "hk_16_crdi", "hk_7dct", 2018, 2022, 1_080_000),
+
+    # Kia XCeed
+    ("Kia", "XCeed", "hk_16_crdi", "hk_7dct", 2019, 2022, 1_180_000),
+    ("Kia", "XCeed", "vag_15_tsi", "hk_7dct", 2021, None, 1_340_000),
+
+    # Kia Picanto
+    ("Kia", "Picanto", "hk_12_mpi", "hk_6at", 2017, None, 720_000),
+
+    # Ford Kuga
+    ("Ford", "Kuga", "ford_15_tdci", "powershift", 2015, 2019, 1_060_000),
+    ("Ford", "Kuga", "ford_15_ecoblue", "ford_8at", 2020, None, 1_580_000),
+    ("Ford", "Kuga", "ford_15_ecob", "selectshift", 2015, None, 1_380_000),
+
+    # Ford Tourneo Courier
+    ("Ford", "Tourneo Courier", "ford_15_tdci", "man6", 2014, None, 620_000),
+    ("Ford", "Tourneo Courier", "ford_16_tdci", "man5", 2014, 2018, 560_000),
+    ("Ford", "Tourneo Courier", "ford_10_ecob", "ford_8at", 2023, None, 980_000),
+
+    # Peugeot 2008
+    ("Peugeot", "2008", "psa_12_pure130", "eat8", 2020, None, 1_240_000),
+    ("Peugeot", "2008", "psa_15_hdi", "eat8", 2020, None, 1_290_000),
+
+    # Peugeot 408
+    ("Peugeot", "408", "psa_12_pure130", "eat8", 2022, None, 1_680_000),
+
+    # Peugeot 508
+    ("Peugeot", "508", "psa_15_hdi", "eat8", 2019, None, 1_580_000),
+    ("Peugeot", "508", "psa_16_pure180", "eat8", 2019, None, 1_650_000),
+
+    # Opel Insignia
+    ("Opel", "Insignia", "opel_16_cdti", "opel_6at", 2017, 2022, 1_250_000),
+    ("Opel", "Insignia", "psa_15_hdi", "eat8", 2020, 2022, 1_520_000),
+
+    # Opel Grandland
+    ("Opel", "Grandland", "psa_15_hdi", "eat8", 2018, None, 1_390_000),
+    ("Opel", "Grandland", "psa_12_pure130", "eat8", 2018, None, 1_320_000),
+
+    # Skoda Kamiq
+    ("Skoda", "Kamiq", "vag_10_tsi", "dsg7_kuru", 2019, None, 1_190_000),
+    ("Skoda", "Kamiq", "vag_15_tsi", "dsg7_kuru", 2019, None, 1_320_000),
+
+    # Skoda Karoq
+    ("Skoda", "Karoq", "vag_16_tdi", "dsg7_kuru", 2018, 2021, 1_360_000),
+    ("Skoda", "Karoq", "vag_15_tsi", "dsg7_kuru", 2018, None, 1_590_000),
+
+    # Skoda Kodiaq
+    ("Skoda", "Kodiaq", "vag_15_tsi", "dsg7_islak", 2017, None, 1_850_000),
+    ("Skoda", "Kodiaq", "vag_20_tdi_190", "dsg7_islak", 2017, None, 2_350_000),
+
+    # Audi A3 Sedan
+    ("Audi", "A3 Sedan", "vag_16_tdi", "stronic7", 2014, 2020, 1_290_000),
+    ("Audi", "A3 Sedan", "audi_35_tfsi", "stronic7", 2019, None, 1_780_000),
+    ("Audi", "A3 Sedan", "audi_30_tfsi", "stronic7", 2020, None, 1_590_000),
+
+    # Audi A4 Sedan
+    ("Audi", "A4 Sedan", "audi_40_tdi", "stronic7", 2016, None, 2_250_000),
+    ("Audi", "A4 Sedan", "audi_45_tfsi", "stronic7", 2019, None, 2_480_000),
+    ("Audi", "A4 Sedan", "vag_14_tsi", "stronic7", 2016, 2019, 1_650_000),
+
+    # Audi A6 Sedan
+    ("Audi", "A6 Sedan", "audi_40_tdi", "stronic7", 2018, None, 3_350_000),
+    ("Audi", "A6 Sedan", "audi_45_tfsi", "stronic7", 2019, None, 3_550_000),
+
+    # Audi Q2
+    ("Audi", "Q2", "audi_30_tfsi", "stronic7", 2017, None, 1_380_000),
+    ("Audi", "Q2", "audi_35_tfsi", "stronic7", 2019, None, 1_580_000),
+    ("Audi", "Q2", "vag_16_tdi", "stronic7", 2017, 2020, 1_320_000),
+
+    # Audi Q3
+    ("Audi", "Q3", "audi_35_tfsi", "stronic7", 2019, None, 2_180_000),
+
+    # BMW 1 Serisi
+    ("BMW", "1 Serisi", "bmw_15_b38", "bmw_7dct", 2019, None, 1_480_000),
+    ("BMW", "1 Serisi", "bmw_15_b37d", "zf8", 2015, 2019, 1_180_000),
+    ("BMW", "1 Serisi", "bmw_16_n13", "zf8", 2012, 2015, 980_000),
+
+    # BMW 3 Serisi
+    ("BMW", "3 Serisi", "bmw_16_b48", "zf8", 2019, None, 2_450_000),
+    ("BMW", "3 Serisi", "bmw_16_n13", "zf8", 2012, 2016, 1_350_000),
+    ("BMW", "3 Serisi", "bmw_20_b47d", "zf8", 2015, None, 1_950_000),
+
+    # BMW 5 Serisi
+    ("BMW", "5 Serisi", "bmw_16_b48", "zf8", 2017, 2023, 2_950_000),
+    ("BMW", "5 Serisi", "bmw_20_b47d", "zf8", 2017, 2023, 3_250_000),
+
+    # BMW X1
+    ("BMW", "X1", "bmw_15_b38", "bmw_7dct", 2016, None, 1_750_000),
+    ("BMW", "X1", "bmw_20_b47d", "zf8", 2016, 2022, 1_920_000),
+
+    # BMW X3
+    ("BMW", "X3", "bmw_16_b48", "zf8", 2018, None, 2_850_000),
+    ("BMW", "X3", "bmw_20_b47d", "zf8", 2018, None, 3_150_000),
+
+    # Mercedes-Benz A Serisi
+    ("Mercedes-Benz", "A Serisi", "mb_13_m282", "7gdct", 2018, None, 1_650_000),
+    ("Mercedes-Benz", "A Serisi", "mb_15_om608", "7gdct", 2015, 2021, 1_350_000),
+
+    # Mercedes-Benz C Serisi
+    ("Mercedes-Benz", "C Serisi", "mb_16_m274", "9gtronic", 2015, 2021, 1_950_000),
+    ("Mercedes-Benz", "C Serisi", "mb_16_om626", "9gtronic", 2015, 2021, 1_980_000),
+    ("Mercedes-Benz", "C Serisi", "mb_15_m264", "9gtronic", 2019, None, 2_650_000),
+
+    # Mercedes-Benz E Serisi
+    ("Mercedes-Benz", "E Serisi", "mb_16_m274", "9gtronic", 2016, 2021, 2_950_000),
+    ("Mercedes-Benz", "E Serisi", "mb_20_om654", "9gtronic", 2016, None, 3_450_000),
+
+    # Mercedes-Benz CLA
+    ("Mercedes-Benz", "CLA", "mb_13_m282", "7gdct", 2019, None, 1_950_000),
+    ("Mercedes-Benz", "CLA", "mb_15_om608", "7gdct", 2015, 2021, 1_450_000),
+
+    # Mercedes-Benz GLA
+    ("Mercedes-Benz", "GLA", "mb_13_m282", "7gdct", 2020, None, 2_050_000),
+    ("Mercedes-Benz", "GLA", "mb_15_om608", "7gdct", 2015, 2020, 1_420_000),
 ]
 
 # Detaylı Arıza Raporları (Şikayetvar & Usta & TÜVTÜRK Entegrasyonlu)
@@ -845,6 +1069,129 @@ DETAILED_FAULTS = [
         "n": 130,
         "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "tuv:TÜVTÜRK Raporları"],
         "checklist": ["Arka makas burçlarının boşluk kontrolü"],
+    },
+    # --- AUDI, BMW, MERCEDES VE YENİ MODELLERİN KRONİK ARIZALARI ---
+    {
+        "t": "stronic7",
+        "title": "S-Tronic 7 İleri Mekatronik Basınç Tüpü & Kavrama Titremesi",
+        "description": "Audi A3, A4 ve Q2 modellerindeki S-Tronic çift kavramalı şanzımanda dur-kalk trafikte 1-2 vites geçişinde silkeleme ve mekatronik basınç kaybı.",
+        "category": "mekanik",
+        "avg": 38_000,
+        "max": 85_000,
+        "override": "yuksek",
+        "km": (65_000, 130_000),
+        "n": 175,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "youtube:Otorapor", "forum:Audi Forum TR"],
+        "checklist": [
+            "Yokuşta kalkışta ve D1-D2 geçişinde titreme/vuruntu testi",
+            "VCDS/ODIS ile mekatronik basınç ve kavrama tolerans ölçümü",
+        ],
+    },
+    {
+        "t": "7gdct",
+        "title": "7G-DCT Çift Kavrama Silkelemesi & Termostat Uyarısı",
+        "description": "Mercedes A, CLA ve GLA serilerinde kullanılan 7G-DCT şanzımanda soğukken vites geçişlerinde vuruntu ve sıkışık trafikte kavrama ısınması.",
+        "category": "mekanik",
+        "avg": 42_000,
+        "max": 82_000,
+        "override": "yuksek",
+        "km": (70_000, 130_000),
+        "n": 135,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "youtube:Sekizsilindir"],
+        "checklist": [
+            "R ve D konumları arasında geçiş yaparken gecikme ve vuruntu kontrolü",
+            "Şanzıman yağı ve filtresinin 60.000 km'de değişip değişmediği",
+        ],
+    },
+    {
+        "e": "bmw_16_n13",
+        "title": "N13 1.6 Turbo Su Flanşı Çatlaması, Devirdaim & Yağ Eksiltme",
+        "description": "BMW F20 1 Serisi ve F30 320i ED modellerindeki N13 motorda motor arkası plastik su flanşı çatlaması, tahrik kayışı kasnağı soyulması ve valf lastiklerinden yağ eksiltme.",
+        "category": "mekanik",
+        "avg": 35_000,
+        "max": 78_000,
+        "override": "yuksek",
+        "km": (60_000, 120_000),
+        "n": 210,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "youtube:Sekizsilindir", "forum:BMW Team TR"],
+        "checklist": [
+            "Motor arkası su flanşı ve turbo su borularında antifriz terlemesi kontrolü",
+            "Rölantide 5 dakika çalıştıktan sonra gaza basınca egzozdan mavi duman çıkıyor mu?",
+        ],
+    },
+    {
+        "e": "bmw_16_b48",
+        "title": "B48 1.6 Turbo Yağ Filtre Kütüğü & Genleşme Tankı Hortumu Kaçağı",
+        "description": "BMW G20 320i ve G30 520i modellerindeki B48 motorda plastik yağ filtre gövdesi (oil cooler housing) çatlaması ve genleşme kabı geri dönüş hortumu kırılması.",
+        "category": "mekanik",
+        "avg": 28_000,
+        "max": 55_000,
+        "override": "orta",
+        "km": (70_000, 130_000),
+        "n": 145,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "youtube:Otorapor", "forum:BMW Team TR"],
+        "checklist": [
+            "Yağ filtre kütüğü altından motor bloğuna sızan antifriz veya yağ izi kontrolü",
+            "Yedek su deposu üst ince hortumunun gevrekliği",
+        ],
+    },
+    {
+        "e": "bmw_20_b47d",
+        "title": "B47 2.0 Dizel EGR Soğutucu Geri Çağırma & Emme Manifoldu Kurumu",
+        "description": "BMW 320d, 520d, X1 ve X3 modellerinde EGR soğutucusunun su eksiltmesi (geri çağırma kapsamındadır) ve 100 bin km üzeri manifold klape kurum bağlaması.",
+        "category": "mekanik",
+        "avg": 26_000,
+        "max": 52_000,
+        "override": "orta",
+        "km": (80_000, 150_000),
+        "n": 130,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "tuv:TÜV Report"],
+        "checklist": [
+            "Yetkili serviste EGR soğutucu geri çağırma (recall) aksiyonunun yapılıp yapılmadığı",
+            "Soğutma suyu eksiltme kontrolü",
+        ],
+    },
+    {
+        "e": "mb_16_m274",
+        "title": "M274 1.6 Turbo Eksantrik Dişlisi (Vanus) & Termostat Arızası",
+        "description": "Mercedes C180 ve E180 modellerindeki M274 motorda soğuk marşta eksantrik zincir/dişli sesi, elektronik termostatın açık kalması ve karter havalandırma valfi arızası.",
+        "category": "mekanik",
+        "avg": 34_000,
+        "max": 68_000,
+        "override": "yuksek",
+        "km": (75_000, 140_000),
+        "n": 165,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "youtube:Sekizsilindir", "forum:MBClubTR"],
+        "checklist": [
+            "Sabah ilk marşta 3-4 saniye süren metalik zincir/dişli şakırtısı var mı?",
+            "Motor hararetinin 90 dereceye hızlı ulaşıp sabit kalıp kalmadığı",
+        ],
+    },
+    {
+        "m": ("BMW", "3 Serisi"),
+        "title": "İç Kapı Çekme Kollarının Erimesi & Sunroof Fitil Sesi",
+        "description": "F30 kasa 3 Serisi'nde iç kapı kollarındaki kauçuk kaplamanın sıcaktan eriyerek ele yapışması ve G20 kasada sunroof fitilinden gelen çıtırtı sesi.",
+        "category": "konfor",
+        "avg": 6_500,
+        "max": 15_000,
+        "override": "dusuk",
+        "km": (40_000, 110_000),
+        "n": 185,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:BMW Team TR"],
+        "checklist": ["Sağ ön ve arka iç kapı tutamaklarında soyulma/yapışkanlık kontrolü"],
+    },
+    {
+        "m": ("Mercedes-Benz", "C Serisi"),
+        "title": "Panoramik Cam Tavan Kızak Takılması & Orta Konsol Trim Sesi",
+        "description": "W205 C Serisi modellerde panoramik cam tavan ayaklarının kırılması sonucu kapanmama problemi ve sert AMG süspansiyonda orta konsol tıkırtısı.",
+        "category": "konfor",
+        "avg": 14_000,
+        "max": 28_000,
+        "override": "orta",
+        "km": (50_000, 110_000),
+        "n": 155,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:MBClubTR"],
+        "checklist": ["Cam tavanın tam açılıp takılmadan kapanması mutlaka test edilmeli"],
     },
 ]
 
