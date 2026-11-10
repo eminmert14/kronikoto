@@ -24,11 +24,17 @@ BRANDS = [
     ("Audi", "Almanya"),
     ("BMW", "Almanya"),
     ("Mercedes-Benz", "Almanya"),
+    ("Nissan", "Japonya"),
+    ("Seat", "İspanya"),
+    ("Citroen", "Fransa"),
+    ("Volvo", "İsveç"),
+    ("Cupra", "İspanya"),
+    ("Chery", "Çin"),
 ]
 
 # (marka, model_adi, kasa_tipi, yil_bas, yil_son, konfor_puani, sahibinden_slug, arabam_slug)
 ALL_MODELS = [
-    # Renault (9)
+    # Renault (10)
     ("Renault", "Megane 4 Sedan", "sedan", 2016, None, 7.9, "renault-megane", "renault/megane"),
     ("Renault", "Megane 3", "sedan", 2008, 2016, 6.8, "renault-megane", "renault/megane"),
     ("Renault", "Fluence", "sedan", 2009, 2016, 6.6, "renault-fluence", "renault/fluence"),
@@ -38,6 +44,7 @@ ALL_MODELS = [
     ("Renault", "Kadjar", "suv", 2015, None, 7.7, "renault-kadjar", "renault/kadjar"),
     ("Renault", "Austral", "suv", 2022, None, 8.5, "renault-austral", "renault/austral"),
     ("Renault", "Taliant", "sedan", 2021, None, 6.2, "renault-taliant", "renault/taliant"),
+    ("Renault", "Symbol", "sedan", 2013, 2021, 5.6, "renault-symbol", "renault/symbol"),
 
     # Fiat (5)
     ("Fiat", "Egea Sedan", "sedan", 2015, None, 6.7, "fiat-egea", "fiat/egea"),
@@ -97,12 +104,14 @@ ALL_MODELS = [
     ("Ford", "Kuga", "suv", 2013, None, 8.3, "ford-kuga", "ford/kuga"),
     ("Ford", "Tourneo Courier", "kombi", 2014, None, 6.3, "ford-tourneo-courier", "ford/tourneo-courier"),
 
-    # Peugeot (6)
+    # Peugeot (8)
     ("Peugeot", "208", "hatchback", 2019, None, 7.5, "peugeot-208", "peugeot/208"),
+    ("Peugeot", "308", "hatchback", 2014, None, 8.0, "peugeot-308", "peugeot/308"),
     ("Peugeot", "2008", "suv", 2019, None, 7.8, "peugeot-2008", "peugeot/2008"),
     ("Peugeot", "3008", "suv", 2016, None, 8.6, "peugeot-3008", "peugeot/3008"),
     ("Peugeot", "408", "suv", 2022, None, 8.5, "peugeot-408", "peugeot/408"),
     ("Peugeot", "508", "sedan", 2018, None, 8.6, "peugeot-508", "peugeot/508"),
+    ("Peugeot", "Rifter", "kombi", 2019, None, 7.3, "peugeot-rifter", "peugeot/rifter"),
     ("Peugeot", "301", "sedan", 2013, None, 5.7, "peugeot-301", "peugeot/301"),
 
     # Opel (5)
@@ -112,12 +121,16 @@ ALL_MODELS = [
     ("Opel", "Mokka", "suv", 2020, None, 7.8, "opel-mokka", "opel/mokka"),
     ("Opel", "Grandland", "suv", 2017, None, 8.2, "opel-grandland", "opel/grandland"),
 
-    # Dacia (1)
+    # Dacia (3)
     ("Dacia", "Duster", "suv", 2010, None, 6.3, "dacia-duster", "dacia/duster"),
+    ("Dacia", "Sandero Stepway", "suv", 2013, None, 6.4, "dacia-sandero", "dacia/sandero"),
+    ("Dacia", "Jogger", "suv", 2022, None, 6.8, "dacia-jogger", "dacia/jogger"),
 
-    # Skoda (5)
+    # Skoda (7)
     ("Skoda", "Octavia", "sedan", 2013, None, 8.4, "skoda-octavia", "skoda/octavia"),
     ("Skoda", "Superb", "sedan", 2015, None, 8.9, "skoda-superb", "skoda/superb"),
+    ("Skoda", "Scala", "hatchback", 2019, None, 7.8, "skoda-scala", "skoda/scala"),
+    ("Skoda", "Fabia", "hatchback", 2015, None, 7.3, "skoda-fabia", "skoda/fabia"),
     ("Skoda", "Kamiq", "suv", 2019, None, 7.8, "skoda-kamiq", "skoda/kamiq"),
     ("Skoda", "Karoq", "suv", 2018, None, 8.3, "skoda-karoq", "skoda/karoq"),
     ("Skoda", "Kodiaq", "suv", 2017, None, 8.7, "skoda-kodiaq", "skoda/kodiaq"),
@@ -136,12 +149,43 @@ ALL_MODELS = [
     ("BMW", "X1", "suv", 2015, None, 8.3, "bmw-x1", "bmw/x1"),
     ("BMW", "X3", "suv", 2017, None, 9.0, "bmw-x3", "bmw/x3"),
 
-    # Mercedes-Benz (5)
+    # Mercedes-Benz (6)
     ("Mercedes-Benz", "A Serisi", "hatchback", 2013, None, 8.2, "mercedes-benz-a-serisi", "mercedes-benz/a-serisi"),
     ("Mercedes-Benz", "C Serisi", "sedan", 2014, None, 9.0, "mercedes-benz-c-serisi", "mercedes-benz/c-serisi"),
     ("Mercedes-Benz", "E Serisi", "sedan", 2013, None, 9.5, "mercedes-benz-e-serisi", "mercedes-benz/e-serisi"),
     ("Mercedes-Benz", "CLA", "sedan", 2013, None, 8.1, "mercedes-benz-cla", "mercedes-benz/cla"),
     ("Mercedes-Benz", "GLA", "suv", 2014, None, 8.3, "mercedes-benz-gla", "mercedes-benz/gla"),
+    ("Mercedes-Benz", "GLC", "suv", 2015, None, 9.2, "mercedes-benz-glc", "mercedes-benz/glc"),
+
+    # Nissan (4)
+    ("Nissan", "Qashqai", "suv", 2014, None, 8.1, "nissan-qashqai", "nissan/qashqai"),
+    ("Nissan", "Juke", "suv", 2014, None, 7.3, "nissan-juke", "nissan/juke"),
+    ("Nissan", "Micra", "hatchback", 2017, None, 7.1, "nissan-micra", "nissan/micra"),
+    ("Nissan", "X-Trail", "suv", 2014, None, 8.5, "nissan-x-trail", "nissan/x-trail"),
+
+    # Seat (4)
+    ("Seat", "Leon", "hatchback", 2013, None, 8.0, "seat-leon", "seat/leon"),
+    ("Seat", "Ibiza", "hatchback", 2017, None, 7.3, "seat-ibiza", "seat/ibiza"),
+    ("Seat", "Arona", "suv", 2017, None, 7.5, "seat-arona", "seat/arona"),
+    ("Seat", "Ateca", "suv", 2016, None, 8.1, "seat-ateca", "seat/ateca"),
+
+    # Citroen (4)
+    ("Citroen", "C5 Aircross", "suv", 2019, None, 8.8, "citroen-c5-aircross", "citroen/c5-aircross"),
+    ("Citroen", "C4 X", "suv", 2022, None, 8.3, "citroen-c4-x", "citroen/c4-x"),
+    ("Citroen", "C3 Aircross", "suv", 2017, None, 7.5, "citroen-c3-aircross", "citroen/c3-aircross"),
+    ("Citroen", "C-Elysee", "sedan", 2013, 2021, 5.7, "citroen-c-elysee", "citroen/c-elysee"),
+
+    # Volvo (3)
+    ("Volvo", "XC40", "suv", 2018, None, 8.8, "volvo-xc40", "volvo/xc40"),
+    ("Volvo", "XC60", "suv", 2017, None, 9.3, "volvo-xc60", "volvo/xc60"),
+    ("Volvo", "S60", "sedan", 2019, None, 9.1, "volvo-s60", "volvo/s60"),
+
+    # Cupra (1)
+    ("Cupra", "Formentor", "suv", 2020, None, 8.6, "cupra-formentor", "cupra/formentor"),
+
+    # Chery (2)
+    ("Chery", "Tiggo 7 Pro", "suv", 2023, None, 8.1, "chery-tiggo-7-pro", "chery/tiggo-7-pro"),
+    ("Chery", "Tiggo 8 Pro", "suv", 2023, None, 8.4, "chery-tiggo-8-pro", "chery/tiggo-8-pro"),
 ]
 
 # (kod, etiket, yakıt, cc, hp, nm, teknoloji)
@@ -239,7 +283,21 @@ ENGINES = {
     "mb_16_m274": ("M274 DE16", "C180 / E180 1.6 Turbo 156 HP", "benzin", 1595, 156, 250, "BlueDIRECT Turbo Enjeksiyon"),
     "mb_15_m264": ("M264 E15", "C200 / E200 1.5 EQ Boost 184 HP", "hibrit", 1497, 184, 280, "48V EQ Boost Mild-Hybrid"),
     "mb_16_om626": ("OM626 / OM654", "C200d 1.6 Dizel 136-160 HP", "dizel", 1598, 160, 360, "Turbo Dizel Common-Rail"),
-    "mb_20_om654": ("OM654", "E220d 2.0 Dizel 194 HP", "dizel", 1950, 194, 400, "Nanoslide Alüminyum Blok Dizel"),
+    "mb_20_om654": ("OM654", "E220d / GLC220d 2.0 Dizel 194 HP", "dizel", 1950, 194, 400, "Nanoslide Alüminyum Blok Dizel"),
+
+    # Nissan
+    "nis_13_digt": ("HR13DDT", "1.3 DIG-T 158 HP Mild-Hybrid", "hibrit", 1332, 158, 270, "12V Mild-Hybrid Turbo Direkt Enjeksiyon"),
+    "nis_12_digt": ("HRA2DDT", "1.2 DIG-T 115 HP", "benzin", 1197, 115, 190, "Turbo Direkt Enjeksiyon"),
+    "nis_16_dci": ("R9M", "1.6 dCi 130 HP", "dizel", 1598, 130, 320, "Çift Su Soğutmalı EGR Turbo Dizel"),
+
+    # Volvo
+    "vol_20_b4": ("B420T", "2.0 B4 Mild-Hybrid 197 HP", "hibrit", 1969, 197, 300, "48V Mild-Hybrid Turbo"),
+    "vol_20_b5": ("B420T2", "2.0 B5 AWD Mild-Hybrid 250 HP", "hibrit", 1969, 250, 350, "48V Mild-Hybrid AWD"),
+    "vol_20_d4": ("D4204T14", "2.0 D4 AWD 190 HP", "dizel", 1969, 190, 400, "Çift Turbo i-ART Common-Rail"),
+    "vol_15_t3": ("B3154T", "1.5 T3 163 HP", "benzin", 1477, 163, 265, "Drive-E Turbo Direkt Enjeksiyon"),
+
+    # Chery
+    "chery_16_tgdi": ("SQRF4J16", "1.6 TGDI Acteco 183 HP", "benzin", 1598, 183, 275, "Acteco 3. Nesil Direkt Enjeksiyon Turbo"),
 }
 
 TRANSMISSIONS = {
@@ -258,6 +316,8 @@ TRANSMISSIONS = {
     "9gtronic": ("otomatik", "9G-Tronic 9 İleri Tork Konvertörlü Otomatik", 9, "Mercedes-Benz"),
     "7gtronic": ("otomatik", "7G-Tronic Plus 7 İleri Tork Konvertörlü", 7, "Mercedes-Benz"),
     "7gdct": ("dct", "7G-DCT 7 İleri Çift Kavrama", 7, "Mercedes-Benz / Getrag"),
+    "volvo_8at": ("otomatik", "8 İleri Geartronic Tork Konvertörlü Otomatik", 8, "Aisin AW"),
+    "chery_7dct": ("dct", "7 İleri Islak Çift Kavrama (7DCT)", 7, "Getrag"),
     "toy_ecvt": ("cvt", "e-CVT Elektronik Planet Dişli", None, "Toyota"),
     "toy_mds": ("cvt", "Multidrive S Kademeli CVT", None, "Aisin"),
     "toy_mmt": ("amt", "MultiMode Robotize Tek Kavrama", 5, "Toyota"),
@@ -656,6 +716,114 @@ ALL_VARIANTS = [
     # Mercedes-Benz GLA
     ("Mercedes-Benz", "GLA", "mb_13_m282", "7gdct", 2020, None, 2_050_000),
     ("Mercedes-Benz", "GLA", "mb_15_om608", "7gdct", 2015, 2020, 1_420_000),
+
+    # --- 2. PARTİ YENİ EKLENEN 25 MODELİN VARYANTLARI ---
+    # Renault Symbol
+    ("Renault", "Symbol", "ren_k9k_110", "man5", 2013, 2021, 520_000),
+    ("Renault", "Symbol", "ren_09_tce", "man5", 2013, 2020, 480_000),
+
+    # Peugeot 308
+    ("Peugeot", "308", "psa_12_pure130", "eat8", 2022, None, 1_480_000),
+    ("Peugeot", "308", "psa_15_hdi", "eat8", 2018, 2022, 1_190_000),
+
+    # Peugeot Rifter
+    ("Peugeot", "Rifter", "psa_15_hdi", "eat8", 2019, None, 1_180_000),
+    ("Peugeot", "Rifter", "psa_15_hdi", "man6", 2019, None, 1_020_000),
+
+    # Dacia Sandero Stepway
+    ("Dacia", "Sandero Stepway", "ren_10_tce", "xtronic", 2021, None, 920_000),
+    ("Dacia", "Sandero Stepway", "ren_10_tce_lpg", "man6", 2021, None, 860_000),
+    ("Dacia", "Sandero Stepway", "ren_09_tce", "man5", 2013, 2020, 610_000),
+
+    # Dacia Jogger
+    ("Dacia", "Jogger", "ren_10_tce_lpg", "man6", 2022, None, 1_080_000),
+    ("Dacia", "Jogger", "ren_10_tce", "man6", 2022, None, 1_050_000),
+
+    # Skoda Scala
+    ("Skoda", "Scala", "vag_10_tsi", "dsg7_kuru", 2019, None, 1_180_000),
+    ("Skoda", "Scala", "vag_15_tsi", "dsg7_kuru", 2019, None, 1_320_000),
+    ("Skoda", "Scala", "vag_16_tdi", "dsg7_kuru", 2019, 2021, 1_140_000),
+
+    # Skoda Fabia
+    ("Skoda", "Fabia", "vag_10_tsi", "dsg7_kuru", 2018, None, 980_000),
+    ("Skoda", "Fabia", "vag_15_tsi", "dsg7_kuru", 2022, None, 1_240_000),
+
+    # Mercedes-Benz GLC
+    ("Mercedes-Benz", "GLC", "mb_20_om654", "9gtronic", 2016, None, 3_650_000),
+    ("Mercedes-Benz", "GLC", "mb_16_om626", "9gtronic", 2019, 2022, 2_950_000),
+
+    # Nissan Qashqai
+    ("Nissan", "Qashqai", "nis_13_digt", "xtronic", 2021, None, 1_680_000),
+    ("Nissan", "Qashqai", "ren_k9k_110", "edc6", 2015, 2020, 1_120_000),
+    ("Nissan", "Qashqai", "nis_12_digt", "xtronic", 2014, 2018, 960_000),
+    ("Nissan", "Qashqai", "nis_16_dci", "xtronic", 2014, 2018, 1_150_000),
+
+    # Nissan Juke
+    ("Nissan", "Juke", "ren_10_tce", "edc7", 2020, None, 1_240_000),
+    ("Nissan", "Juke", "ren_k9k_110", "man6", 2014, 2019, 780_000),
+    ("Nissan", "Juke", "nis_12_digt", "man6", 2014, 2019, 750_000),
+
+    # Nissan Micra
+    ("Nissan", "Micra", "ren_10_tce", "xtronic", 2019, 2023, 890_000),
+    ("Nissan", "Micra", "ren_09_tce", "man5", 2017, 2020, 740_000),
+
+    # Nissan X-Trail
+    ("Nissan", "X-Trail", "nis_16_dci", "xtronic", 2014, 2020, 1_380_000),
+    ("Nissan", "X-Trail", "nis_13_digt", "edc7", 2019, 2022, 1_650_000),
+
+    # Seat Leon
+    ("Seat", "Leon", "vag_16_tdi", "dsg7_kuru", 2014, 2020, 1_050_000),
+    ("Seat", "Leon", "vag_14_tsi", "dsg7_kuru", 2014, 2018, 1_080_000),
+    ("Seat", "Leon", "vag_15_etec", "dsg7_kuru", 2020, None, 1_450_000),
+
+    # Seat Ibiza
+    ("Seat", "Ibiza", "vag_10_tsi", "dsg7_kuru", 2017, None, 920_000),
+    ("Seat", "Ibiza", "vag_10_tsi", "man5", 2017, None, 790_000),
+
+    # Seat Arona
+    ("Seat", "Arona", "vag_10_tsi", "dsg7_kuru", 2018, None, 1_080_000),
+    ("Seat", "Arona", "vag_16_tdi", "dsg7_kuru", 2018, 2020, 990_000),
+
+    # Seat Ateca
+    ("Seat", "Ateca", "vag_15_tsi", "dsg7_kuru", 2019, None, 1_550_000),
+    ("Seat", "Ateca", "vag_16_tdi", "dsg7_kuru", 2017, 2020, 1_280_000),
+
+    # Citroen C5 Aircross
+    ("Citroen", "C5 Aircross", "psa_15_hdi", "eat8", 2019, None, 1_580_000),
+    ("Citroen", "C5 Aircross", "psa_16_pure180", "eat8", 2019, None, 1_540_000),
+    ("Citroen", "C5 Aircross", "psa_12_pure130", "eat8", 2020, None, 1_460_000),
+
+    # Citroen C4 X
+    ("Citroen", "C4 X", "psa_12_pure130", "eat8", 2022, None, 1_360_000),
+    ("Citroen", "C4 X", "psa_15_hdi", "eat8", 2022, None, 1_420_000),
+
+    # Citroen C3 Aircross
+    ("Citroen", "C3 Aircross", "psa_12_pure130", "eat6", 2019, None, 1_040_000),
+    ("Citroen", "C3 Aircross", "psa_15_hdi", "eat6", 2019, 2023, 1_080_000),
+
+    # Citroen C-Elysee
+    ("Citroen", "C-Elysee", "psa_16_hdi", "man5", 2013, 2020, 520_000),
+    ("Citroen", "C-Elysee", "psa_15_hdi", "man6", 2019, 2021, 640_000),
+
+    # Volvo XC40
+    ("Volvo", "XC40", "vol_15_t3", "volvo_8at", 2019, 2022, 1_950_000),
+    ("Volvo", "XC40", "vol_20_b4", "volvo_8at", 2021, None, 2_350_000),
+
+    # Volvo XC60
+    ("Volvo", "XC60", "vol_20_d4", "volvo_8at", 2017, 2021, 2_850_000),
+    ("Volvo", "XC60", "vol_20_b5", "volvo_8at", 2021, None, 3_650_000),
+
+    # Volvo S60
+    ("Volvo", "S60", "vol_20_b5", "volvo_8at", 2020, None, 2_750_000),
+
+    # Cupra Formentor
+    ("Cupra", "Formentor", "vag_15_tsi", "dsg7_kuru", 2021, None, 1_850_000),
+
+    # Chery Tiggo 7 Pro
+    ("Chery", "Tiggo 7 Pro", "chery_16_tgdi", "chery_7dct", 2023, None, 1_450_000),
+
+    # Chery Tiggo 8 Pro
+    ("Chery", "Tiggo 8 Pro", "chery_16_tgdi", "chery_7dct", 2023, None, 1_680_000),
 ]
 
 # Detaylı Arıza Raporları (Şikayetvar & Usta & TÜVTÜRK Entegrasyonlu)
@@ -1192,6 +1360,61 @@ DETAILED_FAULTS = [
         "n": 155,
         "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:MBClubTR"],
         "checklist": ["Cam tavanın tam açılıp takılmadan kapanması mutlaka test edilmeli"],
+    },
+    {
+        "e": "nis_12_digt",
+        "title": "1.2 DIG-T (HRA2DDT) Kronik Yağ Yakma & Triger Zincir Uzaması",
+        "description": "Nissan Qashqai ve Juke 1.2 DIG-T motorlarda segman kurum bağlaması sonucu yüksek yağ tüketimi ve triger zincir gergisi boşalması.",
+        "category": "mekanik",
+        "avg": 62_000,
+        "max": 135_000,
+        "override": "cok_yuksek",
+        "km": (45_000, 105_000),
+        "n": 195,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "youtube:Sekizsilindir"],
+        "checklist": [
+            "Motor yağ seviyesi ve kompresyon değerleri mutlaka ölçülmeli",
+            "Soğuk ilk çalıştırmada zincir şakırtısı dinlenmeli",
+        ],
+    },
+    {
+        "e": "vol_20_d4",
+        "title": "2.0 D4 EGR Valfi & Soğutucu Tıkanması ve Hortum Terlemesi",
+        "description": "Volvo XC60 D4 dizel motorlarda şehir içi kısa mesafe kullanımda EGR soğutucusunun kurum bağlaması ve turbo intercooler hortumu yırtılması.",
+        "category": "mekanik",
+        "avg": 28_000,
+        "max": 54_000,
+        "override": "orta",
+        "km": (80_000, 150_000),
+        "n": 110,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "tuv:TÜV Report"],
+        "checklist": ["EGR soğutucu temizlik geçmişi ve turbo basınç hortumu kontrolü"],
+    },
+    {
+        "m": ("Chery", "Tiggo 7 Pro"),
+        "title": "Multimedya & Kamera Yazılım Gecikmesi ve Şehir İçi Yakıt Tüketimi",
+        "description": "Şikayetvar bildirimlerinde 360 derece kamera ve CarPlay ekranında zaman zaman donma yaşanması ve şehir içi kısa mesafede 9.5-11L yakıt tüketimi.",
+        "category": "yazilim_multimedya",
+        "avg": 6_500,
+        "max": 14_000,
+        "override": "dusuk",
+        "km": (5_000, 45_000),
+        "n": 125,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:DonanımHaber"],
+        "checklist": ["Yetkili serviste son multimedya ve şanzıman yazılım güncellemesinin yapılıp yapılmadığı"],
+    },
+    {
+        "m": ("Cupra", "Formentor"),
+        "title": "MIB3 Dokunmatik Ekran & Tavan SOS Modülü Yazılım Uyarısı",
+        "description": "Tavan kontrol ünitesi ve SOS modülünün anlık hata vermesi veya multimedya ekranının yeniden başlaması (yazılım güncellemesi ile giderilir).",
+        "category": "yazilim_multimedya",
+        "avg": 9_000,
+        "max": 22_000,
+        "override": "dusuk",
+        "km": (10_000, 50_000),
+        "n": 95,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:Cupra Forum"],
+        "checklist": ["Tavan dokunmatik aydınlatma ve SOS modülü hata kaydı kontrolü"],
     },
 ]
 

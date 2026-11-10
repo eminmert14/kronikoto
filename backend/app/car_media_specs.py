@@ -34,17 +34,17 @@ def get_variant_media_specs(brand: str, model_name: str, fuel_type: str, body_ty
 
     # 4. Yol Tutuşu (Parantezsiz)
     m_low = model_name.lower()
-    if any(k in m_low for k in ["focus", "golf", "3 serisi", "5 serisi", "a4", "a6", "c serisi", "e serisi", "508", "insignia"]):
+    if any(k in m_low for k in ["focus", "golf", "3 serisi", "5 serisi", "a4", "a6", "c serisi", "e serisi", "508", "insignia", "leon", "formentor", "s60", "308"]):
         handling = "Üst Düzey"
     elif body_type.lower() in ["suv", "kombi"]:
         handling = "Dengeli"
-    elif any(k in m_low for k in ["egea", "linea", "taliant", "accent", "fiorino"]):
+    elif any(k in m_low for k in ["egea", "linea", "taliant", "accent", "fiorino", "symbol", "c-elysee", "sandero"]):
         handling = "Standart"
     else:
         handling = "İyi & Dengeli"
 
     # 5. İç Hacim (Parantezsiz)
-    if any(k in m_low for k in ["superb", "passat", "octavia", "a6", "5 serisi", "e serisi", "kodiaq", "insignia"]):
+    if any(k in m_low for k in ["superb", "passat", "octavia", "a6", "5 serisi", "e serisi", "kodiaq", "insignia", "x-trail", "tiggo 8", "xc60", "c5 aircross", "rifter", "jogger", "glc"]):
         interior = "Çok Geniş"
     elif body_type.lower() == "sedan":
         interior = "Geniş"
@@ -54,17 +54,17 @@ def get_variant_media_specs(brand: str, model_name: str, fuel_type: str, body_ty
         interior = "Kompakt"
 
     # 6. İç Malzeme Kalitesi (Parantezsiz)
-    if brand in ["Audi", "BMW", "Mercedes-Benz", "Volkswagen", "Skoda", "Peugeot"]:
+    if brand in ["Audi", "BMW", "Mercedes-Benz", "Volvo", "Cupra", "Volkswagen", "Skoda", "Peugeot"]:
         quality = "Yüksek"
-    elif brand in ["Toyota", "Honda", "Ford", "Opel", "Kia"]:
+    elif brand in ["Toyota", "Honda", "Ford", "Opel", "Kia", "Nissan", "Seat", "Citroen", "Chery"]:
         quality = "İyi & Dayanıklı"
     else:
         quality = "Orta"
 
     # 7. Kabin & Yol Yalıtımı (Parantezsiz)
-    if any(k in m_low for k in ["passat", "superb", "austral", "a4", "a6", "3 serisi", "5 serisi", "c serisi", "e serisi", "x3", "q3", "kodiaq", "508", "insignia"]):
+    if any(k in m_low for k in ["passat", "superb", "austral", "a4", "a6", "3 serisi", "5 serisi", "c serisi", "e serisi", "glc", "x3", "q3", "kodiaq", "508", "insignia", "xc60", "s60", "xc40", "c5 aircross", "formentor"]):
         insulation = "Çok Başarılı"
-    elif any(k in m_low for k in ["megane", "corolla", "focus", "a3", "1 serisi", "a serisi", "cla", "gla", "x1", "q2", "kuga", "408", "karoq", "tiguan"]):
+    elif any(k in m_low for k in ["megane", "corolla", "focus", "a3", "1 serisi", "a serisi", "cla", "gla", "x1", "q2", "kuga", "408", "308", "karoq", "tiguan", "qashqai", "x-trail", "leon", "ateca", "tiggo 7", "tiggo 8", "c4 x"]):
         insulation = "İyi"
     else:
         insulation = "Orta"

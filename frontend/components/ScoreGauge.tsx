@@ -16,6 +16,18 @@ const MERCEDES_STAR_DATA_URI =
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2563eb"><path d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 1.65c4.777 0 8.716 3.588 9.28 8.215L13.72 12.8l-1.72-9.66-1.72 9.66-7.56-1.935C3.284 6.238 7.223 2.65 12 2.65zm-9.29 9.765L10.35 14.5l-5.735 5.39A9.317 9.317 0 0 1 2.71 12.415zm18.58 0a9.317 9.317 0 0 1-1.905 7.475L13.65 14.5l7.64-2.085zM12 15.65l6.23 5.29a9.298 9.298 0 0 1-12.46 0L12 15.65z"/></svg>`
   );
 
+const CUPRA_LOGO_DATA_URI =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2563eb"><path d="M12 2L3 7.5l3.6 6.2L12 10.5l5.4 3.2L21 7.5 12 2zm0 10.2l-4.5 2.7L12 22l4.5-7.1-4.5-2.7z"/></svg>`
+  );
+
+const CHERY_LOGO_DATA_URI =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><ellipse cx="12" cy="12" rx="10" ry="6.5"/><path d="M6.5 15.5L12 7.5l5.5 8" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+  );
+
 const BRAND_LOGO_URLS: Record<string, string> = {
   skoda: "https://cdn.simpleicons.org/skoda/2563eb",
   volkswagen: "https://cdn.simpleicons.org/volkswagen/2563eb",
@@ -33,6 +45,12 @@ const BRAND_LOGO_URLS: Record<string, string> = {
   bmw: "https://cdn.simpleicons.org/bmw/2563eb",
   "mercedes-benz": MERCEDES_STAR_DATA_URI,
   mercedes: MERCEDES_STAR_DATA_URI,
+  nissan: "https://cdn.simpleicons.org/nissan/2563eb",
+  seat: "https://cdn.simpleicons.org/seat/2563eb",
+  citroen: "https://cdn.simpleicons.org/citroen/2563eb",
+  volvo: "https://cdn.simpleicons.org/volvo/2563eb",
+  cupra: CUPRA_LOGO_DATA_URI,
+  chery: CHERY_LOGO_DATA_URI,
 };
 
 export function BrandLogoBadge({ brand, size = "md" }: { brand?: string; size?: "sm" | "md" | "lg" }) {

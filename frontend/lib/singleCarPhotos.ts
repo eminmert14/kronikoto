@@ -18,6 +18,7 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "kadjar": "/cars/renault-kadjar.jpg",
   "austral": "/cars/renault-austral.jpg",
   "taliant": "/cars/renault-taliant.jpg",
+  "symbol": "/cars/renault-symbol.jpg",
 
   // Volkswagen
   "passat": "/cars/vw-passat.jpg",
@@ -32,6 +33,7 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   // Dacia
   "duster": "/cars/dacia-duster.jpg",
   "sandero": "/cars/dacia-sandero.jpg",
+  "jogger": "/cars/dacia-jogger.jpg",
 
   // Toyota
   "corolla": "/cars/toyota-corolla.jpg",
@@ -76,7 +78,9 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "3008": "/cars/peugeot-3008.jpg",
   "408": "/cars/peugeot-408.jpg",
   "508": "/cars/peugeot-508.jpg",
+  "308": "/cars/peugeot-308.jpg",
   "208": "/cars/peugeot-208.jpg",
+  "rifter": "/cars/peugeot-rifter.jpg",
   "301": "/cars/peugeot-301.jpg",
 
   // Opel
@@ -92,6 +96,8 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "kamiq": "/cars/skoda-kamiq.jpg",
   "karoq": "/cars/skoda-karoq.jpg",
   "kodiaq": "/cars/skoda-kodiaq.jpg",
+  "scala": "/cars/skoda-scala.jpg",
+  "fabia": "/cars/skoda-fabia.jpg",
 
   // Audi
   "a3": "/cars/audi-a3.jpg",
@@ -113,6 +119,37 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "e serisi": "/cars/mercedes-e.jpg",
   "cla": "/cars/mercedes-cla.jpg",
   "gla": "/cars/mercedes-gla.jpg",
+  "glc": "/cars/mercedes-glc.jpg",
+
+  // Nissan
+  "qashqai": "/cars/nissan-qashqai.jpg",
+  "juke": "/cars/nissan-juke.jpg",
+  "micra": "/cars/nissan-micra.jpg",
+  "x-trail": "/cars/nissan-x-trail.jpg",
+
+  // Seat
+  "leon": "/cars/seat-leon.jpg",
+  "ibiza": "/cars/seat-ibiza.jpg",
+  "arona": "/cars/seat-arona.jpg",
+  "ateca": "/cars/seat-ateca.jpg",
+
+  // Citroen
+  "c5 aircross": "/cars/citroen-c5-aircross.jpg",
+  "c3 aircross": "/cars/citroen-c3-aircross.jpg",
+  "c4 x": "/cars/citroen-c4-x.jpg",
+  "c-elysee": "/cars/citroen-c-elysee.jpg",
+
+  // Volvo
+  "xc40": "/cars/volvo-xc40.jpg",
+  "xc60": "/cars/volvo-xc60.jpg",
+  "s60": "/cars/volvo-s60.jpg",
+
+  // Cupra
+  "formentor": "/cars/cupra-formentor.jpg",
+
+  // Chery
+  "tiggo 7": "/cars/chery-tiggo-7.jpg",
+  "tiggo 8": "/cars/chery-tiggo-8.jpg",
 };
 
 /**

@@ -1542,4 +1542,504 @@ ALL_TRIM_PACKAGES = {
             "features": ["Isıtmalı ve Havalandırmalı (Soğutmalı) Deri Ön Koltuklar & Arka Koltuk Isıtma", "Canton 12 Hoparlörlü Premium Ses Sistemi", "360 Derece Çevre Görüş Kamerası (Area View)", "3 Bölgeli Dijital Klima", "Sanal Pedallı Elektrikli Bagaj & Kapı Kenarı Koruma Barları", "20\" Ignacio / Vega Alaşım Jantlar"],
         },
     ],
+    ("Renault", "Symbol"): [
+        {
+            "name": "Joy",
+            "level": "dusuk",
+            "summary": "Ekonomik ve Dayanıklı Filo/Aile Girişi",
+            "features": ["Manuel Klima", "Bluetooth & USB Radyo Çalar", "LED Gündüz Sürüş Farları", "Yokuş Kalkış Destek Sistemi (Hill Holder)", "510 Litre Geniş Bagaj Hacmi", "15\" Kapaklı Sac Jantlar"],
+        },
+        {
+            "name": "Touch",
+            "level": "orta",
+            "summary": "En Çok Tercih Edilen Dengeli Paket",
+            "features": ["Hız Sabitleyici ve Hız Sınırlayıcı (Cruise Control)", "Elektrikli Ön ve Arka Camlar", "Yol Bilgisayarı ve Dış Sıcaklık Göstergesi", "Arka Park Sensörü", "Ön Sis Farları ve Gövde Rengi Aynalar", "15\" Alüminyum Alaşım Jantlar"],
+        },
+        {
+            "name": "Icon / Touch Chrome",
+            "level": "premium",
+            "summary": "7 İnç Ekranlı ve Dijital Klimalı En Dolu Symbol",
+            "features": ["7\" MediaNav Dokunmatik Multimedya ve Navigasyon Ekranı", "Otomatik Dijital Klima", "Geri Görüş Kamerası", "Deri Direksiyon Simidi ve Vites Topuzu", "Krom Ön Panjur Detayları", "16\" Çift Renkli Alaşım Jantlar"],
+        },
+    ],
+    ("Peugeot", "308"): [
+        {
+            "name": "Active / Active Prime",
+            "level": "dusuk",
+            "summary": "Modern i-Cockpit C-Hatchback Başlangıcı",
+            "features": ["10\" Dijital i-Cockpit Gösterge ve 10\" Dokunmatik Multimedya", "Kablosuz Apple CarPlay & Android Auto", "ECO LED Ön Farlar ve Aslan Dişi Gündüz Farları", "Çift Bölgeli Otomatik Klima", "Anahtarsız Çalıştırma ve Arka Park Sensörü", "16\" / 17\" Auckland Alaşım Jantlar"],
+        },
+        {
+            "name": "Allure",
+            "level": "orta",
+            "summary": "Şık Tasarım ve Zengin Konfor",
+            "features": ["i-Toggles Kişiselleştirilebilir Dokunmatik Kısayol Ekranı", "Yarı Deri Falgo Kumaş Koltuklar", "180 Derece HD Geri Görüş Kamerası ve Ön Park Sensörü", "Anahtarsız Giriş ve Çalıştırma", "Otomatik Uzun Far Asistanı ve Karartılmış Arka Camlar", "17\" Halong Elmas Kesim Jantlar"],
+        },
+        {
+            "name": "GT",
+            "level": "premium",
+            "summary": "Matrix LED ve Cam Tavanlı Sportif Zirve",
+            "features": ["Açılır Panoramik Cam Tavan", "Peugeot Matrix LED Teknolojili İnce Ön Farlar ve 3D Aslan Pençesi Stoplar", "3D Hologram Dijital Gösterge Paneli", "Alcantara / Yarı Deri Isıtmalı Spor Koltuklar ve Isıtmalı GT Direksiyon", "360 Derece 4 Kameralı Çevre Görüş ve Kör Nokta Uyarı Sistemi", "18\" Kamakura Çift Renkli Jantlar"],
+        },
+    ],
+    ("Peugeot", "Rifter"): [
+        {
+            "name": "Active / Allure",
+            "level": "dusuk",
+            "summary": "Otomobil Konforunda Pratik Aile MPV'si",
+            "features": ["Peugeot i-Cockpit Kompakt Direksiyon", "8\" Dokunmatik Multimedya Ekranı & Apple CarPlay", "Çift Sürgülü Yan Kapılar ve 775 Litre Devasa Bagaj", "Hız Sabitleyici ve Şerit Takip Asistanı", "Elektrikli Park Freni ve Arka Park Sensörü", "16\" Taranaki Alaşım Jantlar"],
+        },
+        {
+            "name": "Allure Pack",
+            "level": "orta",
+            "summary": "Dijital Klimalı ve Geri Görüş Kameralı Paket",
+            "features": ["Çift Bölgeli Otomatik Dijital Klima", "180 Derece VisioPark Geri Görüş Kamerası", "3 Bağımsız Katlanabilir Arka Koltuk (Magic Flat)", "Açılabilir Bagaj Camı", "Anahtarsız Giriş ve Çalıştırma", "Tavan Barları ve Karartılmış Arka Camlar"],
+        },
+        {
+            "name": "GT / GT-Line",
+            "level": "premium",
+            "summary": "Zenith Cam Tavanlı ve Grip Control'lü Zirve Rifter",
+            "features": ["Zenith Panoramik Cam Tavan ve Tavanda Aydınlatmalı Saklama Gözü", "Advanced Grip Control (Kar, Çamur, Kum Sürüş Modları) & Yokuş İniş Desteği", "10\" Dijital Gösterge Paneli (Yeni Makyajlı Kasa)", "Kör Nokta Uyarı Sistemi ve Adaptif Cruise Control", "Kablosuz Telefon Şarjı ve 220V Priz", "17\" Aoraki Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Dacia", "Jogger"): [
+        {
+            "name": "Essential",
+            "level": "dusuk",
+            "summary": "Ulaşılabilir 7 Kişilik Aile Crossover Girişi",
+            "features": ["Y-Şekilli LED Ön Farlar", "Media Control (Telefon Sabitlemeli Radyo & Bluetooth)", "Manuel Klima", "Acil Fren Destek Sistemi ve Otomatik Farlar", "Modüler Tavan Barları", "16\" Sac / Flexwheel Jantlar"],
+        },
+        {
+            "name": "Expression",
+            "level": "orta",
+            "summary": "8 İnç Ekranlı Dengeli Aile Paketi",
+            "features": ["8\" Media Display Dokunmatik Ekran & Apple CarPlay / Android Auto", "Geri Görüş Kamerası ve Arka Park Sensörü", "Hız Sabitleyici ve Hız Sınırlayıcı", "Ön Sis Farları ve Elektrikli Arka Camlar", "Yükseklik ve Derinlik Ayarlı Soft Feel Direksiyon", "16\" Flexwheel Jantlar"],
+        },
+        {
+            "name": "Extreme",
+            "level": "premium",
+            "summary": "Bakır Detaylı ve Extended Grip'li Zirve Jogger",
+            "features": ["Otomatik Dijital Klima", "Eller Serbest Dacia Kart Sistemi (Anahtarsız Giriş ve Çalıştırma)", "Extended Grip (Zorlu Zemin Çekiş Sistemi)", "Kör Nokta Uyarı Sistemi ve Elektronik Park Freni", "Bakır Kahve Ayna Kapakları, MicroCloud Özel Döşeme ve Arka Koltuk Servis Masaları", "16\" Mahalia Siyah Alaşım Jantlar"],
+        },
+    ],
+    ("Skoda", "Scala"): [
+        {
+            "name": "Elite",
+            "level": "dusuk",
+            "summary": "Geniş Bagajlı C-Hatchback Başlangıcı",
+            "features": ["LED Ön Farlar ve LED Gündüz Sürüş Farları", "8\" Dijital Gösterge Paneli", "8.25\" Dokunmatik Multimedya & Kablosuz Apple CarPlay", "Çift Bölgeli Otomatik Klima", "Arka Park Sensörü ve Anahtarsız Çalıştırma", "16\" Cortadero Alaşım Jantlar"],
+        },
+        {
+            "name": "Premium",
+            "level": "orta",
+            "summary": "Uzatılmış Arka Camlı ve Dijital Kadranlı Paket",
+            "features": ["Bagaj Kapağına Uzanan Siyah Cam Tasarımı ve Dinamik Sinyalli TOP LED Stoplar", "10.25\" Dijital Gösterge Paneli (Virtual Cockpit)", "Anahtarsız Giriş ve Çalıştırma (KESSY)", "Geri Görüş Kamerası ve Ön/Arka Park Sensörü", "İç Ambiyans Aydınlatması ve Krom Pencere Çerçeveleri", "17\" Stratos / Propus Alaşım Jantlar"],
+        },
+        {
+            "name": "Monte Carlo",
+            "level": "premium",
+            "summary": "Panoramik Cam Tavanlı ve Matrix LED'li Zirve Scala",
+            "features": ["Boydan Boya Panoramik Cam Tavan", "Full LED Matrix Ön Farlar", "Monte Carlo Özel Entegre Başlıklı Kırmızı Şeritli Spor Koltuklar", "Parlak Siyah Ön Panjur, Spoiler ve Difüzör", "Isıtmalı Ön Koltuklar ve Elektrikli Bagaj Kapağı", "18\" Vega Siyah Alaşım Jantlar"],
+        },
+    ],
+    ("Skoda", "Fabia"): [
+        {
+            "name": "Elite",
+            "level": "dusuk",
+            "summary": "Sınıfının En Geniş B-Hatchback Girişi",
+            "features": ["LED Ön Farlar", "8\" Dijital Gösterge Paneli", "8.25\" Dokunmatik Multimedya & Apple CarPlay", "Çift Bölgeli Otomatik Klima", "Şerit Takip ve Ön Bölge Frenleme Asistanı", "15\" Rotare Alaşım Jantlar"],
+        },
+        {
+            "name": "Premium",
+            "level": "orta",
+            "summary": "Konfor ve Teknoloji Odaklı B-Hatchback",
+            "features": ["Anahtarsız Giriş ve Çalıştırma (KESSY)", "Geri Görüş Kamerası ve Ön/Arka Park Sensörleri", "10.25\" Dijital Gösterge Paneli (Opsiyon/Standart)", "Ön Sis Farları ve Karartılmış Arka Camlar", "Ambiyans Aydınlatma ve Kol Dayama", "16\" Proxima Alaşım Jantlar"],
+        },
+        {
+            "name": "Monte Carlo",
+            "level": "premium",
+            "summary": "Bi-Color Siyah Tavanlı Sportif Fabia",
+            "features": ["Siyah Tavanlı Çift Renk Gövde ve Parlak Siyah Gövde Detayları", "Full LED Mercekli Ön Farlar", "Monte Carlo Özel Spor Koltuklar ve 3 Kollu Spor Direksiyon", "10.25\" Virtual Cockpit Dijital Gösterge Paneli", "Panoramik Cam Tavan (Opsiyon) & Kablosuz Şarj", "17\" Procyon Siyah Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Mercedes-Benz", "GLC"): [
+        {
+            "name": "Style / Exclusive",
+            "level": "dusuk",
+            "summary": "Klasik Mercedes Konforu ve 4MATIC Güveni",
+            "features": ["4MATIC Dört Çeker Sistemi", "LED High Performance Ön Farlar", "MBUX Geniş Dokunmatik Ekran ve Dijital Gösterge", "Elektrikli ve Isıtmalı Ön Koltuklar", "Elektrikli Bagaj Kapağı (EASY-PACK)", "Geri Görüş Kamerası ve Aktif Park Asistanı", "18\" / 19\" Çok Kollu Alaşım Jantlar"],
+        },
+        {
+            "name": "AMG Line",
+            "level": "orta",
+            "summary": "Türkiye'de En Çok Tercih Edilen Sportif Lüks SUV",
+            "features": ["Panoramik Açılır Cam Tavan", "AMG Gövde Tasarımı ve Elmas Görünümlü Yıldız Panjur", "11.9\" Dikey OLED MBUX Merkezi Ekran & 12.3\" Dijital Gösterge", "Artico Deri / Dinamica Mikrofiber AMG Spor Koltuklar (Hafızalı)", "64 Renkli Ambiyans Aydınlatma", "360 Derece Çevre Görüş Kamerası", "19\" / 20\" AMG 5 Çift Kollu Jantlar"],
+        },
+        {
+            "name": "AMG Line (Digital Light & Burmester)",
+            "level": "premium",
+            "summary": "Arka Aks Yönlendirmeli ve Burmester'li Zirve GLC",
+            "features": ["DIGITAL LIGHT Projeksiyonlu Akıllı Farlar", "Burmester 3D Surround 15 Hoparlörlü Ses Sistemi", "Airmatic Havalı Süspansiyon ve 4.5 Derece Arka Aks Yönlendirme", "Head-Up Display & Artırılmış Gerçeklikli Navigasyon", "Isıtmalı ve Soğutmalı Hakiki Deri Koltuklar", "20\" Çok Kollu AMG Jantlar"],
+        },
+    ],
+    ("Nissan", "Qashqai"): [
+        {
+            "name": "Tekna",
+            "level": "dusuk",
+            "summary": "Zengin Güvenlik Donanımlı C-SUV Girişi",
+            "features": ["Bi-LED Ön Farlar", "8\" / 9\" Dokunmatik Multimedya & Kablosuz Apple CarPlay", "Çift Bölgeli Otomatik Klima", "Geri Görüş Kamerası ve Ön/Arka Park Sensörü", "Akıllı Çarpışma Önleme, Şerit Takip ve Kör Nokta Uyarı Sistemi", "Anahtarsız Giriş ve Çalıştırma", "17\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Design Pack / Skypack",
+            "level": "orta",
+            "summary": "Panoramik Cam Tavanlı ve 12.3\" Dijital Ekranlı Paket",
+            "features": ["Panoramik Cam Tavan ve Elektrikli Tavan Perdesi", "12.3\" Tam Dijital Gösterge Paneli ve 12.3\" Dokunmatik Navigasyon Ekranı", "360 Derece Akıllı Çevre Görüş Kamerası (AVM)", "Kablosuz Telefon Şarjı ve İç Ambiyans Aydınlatması", "Tavan Rayları ve Karartılmış Arka Camlar", "18\" Elmas Kesim Alaşım Jantlar"],
+        },
+        {
+            "name": "Platinum Premium",
+            "level": "premium",
+            "summary": "Bose Ses Sistemli ve Masajlı Nappa Deri Zirve Qashqai",
+            "features": ["Özel Kapitone Nappa Deri Koltuklar", "Elektrikli, Hafızalı, Isıtmalı ve Masaj Fonksiyonlu Ön Koltuklar", "10.8\" Head-Up Display (Ön Cama Yansıtma)", "Bose 10 Hoparlörlü Premium Ses Sistemi", "Adaptif Matrix LED Ön Farlar", "Eller Serbest Elektrikli Bagaj Kapağı ve ProPILOT Yarı Otonom Sürüş", "19\" / 20\" Alaşım Jantlar"],
+        },
+    ],
+    ("Nissan", "Juke"): [
+        {
+            "name": "Tekna",
+            "level": "dusuk",
+            "summary": "Karakteristik Tasarımlı B-SUV Girişi",
+            "features": ["Full LED Ön ve Arka Farlar", "8\" Dokunmatik Ekran & Apple CarPlay / Android Auto", "Monoform Sportif Ön Koltuklar", "Geri Görüş Kamerası ve Arka Park Sensörü", "Akıllı Şerit Takip ve Çarpışma Önleme Sistemi", "17\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Platinum",
+            "level": "orta",
+            "summary": "Yarı Deri Koltuklu ve Konfor Odaklı Paket",
+            "features": ["Otomatik Dijital Klima", "Yarı Deri Koltuk Döşemesi ve Deri Kaplı Ön Konsol", "Anahtarsız Giriş ve Çalıştırma (I-Key)", "Isıtmalı Ön Koltuklar ve Isıtmalı Ön Cam", "7\" / 12.3\" Dijital Sürücü Ekranı ve Ön Park Sensörü", "17\" / 19\" Çift Renkli Jantlar"],
+        },
+        {
+            "name": "Platinum Premium",
+            "level": "premium",
+            "summary": "Koltuk Başlığı Hoparlörlü Bose Personal Plus Zirvesi",
+            "features": ["Bose Personal Plus 10 Hoparlörlü Ses Sistemi (Ön Koltuk Başlıklarında UltraNearfield Hoparlörler)", "Alcantara / Deri Özel Kabin ve Koltuk Döşemesi", "360 Derece Çevre Görüş Kamerası", "ProPILOT Yarı Otonom Sürüş, Adaptif Cruise Control ve Kör Nokta Müdahalesi", "Çift Renk Gövde (Siyah/Kırmızı Tavan)", "19\" Akari Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Nissan", "Micra"): [
+        {
+            "name": "Visia / Match",
+            "level": "dusuk",
+            "summary": "Şehir İçi Pratik B-Hatchback Girişi",
+            "features": ["LED Gündüz Sürüş Farları", "Manuel Klima", "Bluetooth & USB Bağlantılı Radyo", "Yokuş Kalkış Desteği ve Otomatik Farlar", "Hız Sabitleyici", "15\" / 16\" Jantlar"],
+        },
+        {
+            "name": "Tekna",
+            "level": "orta",
+            "summary": "Dokunmatik Ekranlı ve Park Destekli Paket",
+            "features": ["7\" Dokunmatik Multimedya Ekranı & Apple CarPlay", "Otomatik Dijital Klima", "Geri Görüş Kamerası ve Arka Park Sensörü", "Akıllı Çarpışma Önleme ve Şerit Takip Uyarısı", "Yağmur Sensörü ve Karartılmış Arka Camlar", "16\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Platinum / IG-T Bose",
+            "level": "premium",
+            "summary": "360 Kameralı ve Bose Ses Sistemli En Dolu Micra",
+            "features": ["Full LED Ön Farlar", "360 Derece Çevre Görüş Kamerası ve Kör Nokta Uyarı Sistemi", "Anahtarsız Giriş ve Çalıştırma", "Bose Personal Ses Sistemi (Sürücü Koltuk Başlığı Hoparlörlü)", "Çift Renkli Özel İç Kokpit Döşemesi", "17\" Elmas Kesim Alaşım Jantlar"],
+        },
+    ],
+    ("Nissan", "X-Trail"): [
+        {
+            "name": "Skypack",
+            "level": "dusuk",
+            "summary": "Panoramik Cam Tavanlı Geniş D-SUV Başlangıcı",
+            "features": ["Açılır Panoramik Cam Tavan", "Full LED Ön Farlar", "12.3\" Dijital Gösterge & 8\" / 12.3\" Dokunmatik Ekran", "3 Bölgeli Otomatik Dijital Klima", "Ön ve Arka Park Sensörü & Geri Görüş Kamerası", "ProPILOT Güvenlik Paketleri", "18\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Platinum",
+            "level": "orta",
+            "summary": "Deri Koltuklu ve 360 Kameralı Lüks Aile SUV'u",
+            "features": ["Deri Koltuk Döşemesi", "Elektrikli ve Isıtmalı Ön ve Arka Koltuklar", "360 Derece Akıllı Çevre Görüş Kamerası", "Eller Serbest Elektrikli Bagaj Kapağı", "Kablosuz Apple CarPlay ve Kablosuz Şarj", "19\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Platinum Premium (e-4ORCE)",
+            "level": "premium",
+            "summary": "7 Koltuk Opsiyonlu ve Nappa Derili Zirve X-Trail",
+            "features": ["Özel Kapitone Nappa Deri Koltuklar (Hafızalı)", "10.8\" Head-Up Display (Ön Cama Yansıtma)", "Bose 10 Hoparlörlü Premium Ses Sistemi", "Adaptif Matrix LED Ön Farlar", "e-4ORCE Dört Çeker Çift Elektrik Motorlu Çekiş (e-POWER versiyonda)", "5 veya 7 Koltuk Seçeneği", "19\" / 20\" Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Seat", "Leon"): [
+        {
+            "name": "Style / Style Plus",
+            "level": "dusuk",
+            "summary": "Zengin Standartlı İspanyol C-Hatchback",
+            "features": ["EcoLED Ön ve Arka Farlar", "10.25\" Dijital Gösterge Paneli (MK4)", "8.25\" Dokunmatik Multimedya & Full Link (Apple CarPlay)", "3 Bölgeli Otomatik Dijital Klima (Climatronic)", "Anahtarsız Çalıştırma ve Arka Park Sensörü", "16\" / 17\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Xcellence",
+            "level": "orta",
+            "summary": "Krom Detaylı ve Konfor Odaklı Paket",
+            "features": ["Full LED Mercekli Ön Farlar ve Boydan Boya Sonsuz LED Stop Lambası", "Açılır Cam Sunroof", "Yarı Deri / Alcantara Konfor Koltuklar", "Anahtarsız Giriş ve Çalıştırma (KESSY)", "Geri Görüş Kamerası ve Ambiyans Aydınlatması", "17\" Dynamic Alaşım Jantlar"],
+        },
+        {
+            "name": "FR",
+            "level": "premium",
+            "summary": "Gençlerin Favorisi Sportif Tasarım ve Sürüş Zirvesi",
+            "features": ["Panoramik Açılır Cam Tavan", "FR Özel Tamponlar, Çift Egzoz Görünümü ve Alçaltılmış Spor Süspansiyon", "10\" Geniş Dokunmatik Navigasyon Ekranı ve Akıllı Wraparound Ambiyans Aydınlatma", "Kırmızı Dikişli FR Spor Koltuklar ve Kesik Tabanlı FR Direksiyon", "Seat Sürüş Profili Seçimi (Eco, Normal, Sport, Individual)", "17\" / 18\" FR Performance Alaşım Jantlar"],
+        },
+    ],
+    ("Seat", "Ibiza"): [
+        {
+            "name": "Style",
+            "level": "dusuk",
+            "summary": "Dinamik ve Ekonomik B-Hatchback Girişi",
+            "features": ["EcoLED Ön Farlar", "8.25\" Dokunmatik Multimedya Ekranı", "Çift Bölgeli Otomatik Dijital Klima", "Hız Sabitleyici ve Arka Park Sensörü", "Yorgunluk Tespit ve Şerit Takip Asistanı", "15\" / 16\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Style Plus",
+            "level": "orta",
+            "summary": "Apple CarPlay ve Geri Görüş Kameralı Paket",
+            "features": ["Full Link (Apple CarPlay & Android Auto)", "Geri Görüş Kamerası ve Ön/Arka Park Sensörü", "8\" Dijital Gösterge Paneli", "Katlanır Yan Aynalar ve Karartılmış Arka Camlar", "16\" Design Alaşım Jantlar"],
+        },
+        {
+            "name": "FR",
+            "level": "premium",
+            "summary": "Panoramik Cam Tavanlı ve Full LED'li Sportif Ibiza",
+            "features": ["Açılır Panoramik Cam Tavan", "Full LED Mercekli Ön Farlar ve LED Stoplar", "10.25\" Dijital Gösterge Paneli & 9.2\" Geniş Multimedya Ekranı", "FR Özel Spor Tamponlar, Siyah İç Tavan ve Kırmızı Havalandırma Çerçeveleri", "Sürüş Profili Seçimi ve Anahtarsız Giriş/Çalıştırma", "17\" Dynamic / 18\" Performance FR Jantlar"],
+        },
+    ],
+    ("Seat", "Arona"): [
+        {
+            "name": "Style",
+            "level": "dusuk",
+            "summary": "Şehir İçi Çevik B-SUV Girişi",
+            "features": ["EcoLED Ön Farlar", "8.25\" Dokunmatik Multimedya Ekranı", "Çift Bölgeli Otomatik Klima", "Arka Park Sensörü ve Hız Sabitleyici", "Şerit Takip ve Ön Bölge Frenleme Asistanı", "16\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Xperience / Xcellence",
+            "level": "orta",
+            "summary": "Çift Renk Tavanlı ve Anahtarsız Girişli Paket",
+            "features": ["Kontrast Renkli Tavan (Siyah, Gri veya Beyaz)", "Full LED Ön Farlar", "8\" / 10.25\" Dijital Gösterge Paneli & Full Link (CarPlay)", "Anahtarsız Giriş ve Çalıştırma (KESSY)", "Geri Görüş Kamerası ve Otomatik Park Asistanı", "17\" Dynamic Alaşım Jantlar"],
+        },
+        {
+            "name": "FR / FR Plus",
+            "level": "premium",
+            "summary": "Sportif Difüzörlü ve Büyük Ekranlı Zirve Arona",
+            "features": ["10.25\" Dijital Gösterge Paneli & 9.2\" Geniş Dokunmatik Ekran", "FR Özel Ön Panjur, Çift Egzoz Çıkışı Görünümü ve Spor Koltuklar", "Sürüş Profili Seçimi (Seat Drive Profile)", "Kör Nokta Uyarı Sistemi ve Adaptif Cruise Control", "BeatsAudio Ses Sistemi (Opsiyon) ve Kablosuz Şarj", "17\" / 18\" FR Performance Jantlar"],
+        },
+    ],
+    ("Seat", "Ateca"): [
+        {
+            "name": "Style",
+            "level": "dusuk",
+            "summary": "Keskin Hatlı C-SUV Başlangıcı",
+            "features": ["Full LED Ön ve Arka Farlar", "8.25\" Dokunmatik Multimedya & Full Link", "Çift Bölgeli Otomatik Klima", "Anahtarsız Çalıştırma ve Arka Park Sensörü", "Hız Sabitleyici", "17\" Dynamic Alaşım Jantlar"],
+        },
+        {
+            "name": "Xperience / Xcellence",
+            "level": "orta",
+            "summary": "Cam Tavanlı ve Alcantara Koltuklu Aile SUV'u",
+            "features": ["Açılır Panoramik Cam Tavan", "10.25\" Dijital Gösterge Paneli ve 9.2\" Dokunmatik Ekran", "Siyah Alcantara / Deri Koltuk Döşemesi", "Anahtarsız Giriş ve Çalıştırma & Geri Görüş Kamerası", "Sanal Pedallı Elektrikli Bagaj Kapağı", "18\" Performance Alaşım Jantlar"],
+        },
+        {
+            "name": "FR",
+            "level": "premium",
+            "summary": "Gövde Rengi Çamurluklu Sportif Zirve Ateca",
+            "features": ["Açılır Panoramik Cam Tavan", "FR Özel Gövde Rengi Tamponlar, Çamurluk Dodikleri ve Tavan Spoileri", "Elektrikli, Hafızalı ve Isıtmalı Alcantara FR Spor Koltuklar", "Isıtmalı FR Direksiyon ve Sürüş Profili Seçimi", "360 Derece Çevre Görüş Kamerası ve Kör Nokta Uyarı Sistemi", "18\" / 19\" FR Machined Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Citroen", "C5 Aircross"): [
+        {
+            "name": "Feel / Feel Bold",
+            "level": "dusuk",
+            "summary": "Uçan Halı Süspansiyonlu ve 3 Bağımsız Koltuklu Giriş",
+            "features": ["Progressive Hydraulic Cushions (Kademeli Hidrolik Destekli Konfor Süspansiyon)", "Kızaklı ve Katlanabilir 3 Bağımsız Arka Koltuk", "12.3\" Dijital Gösterge Paneli ve 8\" Dokunmatik Ekran", "LED Ön Farlar ve Çift Bölgeli Otomatik Klima", "Geri Görüş Kamerası ve Anahtarsız Giriş/Çalıştırma", "18\" Swirl Elmas Kesim Jantlar"],
+        },
+        {
+            "name": "Shine",
+            "level": "orta",
+            "summary": "Panoramik Cam Tavanlı ve Advanced Comfort Koltuklu Paket",
+            "features": ["Açılır Panoramik Cam Tavan", "Advanced Comfort Yarı Deri / Alcantara ekstra dolgulu Konfor Koltuklar", "10\" Yeni Nesil Geniş Dokunmatik Ekran (Makyajlı Kasa)", "Elektrikli Bagaj Kapağı ve Kablosuz Telefon Şarjı", "Adaptif Cruise Control, Kör Nokta Uyarı ve Yarı Otonom Sürüş", "Akustik Yalıtımlı Ön Yan Camlar"],
+        },
+        {
+            "name": "Shine Bold / E-Series",
+            "level": "premium",
+            "summary": "Nappa Derili ve Masajlı Konfor Zirvesi",
+            "features": ["Elektrikli, Isıtmalı ve Çok Noktalı Masaj Fonksiyonlu Ön Koltuklar", "Nappa Deri / Paloma Deri Koltuk Döşemesi", "360 Derece Çevre Görüş Kamerası ve Otomatik Park Asistanı", "Grip Control (Kar, Çamur, Kum Çekiş Modu) & Yokuş İniş Desteği", "Siyah Çift Renk Tavan", "19\" Art Çift Renkli / Siyah Alaşım Jantlar"],
+        },
+    ],
+    ("Citroen", "C4 X"): [
+        {
+            "name": "Feel",
+            "level": "dusuk",
+            "summary": "Yüksek Yapılı Crossover-Sedan Başlangıcı",
+            "features": ["Progressive Hydraulic Cushions Konfor Süspansiyonu", "LED Ön Farlar ve LED Gündüz Sürüş Farları", "10\" Dokunmatik Multimedya Ekranı & Kablosuz CarPlay", "Çift Bölgeli Otomatik Klima", "Arka Park Sensörü ve Hız Sabitleyici", "16\" / 17\" Jantlar"],
+        },
+        {
+            "name": "Feel Bold",
+            "level": "orta",
+            "summary": "Advanced Comfort Koltuklu ve Kameralı Paket",
+            "features": ["Citroen Advanced Comfort Özel Dolgulu Koltuklar", "Geri Görüş Kamerası ve Ön/Arka Park Sensörü", "Dijital Sürücü Gösterge Ekranı ve Yolcu Tarafı Tablet Tutucu (Smart Pad Support)", "Yağmur Sensörü ve Elektrikli Katlanır Yan Aynalar", "18\" Aeroblade Alaşım Jantlar"],
+        },
+        {
+            "name": "Shine / Shine Bold",
+            "level": "premium",
+            "summary": "Cam Tavanlı, Head-Up Display'li Zirve C4 X",
+            "features": ["Açılır Cam Sunroof", "Renkli Head-Up Display (Ön Cama Yansıtma)", "Yarı Deri / Alcantara Isıtmalı Ön ve Arka Koltuklar, Isıtmalı Direksiyon ve Masajlı Ön Koltuk", "Anahtarsız Giriş ve Çalıştırma", "Otoyol Sürüş Asistanı (Yarı Otonom), Kör Nokta Uyarısı ve Kablosuz Şarj", "18\" Aeroblade Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Citroen", "C3 Aircross"): [
+        {
+            "name": "Feel",
+            "level": "dusuk",
+            "summary": "Ferah Kabinli B-SUV Girişi",
+            "features": ["EcoLED Ön Farlar", "7\" Dokunmatik Multimedya Ekranı & Apple CarPlay", "Manuel / Otomatik Klima", "Şerit İhlal Uyarısı ve Hız Sabitleyici", "Arka Park Sensörü", "16\" Jantlar"],
+        },
+        {
+            "name": "Feel Bold",
+            "level": "orta",
+            "summary": "Dijital Klimalı ve Geri Görüş Kameralı Paket",
+            "features": ["Otomatik Dijital Klima", "Geri Görüş Kamerası (Makyajlı Kasa)", "Advanced Comfort Koltuklar", "Yağmur Sensörü, Otomatik Farlar ve Karartılmış Arka Camlar", "16\" X Cross Elmas Kesim Alaşım Jantlar"],
+        },
+        {
+            "name": "Shine",
+            "level": "premium",
+            "summary": "Panoramik Cam Tavanlı ve Çift Renkli En Dolu C3 Aircross",
+            "features": ["Açılır Panoramik Cam Tavan", "9\" Geniş Dokunmatik Ekran & Navigasyon", "Kızaklı (İleri-Geri Kayar) Arka Koltuklar ve Katlanır Ön Yolcu Koltuğu", "Anahtarsız Giriş ve Çalıştırma & Grip Control (Opsiyon)", "Çift Renk Gövde (Siyah/Beyaz Tavan) ve Renk Paketi Detayları", "17\" Origami Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Citroen", "C-Elysee"): [
+        {
+            "name": "Attraction / Live",
+            "level": "dusuk",
+            "summary": "Geniş Bagajlı ve Ekonomik Filo/Aile Girişi",
+            "features": ["Manuel Klima", "Radyo / MP3 Çalar ve Yol Bilgisayarı", "506 Litre Geniş Bagaj Hacmi", "ESP ve Yokuş Kalkış Desteği", "Elektrikli Ön Camlar", "15\" Kapaklı Sac Jantlar"],
+        },
+        {
+            "name": "Confort / Feel",
+            "level": "orta",
+            "summary": "Hız Sabitleyicili ve 4 Cam Otomatik Dengeli Paket",
+            "features": ["Hız Sabitleyici ve Hız Sınırlayıcı", "LED Gündüz Sürüş Farları ve Ön Sis Farları", "Elektrikli Ön ve Arka Camlar", "Bluetooth Telefon Bağlantısı", "Arka Park Sensörü (Feel)", "15\" / 16\" Jantlar"],
+        },
+        {
+            "name": "Exclusive / Shine",
+            "level": "premium",
+            "summary": "Dijital Göstergeli Klimalı ve Dokunmatik Ekranlı C-Elysee",
+            "features": ["7\" Dokunmatik Multimedya Ekranı & Apple CarPlay (Makyajlı Shine)", "Dijital Ekranlı Klima ve Mono-Zone Otomatik Mod", "Geri Görüş Kamerası ve Arka Park Sensörü", "Krom Cam Çerçeveleri ve Deri Direksiyon Simidi", "Ön Kol Dayama", "16\" Boston Alaşım Jantlar"],
+        },
+    ],
+    ("Volvo", "XC40"): [
+        {
+            "name": "Momentum / Core",
+            "level": "dusuk",
+            "summary": "İskandinav Güvenliğiyle Premium C-SUV Başlangıcı",
+            "features": ["Thor'un Çekici Tasarımlı Full LED Ön Farlar", "12.3\" Dijital Sürücü Ekranı ve 9\" Dikey Dokunmatik Ekran", "Volvo City Safety (Yaya/Bisikletli/Büyük Hayvan Algılamalı Çarpışma Önleme)", "Çift Bölgeli Otomatik Klima ve CleanZone Hava Kalitesi Sistemi", "Elektrikli Bagaj Kapağı ve Geri Görüş Kamerası", "18\" 5 Kollu Alaşım Jantlar"],
+        },
+        {
+            "name": "Inscription / Plus",
+            "level": "orta",
+            "summary": "Orrefors Kristal Vites Topuzlu ve Cam Tavanlı Lüks Paket",
+            "features": ["Açılır Panoramik Cam Tavan", "Orrefors İsveç Kristali Vites Topuzu ve Ahşap (Driftwood) İç Dekor", "Deri Koltuk Döşemesi, Elektrikli ve Hafızalı Ön Koltuklar", "Isıtmalı Ön ve Arka Koltuklar & Isıtmalı Direksiyon", "Anahtarsız Giriş ve Ayak Hareketiyle Açılan Bagaj", "19\" Elmas Kesim Jantlar"],
+        },
+        {
+            "name": "R-Design / Ultimate",
+            "level": "premium",
+            "summary": "Harman Kardon ve Pilot Assist'li Zirve XC40",
+            "features": ["Harman Kardon 13 Hoparlörlü Premium Ses Sistemi", "Pilot Assist (Yarı Otonom Sürüş), Adaptif Cruise Control ve Kör Nokta (BLIS)", "360 Derece Çevre Görüş Kamerası", "Pixel Teknolojili Aktif Viraj Farları", "Nubuk / Nappa Deri R-Design Spor Koltuklar ve Siyah Tavan (R-Design)", "19\" / 20\" 5 Çift Kollu Matt Black Jantlar"],
+        },
+    ],
+    ("Volvo", "XC60"): [
+        {
+            "name": "Momentum",
+            "level": "dusuk",
+            "summary": "Dört Çeker (AWD) Güvenlikli Lüks D-SUV Girişi",
+            "features": ["AWD Dört Çeker Sistemi", "Full LED Thor'un Çekici Ön Farlar", "12.3\" Dijital Gösterge ve 9\" Sensus / Google Yerleşik Dikey Ekran", "Deri Koltuklar ve Elektrikli Ön Koltuklar", "City Safety, Şerit Koruma ve Elektrikli Bagaj", "18\" / 19\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Inscription / Plus",
+            "level": "orta",
+            "summary": "Nappa Derili, Isıtmalı/Soğutmalı İskandinav Lüksü",
+            "features": ["Açılır Panoramik Cam Tavan", "Delikli Nappa Deri Isıtmalı ve Havalandırmalı (Soğutmalı) Ön Koltuklar", "Orrefors Kristal Vites Topuzu ve Doğal Ahşap İç Kaplama", "Pilot Assist (Yarı Otonom Sürüş) ve BLIS Kör Nokta Uyarısı", "360 Derece Kamera ve 4 Bölgeli Dijital Klima", "19\" / 20\" Inscription Elmas Kesim Jantlar"],
+        },
+        {
+            "name": "R-Design / Ultimate / Polestar",
+            "level": "premium",
+            "summary": "Havalı Süspansiyonlu ve Bowers & Wilkins Ses Sistemli Zirve",
+            "features": ["Aktif Havalı Süspansiyon (Four-C Şasi)", "Bowers & Wilkins veya Harman Kardon Premium Ses Sistemi", "Head-Up Display (Ön Cama Yansıtma)", "Masaj Fonksiyonlu Nappa Deri Koltuklar ve Deri Kaplı Ön Konsol", "Aktif Gölgelemeli Full LED Viraj Farları", "20\" / 21\" Çift Renkli Jantlar"],
+        },
+    ],
+    ("Volvo", "S60"): [
+        {
+            "name": "Inscription / Plus",
+            "level": "dusuk",
+            "summary": "250 HP B5 AWD Standartlarında Zengin D-Sedan",
+            "features": ["2.0 B5 250 HP Mild-Hybrid Motor & AWD Dört Çeker", "Açılır Panoramik Cam Tavan", "Deri Koltuklar, Elektrikli ve Hafızalı Ön Koltuklar", "Isıtmalı Ön/Arka Koltuklar ve Isıtmalı Direksiyon", "Orrefors Kristal Vites Topuzu", "Pilot Assist, Adaptif Cruise Control ve BLIS", "18\" / 19\" Inscription Jantlar"],
+        },
+        {
+            "name": "R-Design",
+            "level": "orta",
+            "summary": "Parlak Siyah Detaylı ve Spor Şasili Dinamik S60",
+            "features": ["R-Design Parlak Siyah Ön Panjur, Ayna Kapakları ve Tamponlar", "Nappa Deri / Açık Grid Tekstil R-Design Spor Koltuklar", "Metal Mesh Alüminyum İç Dekor ve Siyah Tavan Döşemesi", "360 Derece Çevre Görüş Kamerası", "Harman Kardon Premium Ses Sistemi", "19\" 5 Üçlü Kollu Matt Black Jantlar"],
+        },
+        {
+            "name": "Ultimate (Dark / Bright)",
+            "level": "premium",
+            "summary": "Head-Up Display ve Bowers & Wilkins Zirvesi",
+            "features": ["Head-Up Display (Ön Cama Yansıtma)", "Harman Kardon (Standart) veya Bowers & Wilkins 15 Hoparlörlü Ses Sistemi", "Havalandırmalı (Soğutmalı) ve Masaj Opsiyonlu Nappa Deri Koltuklar", "4 Bölgeli Otomatik Klima", "Google Yerleşik Bilgi-Eğlence Sistemi", "19\" / 20\" Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Cupra", "Formentor"): [
+        {
+            "name": "Formentor 1.5 TSI (Standart)",
+            "level": "dusuk",
+            "summary": "Standart Paketi Bile Üst Seviye Olan Sportif C-SUV",
+            "features": ["Açılır Panoramik Cam Tavan (Türkiye Paketlerinde Yaygın)", "Full LED Mercekli Ön Farlar ve Boydan Boya Sonsuz LED Arka Stop", "10.25\" Dijital Gösterge Paneli & 10\" / 12\" Dokunmatik Multimedya", "Bakır Dikişli Yarı Deri / Kumaş Cupra Spor Koltuklar", "3 Bölgeli Otomatik Klima, Geri Görüş Kamerası ve Anahtarsız Giriş", "Akıllı Wraparound Ambiyans Aydınlatması", "19\" Exclusive Machined Sport Black/Silver Jantlar"],
+        },
+        {
+            "name": "Formentor (Bucket Koltuk & BeatsAudio Paketli)",
+            "level": "orta",
+            "summary": "Entegre Başlıklı Yarış Koltuklu ve Bakır Jantlı Paket",
+            "features": ["Entegre Başlıklı Elektrikli, Hafızalı ve Isıtmalı Deri Bucket Spor Koltuklar", "Uydu Butonlu (Direksiyon Üzerinden Motor Çalıştırma ve Cupra Modu) Spor Direksiyon", "BeatsAudio 9 Hoparlörlü + Subwoofer Ses Sistemi", "Sanal Pedallı Elektrikli Bagaj Kapağı", "Yarı Otonom Sürüş (Travel Assist) ve Kör Nokta Uyarısı", "19\" Exclusive Copper (Bakır Detaylı) Jantlar"],
+        },
+        {
+            "name": "VZ / VZ-Line (2.0 TSI 310 HP 4Drive)",
+            "level": "premium",
+            "summary": "310 Beygir Dört Çeker Safkan Performans Zirvesi",
+            "features": ["2.0 TSI 310 HP Motor, 4Drive Dört Çeker ve 4.9 Saniye 0-100 Hızlanma", "DCC (Adaptif Şasi Kontrolü - 15 Kademeli Sertlik Ayarı)", "4 Çıkışlı Gerçek Spor Egzoz Sistemi ve Brembo Fren Opsiyonu", "Matrix LED Ön Farlar ve 360 Derece Çevre Görüş Kamerası", "Petrol Mavisi veya Siyah Hakiki Deri Bucket Koltuklar", "Mat Petrol Mavisi / Mat Manyetik Gri Özel Gövde Renkleri"],
+        },
+    ],
+    ("Chery", "Tiggo 7 Pro"): [
+        {
+            "name": "Comfort",
+            "level": "dusuk",
+            "summary": "Cam Tavanlı ve Deri Koltuklu Zengin Giriş Paketi",
+            "features": ["Açılır Panoramik Cam Tavan", "Full LED Ön Farlar ve Kayar LED Sinyaller", "12.3\" Dijital Gösterge ve 10.25\" Dokunmatik Multimedya & Kablosuz CarPlay", "Suni Deri Koltuklar ve Elektrikli Sürücü Koltuğu", "Anahtarsız Giriş ve Çalıştırma & Uzaktan Motor Çalıştırma", "Geri Görüş Kamerası ve Çift Bölgeli Dijital Klima", "18\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Luxury",
+            "level": "orta",
+            "summary": "360 Derece Kamera ve Isıtmalı Koltuklu Favori Paket",
+            "features": ["360 Derece HD Kuşbakışı Çevre Görüş Kamerası", "Isıtmalı Ön Koltuklar ve Elektrikli Ön Yolcu Koltuğu", "Elektrikli Bagaj Kapağı", "Kablosuz Telefon Şarjı ve Çok Renkli Sesli Komutlu Ambiyans Aydınlatma", "8\" Dokunmatik Klima Kontrol Ekranı", "18\" Parlak Alaşım Jantlar"],
+        },
+        {
+            "name": "Excellent / Avantgarde",
+            "level": "premium",
+            "summary": "ADAS Otonom Sürüş ve Soğutmalı Koltuklu Zirve Tiggo 7",
+            "features": ["Isıtmalı ve Havalandırmalı (Soğutmalı) Ön Koltuklar & Hafızalı Sürücü Koltuğu (Avantgarde)", "24.6\" Kavisli Çift Ekran ve Sony 8 Hoparlörlü Ses Sistemi (Pro Max / Avantgarde)", "12+ ADAS Sürüş Destek Sistemi (Adaptif Cruise Control, Kör Nokta, Şerit Takip, Otomatik Frenleme)", "540 Derece Şeffaf Şasi Görüş Kamerası", "Çift Renk Tavan Seçeneği", "19\" Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Chery", "Tiggo 8 Pro"): [
+        {
+            "name": "Luxury",
+            "level": "dusuk",
+            "summary": "7 Kişilik Panoramik Cam Tavanlı D-SUV Başlangıcı",
+            "features": ["7 Kişilik Koltuk Düzeni", "Açılır Panoramik Cam Tavan", "24.6\" Kavisli Çift Dijital Ekran + 8\" Dokunmatik Klima Ekranı", "Deri Koltuklar, Isıtmalı Ön Koltuklar ve Elektrikli Sürücü Koltuğu", "360 Derece HD Çevre Görüş Kamerası ve Elektrikli Bagaj Kapağı", "Sony 8 Hoparlörlü Ses Sistemi ve Kablosuz Şarj", "18\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Excellent",
+            "level": "orta",
+            "summary": "Soğutmalı Koltuklu ve Tam ADAS Güvenlikli Paket",
+            "features": ["Isıtmalı ve Havalandırmalı (Soğutmalı) Ön Koltuklar", "Hafızalı Sürücü Koltuğu ve Elektrikli Ön Yolcu Koltuğu", "Gelişmiş ADAS Paketi (Adaptif Hız Sabitleyici, Kör Nokta, ŞeritOrtalama, Çarpışma Önleme)", "Akıllı Sesli Komut Sistemi ve Çok Renkli Ambiyans Aydınlatma", "Akustik Ön Camlar ve Karartılmış Arka Camlar"],
+        },
+        {
+            "name": "Avantgarde (Pro Max)",
+            "level": "premium",
+            "summary": "Masajlı Kraliçe Koltuğu ve HUD'lu Zirve Tiggo 8",
+            "features": ["Masaj Fonksiyonlu ve Elektrikli Bacak Destekli Ön Yolcu Koltuğu", "Head-Up Display (Ön Cama Yansıtma) & Sony 10 Hoparlörlü Ses Sistemi", "540 Derece Şeffaf Şasi Çevre Görüş Kamerası ve Dahili Araç İçi Kamera (DVR)", " Kahverengi Özel Deri Kabin Döşemesi", "9 Hava Yastığı", "19\" Çok Kollu Lüks Jantlar"],
+        },
+    ],
 }
