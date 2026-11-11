@@ -12,7 +12,9 @@ import {
 } from "@/lib/api";
 import { buildSahibindenUrl, buildArabamUrl, FilterParams } from "@/lib/listingUrl";
 import { getSingleCarPhoto } from "@/lib/singleCarPhotos";
+import { SafetyRatingsData, getSafetyRatingsFallback } from "@/lib/ncapSafety";
 import ScoreGauge from "@/components/ScoreGauge";
+import NcapSafetyCard from "@/components/NcapSafetyCard";
 
 type Variant = {
   id: string;
@@ -32,6 +34,7 @@ type ModelDetailResponse = {
   year_start: number;
   year_end: number | null;
   comfort_score: number | null;
+  safety_ratings?: SafetyRatingsData;
   variants: Variant[];
   trim_packages: TrimPackage[];
   listing_urls: ListingUrls;
@@ -73,6 +76,7 @@ function ModelDetailContent() {
   const sahibindenUrl = buildSahibindenUrl(searchKeyword, currentFilters);
   const arabamUrl = buildArabamUrl(searchKeyword, currentFilters);
   const carPhoto = getSingleCarPhoto(model.name, model.brand);
+  const safetyData = model.safety_ratings || getSafetyRatingsFallback(model.name);
 
   // Aktif filtreler
   const activeBadges: string[] = [];
@@ -98,7 +102,7 @@ function ModelDetailContent() {
         ← Filtrelere dön
       </Link>
 
-      <div className="row" style={{ marginTop: 14, alignItems: "center" }}>
+      <div className="row" style={{ marginTop: 14, alignItems: "center", gap: 16 }}>
         <div>
           <h1 style={{ margin: "4px 0", fontSize: "2rem", color: "var(--text)" }}>
             {model.brand} {model.name}
@@ -109,24 +113,28 @@ function ModelDetailContent() {
           </p>
         </div>
 
-        {/* Mavi Doluluk Oranlı & Marka Logolu Konfor Göstergesi */}
-        {model.comfort_score !== null && (
-          <div className="card" style={{ padding: "12px 20px" }}>
-            <ScoreGauge
-              score={model.comfort_score}
-              brand={model.brand}
-              size="md"
-              label="Model Konfor Puanı"
-              showTicks={true}
-            />
-          </div>
-        )}
+        {/* Sağ Üst: Euro NCAP / IIHS / NHTSA Güvenlik Kartı (Solda) + Model Konfor Puanı (Sağda) */}
+        <div className="model-scores-wrapper">
+          <NcapSafetyCard safety={safetyData} />
+
+          {model.comfort_score !== null && (
+            <div className="card" style={{ padding: "12px 20px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <ScoreGauge
+                score={model.comfort_score}
+                brand={model.brand}
+                size="md"
+                label="Model Konfor Puanı"
+                showTicks={true}
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* MODEL RESMİ TEK FOTOĞRAF KARTI */}
       <div className="card" style={{ marginTop: 20, border: "1px solid var(--border)", overflow: "hidden", padding: 0 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "minmax(280px, 380px) 1fr", gap: 0, alignItems: "stretch" }}>
-          <div style={{ background: "#ffffff", borderRight: "1px solid var(--border)", position: "relative", minHeight: 220, display: "flex", alignItems: "center", justifyContent: "center", padding: 12 }}>
+        <div className="model-hero-grid">
+          <div className="model-hero-photo">
             {carPhoto.photoUrl ? (
               <img
                 src={carPhoto.photoUrl}
@@ -137,39 +145,42 @@ function ModelDetailContent() {
                   const parent = (e.target as HTMLElement).parentElement;
                   if (parent) {
                     parent.innerHTML = `
-                      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;color:#64748b;">
+                      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;color:#6b7280;">
                         <span style="font-size:3rem;margin-bottom:8px;">🚗</span>
-                        <span style="font-weight:600;font-size:0.95rem;color:#334155;">${model.brand} ${model.name}</span>
-                        <a href="${carPhoto.googleSearchUrl}" target="_blank" rel="noopener noreferrer" style="margin-top:10px;font-size:0.8rem;color:#2563eb;text-decoration:none;font-weight:600;">Google'da Fotoğrafları Gör ↗</a>
+                        <span style="font-weight:600;font-size:0.95rem;color:#374151;">${model.brand} ${model.name}</span>
+                        <a href="${carPhoto.googleSearchUrl}" target="_blank" rel="noopener noreferrer" style="margin-top:10px;font-size:0.8rem;color:#ea580c;text-decoration:none;font-weight:600;">Google'da Fotoğrafları Gör ↗</a>
                       </div>
                     `;
                   }
                 }}
               />
             ) : (
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24, textAlign: "center", color: "#64748b" }}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24, textAlign: "center", color: "#6b7280" }}>
                 <span style={{ fontSize: "3rem", marginBottom: 8 }}>🚗</span>
-                <span style={{ fontWeight: 600, fontSize: "0.95rem", color: "#334155" }}>{model.brand} {model.name}</span>
-                <a href={carPhoto.googleSearchUrl} target="_blank" rel="noopener noreferrer" style={{ marginTop: 10, fontSize: "0.8rem", color: "#2563eb", textDecoration: "none", fontWeight: 600 }}>Google'da Fotoğrafları Gör ↗</a>
+                <span style={{ fontWeight: 600, fontSize: "0.95rem", color: "#374151" }}>{model.brand} {model.name}</span>
+                <a href={carPhoto.googleSearchUrl} target="_blank" rel="noopener noreferrer" style={{ marginTop: 10, fontSize: "0.8rem", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>Google&apos;da Fotoğrafları Gör ↗</a>
               </div>
             )}
           </div>
 
           <div style={{ padding: "20px 24px", display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 14 }}>
             <div>
-              <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 6 }}>
+              <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", marginBottom: 6 }}>
                 <span className="badge" style={{ background: "var(--accent-light)", color: "var(--accent)" }}>
                   {BODY_TYPE_LABEL[model.body_type] ?? model.body_type}
                 </span>
                 <span className="badge" style={{ background: "var(--card-alt)", color: "var(--text-secondary)", border: "1px solid var(--border)" }}>
                   {model.year_start}–{model.year_end ?? "devam"}
                 </span>
+                <span className="badge" style={{ background: "var(--card-alt)", color: "var(--accent)", border: "1px solid var(--border)" }}>
+                  🛡️ {safetyData.summary_badge}
+                </span>
               </div>
               <h3 style={{ fontSize: "1.4rem", margin: 0, color: "var(--text)" }}>
                 {model.brand} {model.name}
               </h3>
               <p className="small muted" style={{ margin: "6px 0 0", lineHeight: 1.5 }}>
-                Bu model için motor & şanzıman kronik arızaları, donanım paketleri ve canlı ekspertiz kontrol noktaları aşağıda derlenmiştir.
+                Bu model için Euro NCAP / IIHS çarpışma testi dereceleri, motor & şanzıman kronik arızaları, donanım paketleri ve canlı ekspertiz kontrol noktaları aşağıda derlenmiştir.
               </p>
             </div>
 
@@ -179,9 +190,9 @@ function ModelDetailContent() {
                 style={{
                   fontSize: "0.85rem",
                   fontWeight: 700,
-                  color: "#166534",
-                  background: "#f0fdf4",
-                  border: "1px solid #bbf7d0",
+                  color: "#ffffff",
+                  background: "var(--dusuk)",
+                  border: "1px solid var(--dusuk)",
                   padding: "8px 14px",
                   borderRadius: 8,
                   textDecoration: "none",
@@ -196,9 +207,9 @@ function ModelDetailContent() {
                 style={{
                   fontSize: "0.85rem",
                   fontWeight: 700,
-                  color: "#ea580c",
-                  background: "#fff7ed",
-                  border: "1px solid #fed7aa",
+                  color: "#ffffff",
+                  background: "var(--accent)",
+                  border: "1px solid var(--accent)",
                   padding: "8px 14px",
                   borderRadius: 8,
                   textDecoration: "none",
@@ -213,9 +224,9 @@ function ModelDetailContent() {
                 style={{
                   fontSize: "0.85rem",
                   fontWeight: 700,
-                  color: "#2563eb",
-                  background: "#eff6ff",
-                  border: "1px solid #bfdbfe",
+                  color: "var(--text)",
+                  background: "var(--card-alt)",
+                  border: "1px solid var(--border)",
                   padding: "8px 14px",
                   borderRadius: 8,
                   textDecoration: "none",
@@ -323,9 +334,9 @@ function ModelDetailContent() {
               <span
                 key={idx}
                 style={{
-                  background: "#eff6ff",
-                  color: "#1d4ed8",
-                  border: "1px solid #bfdbfe",
+                  background: "var(--accent-light)",
+                  color: "var(--accent)",
+                  border: "1px solid var(--border)",
                   borderRadius: "6px",
                   padding: "3px 8px",
                   fontSize: "0.8rem",

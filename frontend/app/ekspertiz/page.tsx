@@ -282,7 +282,7 @@ function EkspertizContent() {
               fontSize: "1.05rem",
               fontWeight: 800,
               justifySelf: "start",
-              boxShadow: "0 4px 14px rgba(37, 99, 235, 0.25)",
+              boxShadow: "0 4px 14px rgba(234, 88, 12, 0.3)",
               cursor: "pointer",
             }}
           >

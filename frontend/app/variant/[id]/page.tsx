@@ -12,7 +12,9 @@ import {
   UserCommentItem,
 } from "@/lib/api";
 import { buildSahibindenUrl, buildArabamUrl, FilterParams } from "@/lib/listingUrl";
+import { getSafetyRatingsFallback } from "@/lib/ncapSafety";
 import ScoreGauge from "@/components/ScoreGauge";
+import NcapSafetyCard from "@/components/NcapSafetyCard";
 
 const km = (n: number | null) => (n ? n.toLocaleString("tr-TR") : "?");
 
@@ -107,6 +109,7 @@ function VariantContent() {
   const v = r.variant;
   const trimPackages = r.trim_packages || [];
   const media = r.media_specs;
+  const safetyData = r.safety_ratings || getSafetyRatingsFallback(v.model);
 
   // Sahibinden ve Arabam linklerini hatasız arama parametreleriyle oluştur
   const searchKeyword = `${v.brand} ${v.model}`;
@@ -142,7 +145,7 @@ function VariantContent() {
       </Link>
 
       {/* Başlık ve Hız Göstergesi */}
-      <div className="row" style={{ marginTop: 14, alignItems: "center" }}>
+      <div className="row" style={{ marginTop: 14, alignItems: "center", gap: 16 }}>
         <div>
           <h1 style={{ margin: "4px 0", fontSize: "2rem", color: "var(--text)" }}>
             {v.brand} {v.model} – {v.engine}
@@ -153,18 +156,22 @@ function VariantContent() {
           </div>
         </div>
 
-        {/* Mavi Doluluk Oranlı & Marka Logolu Konfor Göstergesi */}
-        {v.comfort_score !== null && (
-          <div className="card" style={{ padding: "12px 20px" }}>
-            <ScoreGauge
-              score={v.comfort_score}
-              brand={v.brand}
-              size="md"
-              label="Konfor & Yalıtım Puanı"
-              showTicks={true}
-            />
-          </div>
-        )}
+        {/* Sağ Üst: Euro NCAP / IIHS / NHTSA Güvenlik Kartı (Solda) + Konfor Puanı (Sağda) */}
+        <div className="model-scores-wrapper">
+          <NcapSafetyCard safety={safetyData} />
+
+          {v.comfort_score !== null && (
+            <div className="card" style={{ padding: "12px 20px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <ScoreGauge
+                score={v.comfort_score}
+                brand={v.brand}
+                size="md"
+                label="Konfor & Yalıtım Puanı"
+                showTicks={true}
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* 2 SÜTUNLU DÜZEN (Sol %35 Model Analizi, Sağ %65 Detaylar) */}
@@ -381,9 +388,9 @@ function VariantContent() {
                       className="card"
                       style={{
                         border: isPremium
-                          ? "2px solid #ea580c"
+                          ? "2px solid var(--accent)"
                           : isOrta
-                          ? "2px solid #2563eb"
+                          ? "2px solid var(--orta)"
                           : "1px solid var(--border)",
                       }}
                     >
@@ -477,8 +484,8 @@ function VariantContent() {
             <div className="stack">
               {/* 1. Mevcut Kullanıcı Yorumları Listesi (Önce Yorumlar Gösterilir) */}
               <div className="stack">
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-                  <h3 style={{ margin: 0, fontSize: "1.1rem", color: "#0f172a" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 6, marginBottom: 4 }}>
+                  <h3 style={{ margin: 0, fontSize: "1.1rem", color: "var(--text)" }}>
                     💬 Kullanıcı & Sürücü Deneyimleri ({comments.length})
                   </h3>
                   <span className="small muted">sikayetvar.com & Gerçek Araç Sahipleri</span>
@@ -488,7 +495,7 @@ function VariantContent() {
                   <p className="muted card">Henüz kullanıcı yorumu yapılmamış. İlk yorumu aşağıdaki formdan siz yapabilirsiniz!</p>
                 )}
                 {comments.map((c) => (
-                  <div key={c.id} className="card" style={{ background: "#ffffff", border: "1px solid #e2e8f0" }}>
+                  <div key={c.id} className="card" style={{ border: "1px solid var(--border)" }}>
                     <div className="row">
                       <div>
                         <strong>{c.author_name}</strong>
@@ -519,8 +526,8 @@ function VariantContent() {
               </div>
 
               {/* 2. Yorum Ekleme Formu (Kullanıcı İsteği: Yorumların Altında) */}
-              <div className="card" style={{ background: "#ffffff", border: "2px solid #e2e8f0", marginTop: 16 }}>
-                <h3 style={{ margin: "0 0 8px 0", fontSize: "1.1rem", color: "#0f172a" }}>
+              <div className="card" style={{ border: "2px solid var(--border)", marginTop: 16 }}>
+                <h3 style={{ margin: "0 0 8px 0", fontSize: "1.1rem", color: "var(--text)" }}>
                   ✍️ Deneyiminizi Paylaşın (Üyelik Gerekmez)
                 </h3>
                 <p className="muted small" style={{ margin: "0 0 16px 0" }}>
@@ -534,7 +541,7 @@ function VariantContent() {
                 )}
 
                 <form onSubmit={handleCommentSubmit} style={{ display: "grid", gap: 12 }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                  <div className="comment-form-grid-2">
                     <label>
                       Adınız veya Takma Ad
                       <input
@@ -555,7 +562,7 @@ function VariantContent() {
                     </label>
                   </div>
 
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
+                  <div className="comment-form-grid-3">
                     <label>
                       Araç Kilometresi
                       <input
@@ -614,8 +621,8 @@ function VariantContent() {
       </div>
 
       {/* GÜNCEL PİYASA İLANLARI (EN ALTA TAŞINDI) */}
-      <div className="card" style={{ marginTop: 32, background: "#ffffff", border: "2px solid #e2e8f0" }}>
-        <div style={{ fontWeight: 800, marginBottom: 6, fontSize: "1.15rem", color: "#0f172a" }}>
+      <div className="card" style={{ marginTop: 32, border: "2px solid var(--border)" }}>
+        <div style={{ fontWeight: 800, marginBottom: 6, fontSize: "1.15rem", color: "var(--text)" }}>
           🚗 Güncel Canlı İlanlar: {v.brand} {v.model} İlanlarını Nerede İncelemek İstersiniz?
         </div>
         <p className="muted small" style={{ margin: "0 0 14px 0" }}>
@@ -631,9 +638,9 @@ function VariantContent() {
               <span
                 key={idx}
                 style={{
-                  background: "#eff6ff",
-                  color: "#1d4ed8",
-                  border: "1px solid #bfdbfe",
+                  background: "var(--accent-light)",
+                  color: "var(--accent)",
+                  border: "1px solid var(--border)",
                   borderRadius: "6px",
                   padding: "3px 9px",
                   fontSize: "0.8rem",

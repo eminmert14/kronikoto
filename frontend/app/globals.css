@@ -1,14 +1,18 @@
+/* 60-30-10 KURALI: GRİ (2 TON) & TURUNCU TEMASI */
 :root {
-  --bg: #eef2f6;
-  --card: #ffffff;
-  --card-alt: #f8fafc;
-  --border: #cbd5e1;
-  --text: #0f172a;
-  --text-secondary: #334155;
-  --muted: #64748b;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-light: #eff6ff;
+  /* %60 Ana Arka Plan (1. Ton Gri) */
+  --bg: #e5e7eb;
+  /* %30 Kart ve İkincil Yüzeyler (2. Ton Açık Gri & Alt Gri) */
+  --card: #f3f4f6;
+  --card-alt: #e2e4e8;
+  --border: #d1d5db;
+  --text: #111827;
+  --text-secondary: #374151;
+  --muted: #6b7280;
+  /* %10 Vurgu Rengi (Turuncu) */
+  --accent: #ea580c;
+  --accent-hover: #c2410c;
+  --accent-light: #ffedd5;
 
   --dusuk: #16a34a;
   --orta: #d97706;
@@ -19,16 +23,19 @@
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0b1120;
-  --card: #131c2e;
-  --card-alt: #1e293b;
-  --border: #334155;
-  --text: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --muted: #94a3b8;
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
-  --accent-light: #1e293b;
+  /* %60 Koyu Antrasit Gri (1. Ton Gri) */
+  --bg: #18181b;
+  /* %30 Kart ve İkincil Yüzeyler (2. Ton Koyu Gri) */
+  --card: #27272a;
+  --card-alt: #323238;
+  --border: #3f3f46;
+  --text: #fafafa;
+  --text-secondary: #d4d4d8;
+  --muted: #a1a1aa;
+  /* %10 Vurgu Rengi (Canlı Turuncu) */
+  --accent: #f97316;
+  --accent-hover: #ea580c;
+  --accent-light: #3b2516;
 }
 
 * {
@@ -42,6 +49,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.5;
   transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
 }
 
 a {
@@ -51,12 +59,14 @@ a {
 
 .header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: space-between;
   gap: 14px;
   padding: 16px 32px;
   background: var(--card);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -147,14 +157,14 @@ input, select, textarea, button {
 html[data-theme="dark"] input,
 html[data-theme="dark"] select,
 html[data-theme="dark"] textarea {
-  background-color: #1e293b !important;
-  color: #f8fafc !important;
-  border-color: #334155 !important;
+  background-color: var(--card-alt) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
 }
 
 html[data-theme="dark"] select option {
-  background-color: #131c2e !important;
-  color: #f8fafc !important;
+  background-color: var(--card) !important;
+  color: var(--text) !important;
 }
 
 html[data-theme="dark"] h1,
@@ -166,9 +176,9 @@ html[data-theme="dark"] strong {
 }
 
 html[data-theme="dark"] .nav-link-compare {
-  background: #1e293b !important;
-  color: #60a5fa !important;
-  border-color: #334155 !important;
+  background: var(--accent-light) !important;
+  color: var(--accent) !important;
+  border-color: var(--border) !important;
 }
 
 html[data-theme="dark"] .bottom-sheet-content {
@@ -212,7 +222,7 @@ html[data-theme="dark"] .tab.active {
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2);
 }
 
 button {
@@ -251,8 +261,8 @@ button:hover {
 .badge.yuksek { background: var(--yuksek); }
 .badge.cok_yuksek { background: var(--cok_yuksek); }
 .badge.kritik { background: var(--kritik); }
-.badge.draft { background: #64748b; }
-.badge.cat { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+.badge.draft { background: #6b7280; }
+.badge.cat { background: var(--card-alt); color: var(--text-secondary); border: 1px solid var(--border); }
 .badge.source-sikayet { background: #e11d48; }
 
 .row {
@@ -268,12 +278,13 @@ button:hover {
   gap: 8px;
   margin: 20px 0 16px;
   overflow-x: auto;
-  border-bottom: 2px solid #e2e8f0;
+  border-bottom: 2px solid var(--border);
   padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tab {
-  background: #ffffff;
+  background: var(--card);
   color: var(--text-secondary);
   border: 1px solid var(--border);
   font-weight: 600;
@@ -284,7 +295,7 @@ button:hover {
 }
 
 .tab:hover {
-  background: #f8fafc;
+  background: var(--card-alt);
 }
 
 .tab.active {
@@ -316,9 +327,9 @@ ul {
 .feature-chip {
   display: inline-flex;
   align-items: center;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  color: #334155;
+  background: var(--card-alt);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
   border-radius: 6px;
   padding: 4px 9px;
   font-size: 0.8rem;
@@ -357,6 +368,46 @@ ul {
   border: 1px solid #b91c1c;
 }
 
+/* Model Detay Sayfası Fotoğraf + Açıklama Kartı */
+.model-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+.model-hero-photo {
+  background: #ffffff;
+  border-right: 1px solid var(--border);
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+/* Model Başlığı + Sağ Üst NCAP & Konfor Kartları Grubu */
+.model-scores-wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Yorum Formu Grid Yapıları */
+.comment-form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.comment-form-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
 /* 2 Sütunlu Sayfa Düzeni (60/40 veya 65/35 Oranı) */
 .split-layout {
   display: grid;
@@ -370,23 +421,100 @@ ul {
   .split-layout {
     grid-template-columns: 1fr;
   }
+  .model-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .model-hero-photo {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    min-height: 190px;
+  }
 }
 
-/* Mobil Filtre Çekmecesi (Bottom Sheet) */
+/* MOBİL EKRAN DÜZELTMELERİ (TELEFON UYUMLULUĞU) */
 .mobile-filter-bar {
   display: none;
 }
 
 @media (max-width: 768px) {
+  .header {
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .header-brand-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .header-nav {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px !important;
+    width: 100%;
+  }
+
+  .header-nav .nav-ekspertiz-group {
+    grid-column: 1 / -1;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+  }
+
+  .header-nav .nav-ekspertiz-group > * {
+    flex: 1;
+  }
+
+  .container {
+    padding: 16px 12px 92px;
+  }
+
+  h1 {
+    font-size: 1.45rem !important;
+    line-height: 1.25;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .model-scores-wrapper {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .model-scores-wrapper > .card,
+  .model-scores-wrapper > .ncap-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .comment-form-grid-2,
+  .comment-form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .listing-btn {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
   .mobile-filter-bar {
     display: flex;
     position: fixed;
     bottom: 16px;
-    left: 16px;
-    right: 16px;
+    left: 14px;
+    right: 14px;
     z-index: 90;
     gap: 8px;
   }
+
   .mobile-filter-trigger {
     flex: 1;
     display: flex;
@@ -398,11 +526,12 @@ ul {
     font-weight: 800;
     padding: 14px 20px;
     border-radius: 999px;
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.4);
     border: none;
     cursor: pointer;
     font-size: 1rem;
   }
+
   .desktop-filters {
     display: none !important;
   }
@@ -411,7 +540,7 @@ ul {
 .bottom-sheet-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(4px);
   z-index: 100;
   display: flex;
@@ -421,7 +550,7 @@ ul {
 }
 
 .bottom-sheet-content {
-  background: #ffffff;
+  background: var(--card);
   border-top: 1px solid var(--border);
   border-radius: 20px 20px 0 0;
   width: 100%;
@@ -431,7 +560,7 @@ ul {
   flex-direction: column;
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
-  box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.25);
 }
 
 .bottom-sheet-header {
@@ -445,7 +574,7 @@ ul {
 .bottom-sheet-drag-handle {
   width: 40px;
   height: 4px;
-  background: #cbd5e1;
+  background: var(--border);
   border-radius: 999px;
   margin: 0 auto 12px;
 }
@@ -462,7 +591,7 @@ ul {
   border-top: 1px solid var(--border);
   display: flex;
   gap: 10px;
-  background: #f8fafc;
+  background: var(--bg);
 }
 
 @keyframes fadeIn {

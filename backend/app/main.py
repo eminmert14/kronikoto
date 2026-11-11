@@ -17,6 +17,7 @@ from .car_media_specs import get_variant_media_specs
 from .car_model_reviews import get_model_sikayetvar_reviews
 from .full_50_data import ALL_MODELS
 from .seed import run as seed_run
+from .ncap_safety import get_model_safety_ratings, fetch_nhtsa_live_api
 
 def _tr_sort_key(s: str) -> str:
     """Türkçe karakterleri doğru alfabetik sıraya sokan anahtar fonksiyonu."""
@@ -335,6 +336,7 @@ def get_comparison_tree(db: Session = Depends(get_db)):
                 "year_start": mo.year_start,
                 "year_end": mo.year_end,
                 "comfort_score": mo.comfort_score,
+                "safety_ratings": get_model_safety_ratings(b.name, mo.name),
                 "sahibinden_slug": mo.sahibinden_slug,
                 "arabam_slug": mo.arabam_slug,
                 "variants": variants_list,
@@ -488,6 +490,7 @@ def model_detail(model_id: uuid.UUID, db: Session = Depends(get_db)):
         "year_start": mo.year_start,
         "year_end": mo.year_end,
         "comfort_score": mo.comfort_score,
+        "safety_ratings": get_model_safety_ratings(mo.brand.name, mo.name),
         "variants": [_variant_out(v) for v in mo.variants if v.is_active],
         "trim_packages": [
             {
@@ -503,6 +506,22 @@ def model_detail(model_id: uuid.UUID, db: Session = Depends(get_db)):
             "sahibinden": f"https://www.sahibinden.com/kelime-ile-arama?query_text={quote_plus(f'{mo.brand.name} {mo.name}')}",
             "arabam": f"https://www.arabam.com/ikinci-el?searchText={quote_plus(f'{mo.brand.name} {mo.name}')}",
         },
+    }
+
+
+@app.get("/api/v1/models/{model_id}/ncap-live")
+def model_ncap_live(model_id: uuid.UUID, db: Session = Depends(get_db)):
+    """Model için Euro NCAP, IIHS ve NHTSA Resmi API (api.nhtsa.gov) entegrasyon verisini döndürür."""
+    mo = db.scalars(
+        select(m.CarModel).where(m.CarModel.id == model_id).options(joinedload(m.CarModel.brand))
+    ).one_or_none()
+    if not mo:
+        raise HTTPException(404, "Model bulunamadı")
+    return {
+        "brand": mo.brand.name,
+        "model": mo.name,
+        "safety_ratings": get_model_safety_ratings(mo.brand.name, mo.name),
+        "nhtsa_api_check": fetch_nhtsa_live_api(mo.brand.name, mo.name, mo.year_start or 2021),
     }
 
 
@@ -643,6 +662,7 @@ def variant_faults(variant_id: uuid.UUID, db: Session = Depends(get_db)):
             "comfort_score": v.model.comfort_score,
             "body_type": v.model.body_type,
         },
+        "safety_ratings": get_model_safety_ratings(v.model.brand.name, v.model.name),
         "media_specs": media_specs,
         "trim_packages": [
             {

@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { api } from "@/lib/api";
 import { buildSahibindenUrl, buildArabamUrl } from "@/lib/listingUrl";
+import { SafetyRatingsData, getSafetyRatingsFallback } from "@/lib/ncapSafety";
 import ScoreGauge from "@/components/ScoreGauge";
 
 interface VariantItem {
@@ -37,6 +38,7 @@ interface ModelItem {
   year_start: number;
   year_end: number | null;
   comfort_score: number | null;
+  safety_ratings?: SafetyRatingsData;
   sahibinden_slug?: string | null;
   arabam_slug?: string | null;
   variants: VariantItem[];
@@ -96,6 +98,7 @@ function ComparePageContent() {
       modelName: model.name,
       bodyType: model.body_type,
       comfortScore: model.comfort_score,
+      safetyRatings: model.safety_ratings || getSafetyRatingsFallback(model.name),
       variant,
       trim,
       sahibindenUrl,
@@ -180,9 +183,8 @@ function ComparePageContent() {
         style={{
           flex: "1 1 280px",
           minWidth: "260px",
-          background: "#ffffff",
           boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-          border: car.modelId ? "2px solid #3b82f6" : "1px solid #e2e8f0",
+          border: car.modelId ? "2px solid var(--accent)" : "1px solid var(--border)",
           borderRadius: "12px",
           transition: "border-color 0.2s",
         }}
@@ -336,11 +338,11 @@ function ComparePageContent() {
           <Link href="/" className="muted small" style={{ fontWeight: 600 }}>
             ← Ana Sayfaya & Filtrelere Dön
           </Link>
-          <h1 style={{ fontSize: "1.85rem", margin: "6px 0 2px 0", color: "#0f172a", fontWeight: 800 }}>
+          <h1 style={{ fontSize: "1.85rem", margin: "6px 0 2px 0", color: "var(--text)", fontWeight: 800 }}>
             ⚖️ Araç Karşılaştırma Modülü
           </h1>
           <p className="muted small" style={{ margin: 0 }}>
-            Türkiye pazarındaki araçları motor gücü, tork, 0-100 hızlanması, yakıt tüketimi, donanımları ve konforuyla yan yana kıyaslayın.
+            Türkiye pazarındaki araçları motor gücü, tork, 0-100 hızlanması, Euro NCAP güvenliği, yakıt tüketimi, donanımları ve konforuyla yan yana kıyaslayın.
           </p>
         </div>
       </div>
@@ -366,7 +368,7 @@ function ComparePageContent() {
                 fontSize: "1.05rem",
                 borderRadius: "10px",
                 fontWeight: 800,
-                boxShadow: "0 4px 14px rgba(37, 99, 235, 0.25)",
+                boxShadow: "0 4px 14px rgba(234, 88, 12, 0.3)",
                 cursor: "pointer",
               }}
             >
@@ -381,16 +383,15 @@ function ComparePageContent() {
               style={{
                 textAlign: "center",
                 padding: "3rem 1.5rem",
-                background: "#ffffff",
                 borderRadius: "16px",
-                border: "1px dashed #cbd5e1",
+                border: "1px dashed var(--border)",
               }}
             >
               <div style={{ fontSize: "2.5rem", marginBottom: 10 }}>⚖️🚘</div>
-              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#0f172a", margin: "0 0 8px 0" }}>
+              <h3 style={{ fontSize: "1.25rem", fontWeight: 800, color: "var(--text)", margin: "0 0 8px 0" }}>
                 Karşılaştırmak İstediğiniz Araçları Seçin
               </h3>
-              <p style={{ color: "#64748b", maxWidth: 500, margin: "0 auto", fontSize: "0.95rem", lineHeight: 1.5 }}>
+              <p style={{ color: "var(--muted)", maxWidth: 500, margin: "0 auto", fontSize: "0.95rem", lineHeight: 1.5 }}>
                 Yukarıdaki kutulardan en az 2 aracı (1. Araç ve 2. Araç) belirleyip ardından <strong>&apos;Araçları Yan Yana Karşılaştır&apos;</strong> butonuna basınız. İsterseniz 3. aracı da dahil edebilirsiniz.
               </p>
             </div>
@@ -403,7 +404,7 @@ function ComparePageContent() {
               style={{
                 padding: 0,
                 overflowX: "auto",
-                border: "2px solid #e2e8f0",
+                border: "2px solid var(--border)",
                 borderRadius: 14,
                 boxShadow: "0 4px 12px rgba(0,0,0,0.04)",
                 WebkitOverflowScrolling: "touch",
@@ -419,16 +420,16 @@ function ComparePageContent() {
                 }}
               >
                 <thead>
-                  <tr style={{ background: "#f8fafc", borderBottom: "2px solid #e2e8f0" }}>
+                  <tr style={{ background: "var(--card-alt)", borderBottom: "2px solid var(--border)" }}>
                     <th
                       style={{
                         padding: "16px 20px",
                         width: "26%",
-                        color: "#475569",
+                        color: "var(--text-secondary)",
                         fontWeight: 800,
                         position: "sticky",
                         left: 0,
-                        background: "#f8fafc",
+                        background: "var(--card-alt)",
                         zIndex: 2,
                         boxShadow: "2px 0 4px rgba(0,0,0,0.03)",
                       }}
@@ -437,7 +438,7 @@ function ComparePageContent() {
                     </th>
                     {comparedCars.map((c, i) => (
                       <th key={i} style={{ padding: "16px 20px", width: `${74 / comparedCars.length}%` }}>
-                        <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "#0f172a" }}>
+                        <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--text)" }}>
                           {c.brandName} {c.modelName}
                         </div>
                         <div style={{ color: "var(--accent)", fontSize: "0.85rem", fontWeight: 700, marginTop: 2 }}>
@@ -449,15 +450,15 @@ function ComparePageContent() {
                 </thead>
                 <tbody>
                   {/* Satır 1: Konfor & Yalıtım Göstergesi */}
-                  <tr style={{ borderBottom: "1px solid #f1f5f9" }}>
+                  <tr style={{ borderBottom: "1px solid var(--border)" }}>
                     <td
                       style={{
                         padding: "14px 20px",
                         fontWeight: 700,
-                        color: "#334155",
+                        color: "var(--text-secondary)",
                         position: "sticky",
                         left: 0,
-                        background: "#ffffff",
+                        background: "var(--card)",
                         zIndex: 1,
                         boxShadow: "2px 0 4px rgba(0,0,0,0.03)",
                       }}
@@ -477,16 +478,56 @@ function ComparePageContent() {
                     ))}
                   </tr>
 
-                  {/* Satır 2: Segment & Kasa */}
-                  <tr style={{ borderBottom: "1px solid #f1f5f9", background: "#fafafa" }}>
+                  {/* Satır 1.5: Euro NCAP / IIHS / NHTSA Güvenlik Puanları */}
+                  <tr style={{ borderBottom: "1px solid var(--border)", background: "var(--card-alt)" }}>
                     <td
                       style={{
                         padding: "14px 20px",
                         fontWeight: 700,
-                        color: "#334155",
+                        color: "var(--text-secondary)",
                         position: "sticky",
                         left: 0,
-                        background: "#fafafa",
+                        background: "var(--card-alt)",
+                        zIndex: 1,
+                        boxShadow: "2px 0 4px rgba(0,0,0,0.03)",
+                      }}
+                    >
+                      🛡️ Euro NCAP & IIHS Güvenlik
+                    </td>
+                    {comparedCars.map((c, i) => (
+                      <td key={i} style={{ padding: "14px 20px" }}>
+                        {c.safetyRatings ? (
+                          <div style={{ display: "grid", gap: 4 }}>
+                            <div>
+                              <span style={{ color: "var(--accent)", fontWeight: 900, letterSpacing: "1px" }}>
+                                {"★".repeat(c.safetyRatings.euro_ncap.stars)}{"☆".repeat(5 - c.safetyRatings.euro_ncap.stars)}
+                              </span>{" "}
+                              <strong>({c.safetyRatings.euro_ncap.stars}/5 Yıldız · {c.safetyRatings.euro_ncap.test_year})</strong>
+                            </div>
+                            <div className="small muted">
+                              Yetişkin: <strong>%{c.safetyRatings.euro_ncap.adult_occupant}</strong> · Çocuk: <strong>%{c.safetyRatings.euro_ncap.child_occupant}</strong> · Asistan: <strong>%{c.safetyRatings.euro_ncap.safety_assist}</strong>
+                            </div>
+                            <div className="small">
+                              🏅 IIHS: <strong>{c.safetyRatings.iihs.award}</strong> · NHTSA: <strong style={{ color: "var(--accent)" }}>{c.safetyRatings.nhtsa.overall_stars}★</strong>
+                            </div>
+                          </div>
+                        ) : (
+                          "Veri Yok"
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Satır 2: Segment & Kasa */}
+                  <tr style={{ borderBottom: "1px solid var(--border)" }}>
+                    <td
+                      style={{
+                        padding: "14px 20px",
+                        fontWeight: 700,
+                        color: "var(--text-secondary)",
+                        position: "sticky",
+                        left: 0,
+                        background: "var(--card)",
                         zIndex: 1,
                         boxShadow: "2px 0 4px rgba(0,0,0,0.03)",
                       }}
@@ -501,15 +542,15 @@ function ComparePageContent() {
                   </tr>
 
                   {/* Satır 3: Model Yılı */}
-                  <tr style={{ borderBottom: "1px solid #f1f5f9" }}>
+                  <tr style={{ borderBottom: "1px solid var(--border)" }}>
                     <td
                       style={{
                         padding: "14px 20px",
                         fontWeight: 700,
-                        color: "#334155",
+                        color: "var(--text-secondary)",
                         position: "sticky",
                         left: 0,
-                        background: "#ffffff",
+                        background: "var(--card)",
                         zIndex: 1,
                         boxShadow: "2px 0 4px rgba(0,0,0,0.03)",
                       }}
@@ -524,15 +565,15 @@ function ComparePageContent() {
                   </tr>
 
                   {/* Satır 4: Motor & Güç */}
-                  <tr style={{ borderBottom: "1px solid #f1f5f9", background: "#fafafa" }}>
+                  <tr style={{ borderBottom: "1px solid var(--border)" }}>
                     <td
                       style={{
                         padding: "14px 20px",
                         fontWeight: 700,
-                        color: "#334155",
+                        color: "var(--text-secondary)",
                         position: "sticky",
                         left: 0,
-                        background: "#fafafa",
+                        background: "var(--card)",
                         zIndex: 1,
                         boxShadow: "2px 0 4px rgba(0,0,0,0.03)",
                       }}
@@ -548,15 +589,15 @@ function ComparePageContent() {
                   </tr>
 
                   {/* Satır 5: Maksimum Tork */}
-                  <tr style={{ borderBottom: "1px solid #f1f5f9" }}>
+                  <tr style={{ borderBottom: "1px solid var(--border)" }}>
                     <td
                       style={{
                         padding: "14px 20px",
                         fontWeight: 700,
-                        color: "#334155",
+                        color: "var(--text-secondary)",
                         position: "sticky",
                         left: 0,
-                        background: "#ffffff",
+                        background: "var(--card)",
                         zIndex: 1,
                         boxShadow: "2px 0 4px rgba(0,0,0,0.03)",
                       }}
@@ -565,21 +606,21 @@ function ComparePageContent() {
                     </td>
                     {comparedCars.map((c, i) => (
                       <td key={i} style={{ padding: "14px 20px" }}>
-                        <strong style={{ color: "#0f172a" }}>{c.variant?.torque_nm} Nm</strong>
+                        <strong style={{ color: "var(--text)" }}>{c.variant?.torque_nm} Nm</strong>
                       </td>
                     ))}
                   </tr>
 
                   {/* Satır 6: 0-100 Hızlanma */}
-                  <tr style={{ borderBottom: "1px solid #f1f5f9", background: "#fafafa" }}>
+                  <tr style={{ borderBottom: "1px solid var(--border)" }}>
                     <td
                       style={{
                         padding: "14px 20px",
                         fontWeight: 700,
-                        color: "#334155",
+                        color: "var(--text-secondary)",
                         position: "sticky",
                         left: 0,
-                        background: "#fafafa",
+                        background: "var(--card)",
                         zIndex: 1,
                         boxShadow: "2px 0 4px rgba(0,0,0,0.03)",
                       }}
@@ -588,7 +629,7 @@ function ComparePageContent() {
                     </td>
                     {comparedCars.map((c, i) => (
                       <td key={i} style={{ padding: "14px 20px" }}>
-                        <span style={{ fontWeight: 800, color: "#2563eb" }}>
+                        <span style={{ fontWeight: 800, color: "var(--accent)" }}>
                           {c.variant?.acceleration_0_100 || "9.5 sn"}
                         </span>
                       </td>

@@ -581,10 +581,10 @@ export default function Home() {
     <>
       <div style={{ marginBottom: 20 }}>
         <h1 style={{ fontSize: "1.9rem", marginBottom: 6, color: "var(--text)" }}>
-          Hangi aracı almalı? Önce kronik arızalarını ve konforunu gör.
+          Hangi aracı almalı? Önce kronik arızalarını, NCAP güvenliğini ve konforunu gör.
         </h1>
         <p className="muted" style={{ margin: 0, fontSize: "0.95rem" }}>
-          Türkiye pazarındaki 50 popüler aracın motor & şanzıman kronik arızaları, gerçekçi konfor göstergesi ve güncel ilan filtreleri.
+          Türkiye pazarındaki 111 popüler aracın motor & şanzıman kronik arızaları, Euro NCAP / IIHS güvenlik dereceleri ve gerçekçi konfor göstergesi.
         </p>
       </div>
 
@@ -613,7 +613,7 @@ export default function Home() {
               height: "44px",
               minWidth: "155px",
               fontWeight: 700,
-              background: isListOpenWithSameFilters ? "#475569" : "var(--accent)",
+              background: isListOpenWithSameFilters ? "#4b5563" : "var(--accent)",
             }}
           >
             {isListOpenWithSameFilters ? "Listeyi Kapat ▲" : "Araçları Listele ▼"}
@@ -627,9 +627,9 @@ export default function Home() {
               justifyContent: "center",
               height: "44px",
               padding: "0 14px",
-              background: "#eff6ff",
-              color: "#1d4ed8",
-              border: "1px solid #bfdbfe",
+              background: "var(--accent-light)",
+              color: "var(--accent)",
+              border: "1px solid var(--border)",
               borderRadius: "8px",
               fontWeight: 700,
               fontSize: "0.9rem",
@@ -671,7 +671,7 @@ export default function Home() {
             <span
               style={{
                 background: "#ffffff",
-                color: "#1d4ed8",
+                color: "var(--accent)",
                 fontSize: "0.8rem",
                 padding: "2px 8px",
                 borderRadius: "999px",
@@ -761,9 +761,9 @@ export default function Home() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  background: "#eff6ff",
-                  color: "#1d4ed8",
-                  border: "1px solid #bfdbfe",
+                  background: "var(--accent-light)",
+                  color: "var(--accent)",
+                  border: "1px solid var(--border)",
                   borderRadius: "8px",
                   fontWeight: 700,
                   fontSize: "0.95rem",

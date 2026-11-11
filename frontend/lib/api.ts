@@ -1,3 +1,5 @@
+import { SafetyRatingsData } from "./ncapSafety";
+
 const API = typeof window === "undefined"
   ? (process.env.INTERNAL_API_URL ?? "https://kronikoto.onrender.com")
   : (process.env.NEXT_PUBLIC_API_URL ?? "");
@@ -152,6 +154,7 @@ export interface UserCommentItem {
 
 export interface VariantFaultsResponse {
   variant: VariantDetail;
+  safety_ratings?: SafetyRatingsData;
   media_specs: MediaSpecs;
   trim_packages: TrimPackage[];
   listing_urls: ListingUrls;
