@@ -2042,4 +2042,204 @@ ALL_TRIM_PACKAGES = {
             "features": ["Masaj Fonksiyonlu ve Elektrikli Bacak Destekli Ön Yolcu Koltuğu", "Head-Up Display (Ön Cama Yansıtma) & Sony 10 Hoparlörlü Ses Sistemi", "540 Derece Şeffaf Şasi Çevre Görüş Kamerası ve Dahili Araç İçi Kamera (DVR)", " Kahverengi Özel Deri Kabin Döşemesi", "9 Hava Yastığı", "19\" Çok Kollu Lüks Jantlar"],
         },
     ],
+    ("Chery", "Omoda 5"): [
+        {
+            "name": "Comfort",
+            "level": "dusuk",
+            "summary": "Sportif Coupe-SUV Giriş Paketi",
+            "features": ["20.5\" Çift Bitişik Dijital Ekran", "Kablosuz Apple CarPlay & Android Auto", "Anahtarsız Giriş ve Çalıştırma", "Geri Görüş Kamerası & Arka Park Sensörü", "17\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Luxury",
+            "level": "orta",
+            "summary": "360 Kamera ve Sunroof'lu Popüler Omoda 5",
+            "features": ["Elektrikli Açılır Sunroof", "360 Derece Çevre Görüş Kamerası", "Elektrikli Bagaj Kapağı", "Isıtmalı Ön Koltuklar & Deri Döşeme", "Kablosuz Şarj Ünitesi", "18\" Spor Alaşım Jantlar"],
+        },
+        {
+            "name": "Excellent",
+            "level": "premium",
+            "summary": "Soğutmalı Koltuklu ve Tam ADAS Zirve Paketi",
+            "features": ["Isıtmalı ve Soğutmalı Ön Koltuklar", "Gelişmiş ADAS Paketi (Adaptif Hız Sabitleyici, Kör Nokta, Şerit Takip)", "Sony 8 Hoparlörlü Ses Sistemi", "Çok Renkli Ambiyans Aydınlatma", "18\" Çift Renkli Kırmızı Vurgulu Spor Jantlar"],
+        },
+    ],
+    ("Togg", "T10X"): [
+        {
+            "name": "V1 RWD Standart Menzil",
+            "level": "dusuk",
+            "summary": "314 km Menzilli Akıllı C-SUV Başlangıcı",
+            "features": ["Uçtan Uca 29\" Geniş Dijital Ekran + 12\" Gösterge", "8\" Alt Dokunmatik Kumanda Ekranı", "Trumore Akıllı Yaşam Platformu & OTA Güncelleme", "Çift Bölgeli Otomatik Klima & Kablosuz Şarj", "18\" Alaşım Jantlar"],
+        },
+        {
+            "name": "V2 RWD Standart / Uzun Menzil",
+            "level": "orta",
+            "summary": "523 km Menzil Seçeneği ve Konfor Donanımı",
+            "features": ["523 km (WLTP) Uzun Menzil Batarya Seçeneği", "Elektrikli & Hafızalı Isıtmalı Ön Koltuklar", "Elektrikli Bagaj Kapağı & Anahtarsız Giriş", "360 Derece Çevre Görüş Kamerası & Otomatik Park", "19\" Elmas Kesim Alaşım Jantlar"],
+        },
+        {
+            "name": "V2 RWD Uzun Menzil + Meridian & Cam Tavan",
+            "level": "premium",
+            "summary": "Panoramik Cam Tavan ve Meridian Sesli Zirve T10X",
+            "features": ["Açılır Panoramik Cam Tavan", "Meridian 12 Hoparlörlü Premium Ses Sistemi (470W)", "Ön ve Arka Koltuk Isıtma + Isıtmalı Ön Cam", "Krem/Siyah Vegan Deri Koltuklar", "Gelişmiş ADAS Sürüş Destek Paketi (Adaptif Cruise & Trafik Pilotu)"],
+        },
+    ],
+    ("Opel", "Astra J"): [
+        {
+            "name": "Edition / Business",
+            "level": "dusuk",
+            "summary": "Ekonomik Giriş & Filo Donanımı",
+            "features": ["Manuel Klima", "Hız Sabitleyici (Cruise Control)", "16\" Yapısal Kapaklı Jantlar", "CD400 Ses Sistemi & AUX/USB", "Yokuş Kalkış Desteği"],
+        },
+        {
+            "name": "Sport / Design",
+            "level": "orta",
+            "summary": "Türkiye'de En Çok Tutulan Konfor Paketi",
+            "features": ["Çift Bölgeli Dijital Klima", "Elektronik El Freni", "Yağmur ve Far Sensörü", "17\" Alaşım Jantlar", "Kırmızı İç Ambiyans Aydınlatma", "Arka Park Sensörü"],
+        },
+        {
+            "name": "Cosmo",
+            "level": "premium",
+            "summary": "AFL+ Bi-Xenon Farlı Zirve Astra J",
+            "features": ["AFL+ Akıllı Bi-Xenon Adaptif Ön Farlar & LED Gündüz Farı", "Yarı Deri Spor Koltuklar", "Açılır Elektrikli Sunroof (Opsiyonel)", "Elektrikli Katlanır Yan Aynalar", "Ön-Arka Park Sensörleri & 17\"/18\" Cosmo Jantlar"],
+        },
+    ],
+    ("Opel", "Crossland"): [
+        {
+            "name": "Essential",
+            "level": "dusuk",
+            "summary": "Şehir İçi Pratik B-SUV Başlangıcı",
+            "features": ["7\" Dokunmatik Multimedya & CarPlay", "LED Ön Farlar", "Şerit İhlali Uyarı Sistemi", "Manuel Klima", "16\" Jantlar"],
+        },
+        {
+            "name": "Edition",
+            "level": "orta",
+            "summary": "Dijital Klimalı ve Park Kameralı Paket",
+            "features": ["Çift Bölgeli Otomatik Klima", "180 Derece Panoramik Geri Görüş Kamerası", "Ön ve Arka Park Sensörleri", "16\" Alaşım Jantlar", "Yağmur ve Far Sensörü"],
+        },
+        {
+            "name": "Elegance / Ultimate",
+            "level": "premium",
+            "summary": "AGR Ergonomik Koltuklu & Cam Tavanlı Zirve",
+            "features": ["AGR Onaylı Ergonomik Yarı Deri Koltuklar", "Panoramik Cam Tavan & Çift Renk Tavan", "Anahtarsız Giriş ve Çalıştırma", "Isıtmalı Ön Koltuklar ve Direksiyon", "17\" Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Volkswagen", "Golf 8"): [
+        {
+            "name": "Impression",
+            "level": "dusuk",
+            "summary": "Dijital Kokpitli Yeni Nesil Giriş Paketi",
+            "features": ["10.25\" Dijital Gösterge Paneli (Digital Cockpit)", "8.25\" Dokunmatik Multimedya Ekranı", "LED Ön ve Arka Farlar", "Anahtarsız Çalıştırma (Keyless Start)", "Şerit Takip Asistanı"],
+        },
+        {
+            "name": "Life",
+            "level": "orta",
+            "summary": "3 Bölgeli Klima ve Kablosuz CarPlay'li Popüler Paket",
+            "features": ["3 Bölgeli Tam Otomatik Climatronic Klima", "Kablosuz Apple CarPlay & Kablosuz Şarj", "10 Renkli İç Ambiyans Aydınlatma", "Ön ve Arka Park Sensörleri", "16\" Norfolk Alaşım Jantlar"],
+        },
+        {
+            "name": "Style / R-Line",
+            "level": "premium",
+            "summary": "IQ.Light Matrix Farlı ve Cam Tavanlı Zirve Golf 8",
+            "features": ["Açılır Panoramik Cam Tavan", "IQ.Light LED Matrix Ön Farlar & Dinamik Sinyal", "10\" Discover Pro Navigasyonlu Büyük Ekran", "30 Renkli Ambiyans Aydınlatma & ErgoActive Koltuklar", "17\"/18\" R-Line Alaşım Jantlar"],
+        },
+    ],
+    ("Volkswagen", "T-Cross"): [
+        {
+            "name": "Life",
+            "level": "dusuk",
+            "summary": "Pratik Kayar Arka Koltuklu B-SUV Girişi",
+            "features": ["14 cm İleri-Geri Kaydırılabilen Arka Koltuklar", "8\" Dokunmatik Ekran & App-Connect", "Dijital Gösterge Paneli", "Ön Bölge Asistanı & Şerit Takip", "16\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Style",
+            "level": "orta",
+            "summary": "Full LED Farlı ve Çift Bölgeli Klimalı Paket",
+            "features": ["Full LED Ön Farlar & IQ.Light Arka Stoplar", "Çift Bölgeli Otomatik Climatronic Klima", "Geri Görüş Kamerası & Park Sensörleri", "Kablosuz Şarj & Ambiyans Aydınlatma", "17\" Alaşım Jantlar"],
+        },
+        {
+            "name": "R-Line",
+            "level": "premium",
+            "summary": "Sportif Gövde Kitli Zirve T-Cross",
+            "features": ["R-Line Dış Tasarım Paketi & Spor Koltuklar", "Adaptif Hız Sabitleyici (ACC)", "Anahtarsız Giriş ve Çalıştırma", "Kör Nokta Uyarı Sistemi", "18\" Nevada Alüminyum Alaşım Jantlar"],
+        },
+    ],
+    ("Hyundai", "i10"): [
+        {
+            "name": "Jump",
+            "level": "dusuk",
+            "summary": "Ekonomik Şehir İçi Başlangıç Paketi",
+            "features": ["Manuel Klima", "Bluetooth & USB Bağlantısı", "Elektrikli Ön Camlar", "Şerit Takip & Çarpışma Önleme (Yeni Nesil)", "14\" Çelik Jantlar"],
+        },
+        {
+            "name": "Style",
+            "level": "orta",
+            "summary": "8\" Dokunmatik Ekranlı Popüler i10",
+            "features": ["8\" Dokunmatik Multimedya & Kablosuz CarPlay", "Geri Görüş Kamerası & Arka Park Sensörü", "15\" Alaşım Jantlar", "Deri Direksiyon ve Vites Topuzu", "Elektrikli Arka Camlar"],
+        },
+        {
+            "name": "Elite",
+            "level": "premium",
+            "summary": "Sunroof ve Çift Renk Tavanlı En Dolu i10",
+            "features": ["Elektrikli Açılır Sunroof", "Otomatik Dijital Klima", "Anahtarsız Giriş ve Çalıştırma", "Çift Renk Siyah Tavan Seçeneği", "16\" Elmas Kesim Alaşım Jantlar"],
+        },
+    ],
+    ("Hyundai", "Accent Era"): [
+        {
+            "name": "Start / Team",
+            "level": "dusuk",
+            "summary": "Ekonomik Aile ve Taksi/Filo Başlangıcı",
+            "features": ["Manuel Klima", "Elektrikli Ön Camlar", "Hidrolik / EPS Direksiyon", "Radyo CD/MP3 Çalar", "14\" Jantlar"],
+        },
+        {
+            "name": "Mode / Select",
+            "level": "orta",
+            "summary": "En Çok Aranan Temiz İkinci El Paketi",
+            "features": ["4 Cam Elektrikli & Elektrikli Yan Aynalar", "ABS & Çift Hava Yastığı", "Ön Sis Farları", "Yol Bilgisayarı & USB/AUX", "Direksiyondan Kumandalı Ses Sistemi"],
+        },
+        {
+            "name": "Style",
+            "level": "premium",
+            "summary": "Dijital Klimalı ve Sunroof'lu En Dolu Era",
+            "features": ["Otomatik Dijital Klima", "Elektrikli Açılır Sunroof (Opsiyonel)", "15\" Alüminyum Alaşım Jantlar", "Deri Direksiyon & Metalik Orta Konsol", "Arka Kol Dayama"],
+        },
+    ],
+    ("Fiat", "Punto"): [
+        {
+            "name": "Active / Pop",
+            "level": "dusuk",
+            "summary": "City Direksiyonlu Ekonomik Şehir Girişi",
+            "features": ["City Modlu Elektrikli Direksiyon", "Manuel Klima", "Elektrikli Ön Camlar", "ABS & Çift Hava Yastığı", "15\" Jant Kapakları"],
+        },
+        {
+            "name": "Dynamic / Easy",
+            "level": "orta",
+            "summary": "Blue&Me ve Alaşım Jantlı Popüler Paket",
+            "features": ["Blue&Me Bluetooth & USB Ses Sistemi", "15\"/16\" Alaşım Jantlar", "Ön Sis Farları & Viraj Aydınlatma", "Deri Direksiyon", "Yokuş Kalkış Desteği (Hill Holder)"],
+        },
+        {
+            "name": "Emotion / Lounge",
+            "level": "premium",
+            "summary": "Skydome Cam Tavanlı En Dolu Punto",
+            "features": ["Skydome Panoramik Açılır Cam Tavan", "Çift Bölgeli Otomatik Dijital Klima", "Hız Sabitleyici (Cruise Control)", "Arka Park Sensörü", "16\" Elmas Kesim Alaşım Jantlar"],
+        },
+    ],
+    ("Citroen", "C3"): [
+        {
+            "name": "Feel",
+            "level": "dusuk",
+            "summary": "Airbump Tasarımlı Şehir Giriş Paketi",
+            "features": ["LED Gündüz Farları & Şerit İhlali Uyarısı", "Manuel Klima", "Hız Sabitleyici ve Sınırlayıcı", "Bluetooth & USB", "16\" Jantlar"],
+        },
+        {
+            "name": "Feel Bold",
+            "level": "orta",
+            "summary": "Airbump Korumalı ve CarPlay'li Favori Paket",
+            "features": ["7\" Dokunmatik Multimedya & Apple CarPlay", "Otomatik Dijital Klima", "Yan Airbump Koruma Panelleri", "Arka Park Sensörü & Elektrikli Katlanır Aynalar", "16\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Shine",
+            "level": "premium",
+            "summary": "Çift Renk Tavanlı ve Advanced Comfort Koltuklu Zirve",
+            "features": ["Advanced Comfort Ekstra Konforlu Koltuklar", "Çift Renk Tavan Seçeneği", "Geri Görüş Kamerası & Anahtarsız Giriş", "ConnectedCAM Entegre Araç Kamerası (Opsiyonel)", "17\" Elmas Kesim Alaşım Jantlar"],
+        },
+    ],
 }

@@ -30,6 +30,7 @@ BRANDS = [
     ("Volvo", "İsveç"),
     ("Cupra", "İspanya"),
     ("Chery", "Çin"),
+    ("Togg", "Türkiye"),
 ]
 
 # (marka, model_adi, kasa_tipi, yil_bas, yil_son, konfor_puani, sahibinden_slug, arabam_slug)
@@ -183,9 +184,23 @@ ALL_MODELS = [
     # Cupra (1)
     ("Cupra", "Formentor", "suv", 2020, None, 8.6, "cupra-formentor", "cupra/formentor"),
 
-    # Chery (2)
+    # Chery (3)
     ("Chery", "Tiggo 7 Pro", "suv", 2023, None, 8.1, "chery-tiggo-7-pro", "chery/tiggo-7-pro"),
     ("Chery", "Tiggo 8 Pro", "suv", 2023, None, 8.4, "chery-tiggo-8-pro", "chery/tiggo-8-pro"),
+    ("Chery", "Omoda 5", "suv", 2023, None, 8.0, "chery-omoda-5", "chery/omoda-5"),
+
+    # Togg (1)
+    ("Togg", "T10X", "suv", 2023, None, 8.7, "togg-t10x", "togg/t10x"),
+
+    # Yeni Popüler Türkiye Modelleri
+    ("Opel", "Astra J", "sedan", 2010, 2018, 7.6, "opel-astra", "opel/astra"),
+    ("Opel", "Crossland", "suv", 2017, None, 7.4, "opel-crossland", "opel/crossland"),
+    ("Volkswagen", "Golf 8", "hatchback", 2020, None, 8.5, "volkswagen-golf", "volkswagen/golf"),
+    ("Volkswagen", "T-Cross", "suv", 2019, None, 7.6, "volkswagen-t-cross", "volkswagen/t-cross"),
+    ("Hyundai", "i10", "hatchback", 2014, None, 6.8, "hyundai-i10", "hyundai/i10"),
+    ("Hyundai", "Accent Era", "sedan", 2006, 2012, 6.1, "hyundai-accent-era", "hyundai/accent-era"),
+    ("Fiat", "Punto", "hatchback", 2006, 2018, 6.2, "fiat-punto", "fiat/punto"),
+    ("Citroen", "C3", "hatchback", 2016, None, 7.3, "citroen-c3", "citroen/c3"),
 ]
 
 # (kod, etiket, yakıt, cc, hp, nm, teknoloji)
@@ -298,6 +313,16 @@ ENGINES = {
 
     # Chery
     "chery_16_tgdi": ("SQRF4J16", "1.6 TGDI Acteco 183 HP", "benzin", 1598, 183, 275, "Acteco 3. Nesil Direkt Enjeksiyon Turbo"),
+
+    # Togg
+    "togg_ev_160": ("Togg-RWD-160", "V1 / V2 RWD 218 HP (160 kW) Elektrikli", "elektrik", 0, 218, 350, "Kalıcı Mıknatıslı Senkron Elektrik Motoru"),
+
+    # Yeni Modeller İçin Ek Motorlar
+    "opel_14_t140": ("A14NET", "1.4 Turbo 140 HP (Astra J)", "benzin", 1364, 140, 200, "Çok Nokta Enjeksiyonlu Turbo"),
+    "hyu_10_mpi": ("G3LA", "1.0 MPI 67 HP", "benzin", 998, 67, 96, "Atmosferik 3 Silindir"),
+    "hyu_15_crdi": ("D4FA", "1.5 CRDi VGT 110 HP", "dizel", 1493, 110, 235, "Değişken Geometrili Turbo Dizel"),
+    "hyu_14_era": ("G4EE", "1.4 DOHC 97 HP", "benzin", 1399, 97, 125, "Atmosferik Çok Nokta Enjeksiyon"),
+    "fiat_14_fire_77": ("350A1000-77", "1.4 Fire 77 HP", "benzin", 1368, 77, 115, "Atmosferik 8V"),
 }
 
 TRANSMISSIONS = {
@@ -332,6 +357,7 @@ TRANSMISSIONS = {
     "hk_6at": ("otomatik", "Hyundai 6 İleri Otomatik (H-Matic)", 6, "Hyundai"),
     "hk_ivt": ("cvt", "IVT Akıllı Zincirli Değişken Şanzıman", None, "Hyundai"),
     "opel_6at": ("otomatik", "Opel 6 İleri Otomatik (ActiveSelect)", 6, "GM / Aisin"),
+    "ev_single": ("otomatik", "Tek Vitesli Elektrikli Redüktör (EV)", 1, "Togg / Bosch"),
 }
 
 ALL_VARIANTS = [
@@ -824,6 +850,47 @@ ALL_VARIANTS = [
 
     # Chery Tiggo 8 Pro
     ("Chery", "Tiggo 8 Pro", "chery_16_tgdi", "chery_7dct", 2023, None, 1_680_000),
+
+    # Chery Omoda 5
+    ("Chery", "Omoda 5", "chery_16_tgdi", "chery_7dct", 2023, None, 1_360_000),
+
+    # Togg T10X
+    ("Togg", "T10X", "togg_ev_160", "ev_single", 2023, None, 1_650_000),
+
+    # Opel Astra J
+    ("Opel", "Astra J", "opel_16_cdti", "opel_6at", 2014, 2018, 690_000),
+    ("Opel", "Astra J", "opel_16_cdti", "man6", 2014, 2018, 620_000),
+    ("Opel", "Astra J", "opel_14_t140", "opel_6at", 2011, 2018, 670_000),
+    ("Opel", "Astra J", "opel_14_t140", "man6", 2011, 2018, 600_000),
+
+    # Opel Crossland
+    ("Opel", "Crossland", "psa_12_pure130", "eat6", 2017, None, 980_000),
+    ("Opel", "Crossland", "psa_15_hdi", "eat6", 2019, None, 1_060_000),
+
+    # Volkswagen Golf 8
+    ("Volkswagen", "Golf 8", "vag_10_tsi", "man6", 2020, None, 1_190_000),
+    ("Volkswagen", "Golf 8", "vag_15_etec", "dsg7_kuru", 2021, None, 1_480_000),
+
+    # Volkswagen T-Cross
+    ("Volkswagen", "T-Cross", "vag_10_tsi", "dsg7_kuru", 2019, None, 1_180_000),
+    ("Volkswagen", "T-Cross", "vag_10_tsi", "man5", 2019, None, 1_040_000),
+
+    # Hyundai i10
+    ("Hyundai", "i10", "hyu_10_mpi", "man5", 2014, None, 580_000),
+    ("Hyundai", "i10", "hk_12_mpi", "hk_6at", 2014, None, 690_000),
+
+    # Hyundai Accent Era
+    ("Hyundai", "Accent Era", "hyu_15_crdi", "man5", 2006, 2012, 390_000),
+    ("Hyundai", "Accent Era", "hyu_14_era", "man5", 2006, 2012, 360_000),
+
+    # Fiat Punto
+    ("Fiat", "Punto", "fiat_13_mjet", "man5", 2006, 2018, 370_000),
+    ("Fiat", "Punto", "fiat_14_fire_77", "man5", 2006, 2018, 340_000),
+
+    # Citroen C3
+    ("Citroen", "C3", "psa_12_pure100", "eat6", 2017, None, 860_000),
+    ("Citroen", "C3", "psa_12_pure75", "man5", 2017, None, 720_000),
+    ("Citroen", "C3", "psa_15_hdi", "man6", 2018, None, 840_000),
 ]
 
 # Detaylı Arıza Raporları (Şikayetvar & Usta & TÜVTÜRK Entegrasyonlu)
@@ -1415,6 +1482,83 @@ DETAILED_FAULTS = [
         "n": 95,
         "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:Cupra Forum"],
         "checklist": ["Tavan dokunmatik aydınlatma ve SOS modülü hata kaydı kontrolü"],
+    },
+    {
+        "m": ("Togg", "T10X"),
+        "title": "Trumore Multimedya Ekran Donması & 12V Akü Uyarıları",
+        "description": "Şikayetvar bildirimlerinde 1.5 öncesi yazılım sürümlerinde uçtan uca ekranın anlık kararması, kamera gecikmesi ve park halindeyken 12V yardımcı akünün zayıflaması.",
+        "category": "yazilim_multimedya",
+        "avg": 5_000,
+        "max": 12_000,
+        "override": "dusuk",
+        "km": (5_000, 40_000),
+        "n": 140,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:Togg Kullanıcı Kulübü"],
+        "checklist": [
+            "Son OTA / servis yazılım güncellemesinin yüklü olup olmadığı",
+            "AC/DC şarj soketi kilit mekanizması ve 12V akü sağlığı testi",
+        ],
+    },
+    {
+        "e": "opel_14_t140",
+        "title": "1.4 Turbo (A14NET) Termostat Gövdesi & Devirdaim Antifriz Kaçağı",
+        "description": "Astra J 1.4 Turbo motorlarda plastik termostat gövdesi, genleşme tankı ve turbo yağlama/su dönüş borularından antifriz sızdırması ve hararet riski.",
+        "category": "mekanik",
+        "avg": 18_000,
+        "max": 38_000,
+        "override": "orta",
+        "km": (70_000, 140_000),
+        "n": 230,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "youtube:Otorapor", "forum:Opelx"],
+        "checklist": [
+            "Motor soğutma suyu genleşme kabında yağ karışımı veya eksiltme kontrolü",
+            "Subap kapağı (külbütör) diyaframından ıslık/hava emme sesi kontrolü",
+        ],
+    },
+    {
+        "m": ("Volkswagen", "Golf 8"),
+        "title": "Dokunmatik Klima/Direksiyon & 48V Alternatör (eTSI) Uyarısı",
+        "description": "Golf 8 eTSI modellerde 48V marş-jeneratör modülü arızası veya SOS / seyahat asistanı (Travel Assist) direksiyon kapasitif sensör hatası.",
+        "category": "yazilim_multimedya",
+        "avg": 26_000,
+        "max": 58_000,
+        "override": "orta",
+        "km": (25_000, 85_000),
+        "n": 135,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:Golftutkusu"],
+        "checklist": [
+            "Göstergede Travel Assist veya 48V elektrik sistemi arıza uyarısı kontrolü",
+            "Dokunmatik ekran ve direksiyon tuşlarının tepki testi",
+        ],
+    },
+    {
+        "e": "hyu_15_crdi",
+        "title": "1.5 CRDi Enjektör Şakırtısı & Turbo Islık Sesi (Yüksek Km)",
+        "description": "Accent Era 1.5 CRDi motorlarda yüksek kilometrede mazot pompası / enjektör geri dönüş kaçakları ve turbo mil boşluğuna bağlı ıslık sesi.",
+        "category": "mekanik",
+        "avg": 20_000,
+        "max": 42_000,
+        "override": "orta",
+        "km": (150_000, 260_000),
+        "n": 165,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:HyundaiClubTR"],
+        "checklist": [
+            "Soğuk marşta egzozdan siyah/beyaz duman ve enjektör vuruntusu kontrolü",
+            "EPS (elektrikli direksiyon) tıkırtı burcu boşluğu kontrolü",
+        ],
+    },
+    {
+        "m": ("Chery", "Omoda 5"),
+        "title": "Şerit Takip Hassasiyeti & Arka Süspansiyon Sertliği",
+        "description": "Omoda 5 modellerinde ADAS şerit takip sisteminin şehir içinde agresif müdahale etmesi ve bozuk zeminlerde arka süspansiyondan gelen vuruntu.",
+        "category": "yazilim_multimedya",
+        "avg": 6_000,
+        "max": 14_000,
+        "override": "dusuk",
+        "km": (5_000, 40_000),
+        "n": 95,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:DonanımHaber"],
+        "checklist": ["Yetkili serviste ADAS ve multimedya yazılım kalibrasyonunun yapılıp yapılmadığı"],
     },
 ]
 

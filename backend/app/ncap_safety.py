@@ -203,6 +203,20 @@ MODEL_SAFETY_DATABASE: dict[str, tuple[int, int, int, int, int, int, str, int]] 
     # Chery
     "Tiggo 7 Pro": (5, 88, 87, 79, 86, 2023, "Good (ANCAP/Euro 5★)", 5),
     "Tiggo 8 Pro": (5, 88, 86, 78, 85, 2023, "Good (ANCAP/Euro 5★)", 5),
+    "Omoda 5": (5, 87, 87, 68, 88, 2022, "Good (Euro NCAP 5★)", 5),
+
+    # Togg
+    "T10X": (5, 94, 85, 79, 80, 2025, "Top Safety Equivalent (5★)", 5),
+
+    # Yeni Popüler Türkiye Modelleri
+    "Astra J": (5, 95, 84, 46, 71, 2009, "Good", 5),
+    "Crossland": (5, 85, 84, 62, 57, 2017, "Good", 4),
+    "Golf 8": (5, 95, 89, 76, 78, 2019, "Top Safety Pick", 5),
+    "T-Cross": (5, 97, 86, 81, 80, 2019, "Top Safety Equivalent", 5),
+    "i10": (3, 69, 75, 52, 59, 2020, "Acceptable", 4),
+    "Accent Era": (3, 72, 74, 48, 45, 2007, "Acceptable", 4),
+    "Punto": (5, 84, 76, 52, 48, 2005, "Acceptable", 4),
+    "C3": (4, 88, 83, 59, 58, 2017, "Good", 4),
 }
 
 

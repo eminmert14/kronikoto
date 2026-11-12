@@ -10,6 +10,7 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "egea": "/cars/fiat-egea.jpg",
   "doblo": "/cars/fiat-doblo.jpg",
   "fiorino": "/cars/fiat-fiorino.jpg",
+  "punto": "/cars/fiat-punto.jpg",
 
   // Renault
   "megane 3": "/cars/renault-megane-3.jpg",
@@ -27,11 +28,13 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "passat b7": "/cars/vw-passat-b7.jpg",
   "passat": "/cars/vw-passat.jpg",
   "jetta": "/cars/vw-jetta.jpg",
+  "golf 8": "/cars/vw-golf-8.jpg",
   "golf": "/cars/vw-golf.jpg",
   "polo": "/cars/vw-polo.jpg",
   "taigo": "/cars/vw-taigo.jpg",
   "tiguan": "/cars/vw-tiguan.jpg",
   "t-roc": "/cars/vw-t-roc.jpg",
+  "t-cross": "/cars/vw-t-cross.jpg",
   "caddy": "/cars/vw-caddy.jpg",
 
   // Dacia
@@ -55,8 +58,10 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "jazz": "/cars/honda-jazz.jpg",
 
   // Hyundai
+  "i10": "/cars/hyundai-i10.jpg",
   "i20": "/cars/hyundai-i20.jpg",
   "i30": "/cars/hyundai-i30.jpg",
+  "accent era": "/cars/hyundai-accent-era.jpg",
   "accent": "/cars/hyundai-accent-blue.jpg",
   "elantra": "/cars/hyundai-elantra.jpg",
   "tucson": "/cars/hyundai-tucson.jpg",
@@ -92,9 +97,11 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   // Opel
   "insignia": "/cars/opel-insignia.jpg",
   "grandland": "/cars/opel-grandland.jpg",
+  "astra j": "/cars/opel-astra-j.jpg",
   "astra": "/cars/opel-astra.jpg",
   "corsa": "/cars/opel-corsa.jpg",
   "mokka": "/cars/opel-mokka.jpg",
+  "crossland": "/cars/opel-crossland.jpg",
 
   // Skoda
   "octavia": "/cars/skoda-octavia.jpg",
@@ -142,6 +149,7 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   // Citroen
   "c5 aircross": "/cars/citroen-c5-aircross.jpg",
   "c3 aircross": "/cars/citroen-c3-aircross.jpg",
+  "c3": "/cars/citroen-c3.jpg",
   "c4 x": "/cars/citroen-c4-x.jpg",
   "c-elysee": "/cars/citroen-c-elysee.jpg",
 
@@ -156,6 +164,10 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   // Chery
   "tiggo 7": "/cars/chery-tiggo-7.jpg",
   "tiggo 8": "/cars/chery-tiggo-8.jpg",
+  "omoda 5": "/cars/chery-omoda-5.jpg",
+
+  // Togg
+  "t10x": "/cars/togg-t10x.jpg",
 };
 
 /**

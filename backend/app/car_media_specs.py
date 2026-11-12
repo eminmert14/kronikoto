@@ -25,6 +25,8 @@ def get_variant_media_specs(brand: str, model_name: str, fuel_type: str, body_ty
         fuel_eval = "Çok Az (~4.2 - 5.2 lt / 100km)"
     elif f == "hibrit":
         fuel_eval = "Çok Az (~3.8 - 4.6 lt / 100km)"
+    elif f == "elektrik":
+        fuel_eval = "Çok Ekonomik (~16 - 19 kWh / 100km)"
     elif f == "lpg":
         fuel_eval = "Ekonomik (~6.5 - 8.0 lt / 100km LPG)"
     elif hp > 140:
