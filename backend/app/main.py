@@ -1,10 +1,12 @@
 import uuid
 import difflib
+from pathlib import Path
 from urllib.parse import quote_plus
 from pydantic import BaseModel, Field
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from sqlalchemy import select, desc, func
 from sqlalchemy.orm import Session, joinedload
 
@@ -710,3 +712,61 @@ def variant_faults(variant_id: uuid.UUID, db: Session = Depends(get_db)):
             ],
         } for s in mods],
     }
+
+
+# ---------- RENDER TEK SERVİS: STATİK FRONTEND SUNUMU ----------
+WEB_DIST_DIR = Path(__file__).resolve().parent.parent / "web_dist"
+
+
+def _resolve_web_file(full_path: str) -> Path | None:
+    if not WEB_DIST_DIR.exists():
+        return None
+    clean = full_path.strip("/")
+    if not clean:
+        idx = WEB_DIST_DIR / "index.html"
+        return idx if idx.is_file() else None
+
+    candidate = (WEB_DIST_DIR / clean).resolve()
+    try:
+        candidate.relative_to(WEB_DIST_DIR.resolve())
+    except ValueError:
+        return None
+
+    if candidate.is_file():
+        return candidate
+    if (candidate / "index.html").is_file():
+        return candidate / "index.html"
+
+    if clean.startswith("model/"):
+        fallback = WEB_DIST_DIR / "model" / "placeholder" / "index.html"
+        if fallback.is_file():
+            return fallback
+    if clean.startswith("variant/"):
+        fallback = WEB_DIST_DIR / "variant" / "placeholder" / "index.html"
+        if fallback.is_file():
+            return fallback
+
+    not_found = WEB_DIST_DIR / "404.html"
+    if not_found.is_file():
+        return not_found
+    idx = WEB_DIST_DIR / "index.html"
+    return idx if idx.is_file() else None
+
+
+@app.get("/", include_in_schema=False)
+def serve_web_root():
+    f = _resolve_web_file("")
+    if f:
+        return FileResponse(f)
+    return {"status": "ok", "service": "KronikOto API"}
+
+
+@app.get("/{full_path:path}", include_in_schema=False)
+def serve_web_spa(full_path: str):
+    if full_path.startswith("api/"):
+        raise HTTPException(404, "Endpoint bulunamadı")
+    f = _resolve_web_file(full_path)
+    if f:
+        return FileResponse(f)
+    raise HTTPException(404, "Sayfa bulunamadı")
+
