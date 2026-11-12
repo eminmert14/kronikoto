@@ -2242,4 +2242,132 @@ ALL_TRIM_PACKAGES = {
             "features": ["Advanced Comfort Ekstra Konforlu Koltuklar", "Çift Renk Tavan Seçeneği", "Geri Görüş Kamerası & Anahtarsız Giriş", "ConnectedCAM Entegre Araç Kamerası (Opsiyonel)", "17\" Elmas Kesim Alaşım Jantlar"],
         },
     ],
+    ("Tesla", "Model Y"): [
+        {
+            "name": "RWD (Standart Menzil)",
+            "level": "orta",
+            "summary": "455 km WLTP Menzilli LFP Bataryalı Popüler Tesla",
+            "features": ["15\" Merkezi Dokunmatik Ekran & Kablosuz OTA Güncelleme", "Panoramik Tam Cam Tavan (UV Korumalı)", "Isıtmalı Ön ve Arka Koltuklar + Isıtmalı Direksiyon", "Autopilot Adaptif Sürüş & 360 Derece Sentry Mode Kameralar", "Elektrikli Bagaj & 19\" Gemini Jantlar"],
+        },
+        {
+            "name": "Long Range AWD",
+            "level": "premium",
+            "summary": "533 km Menzilli Çift Motorlu Dört Çeker Zirve",
+            "features": ["Çift Motorlu Sürekli Dört Çeker (AWD) 514 HP", "533 km WLTP Uzun Menzil", "13 Hoparlör + Subwoofer Premium Ses Sistemi", "Isı Pompalı Verimli Termal Yönetim", "20\" Induction Siyah Alaşım Jantlar (Opsiyonel)"],
+        },
+    ],
+    ("BYD", "Atto 3"): [
+        {
+            "name": "Design",
+            "level": "premium",
+            "summary": "Tek ve En Dolu Donanım Paketi (Blade Batarya)",
+            "features": ["15.6\" Elektrikli Dönebilen Dokunmatik Ekran", "Açılır Panoramik Cam Tavan", "Blade LFP Batarya (420 km WLTP) & V2L Araçtan Enerji Verme", "360 Derece Çevre Görüş Kamerası & Isı Pompası", "Vegan Deri Isıtmalı Elektrikli Ön Koltuklar", "18\" Alaşım Jantlar"],
+        },
+    ],
+    ("BYD", "Seal U"): [
+        {
+            "name": "Design (EV / DM-i)",
+            "level": "premium",
+            "summary": "500 km EV veya 1080 km Karma Menzilli D-SUV",
+            "features": ["15.6\" Dönebilen Multimedya Ekranı & Head-Up Display", "Açılır Panoramik Cam Tavan", "Isıtmalı ve Havalandırmalı (Soğutmalı) Ön Koltuklar", "Infinity 10 Hoparlörlü Premium Ses Sistemi", "360 Derece Kamera & Tam ADAS Otonom Sürüş Paketi", "19\" Çift Renk Alaşım Jantlar"],
+        },
+    ],
+    ("MG", "MG4 Electric"): [
+        {
+            "name": "Comfort",
+            "level": "orta",
+            "summary": "350 km Menzilli Arkadan İtişli Elektrikli Hatchback",
+            "features": ["10.25\" Yüzer Dokunmatik Ekran & Apple CarPlay", "MG Pilot (Adaptif Hız Sabitleyici & Şerit Takip)", "V2L Harici Güç Çıkışı", "Otomatik LED Farlar", "17\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Luxury",
+            "level": "premium",
+            "summary": "435 km Uzun Menzilli ve Isı Pompalı Zirve MG4",
+            "features": ["64 kWh Batarya (435 km WLTP) & Isı Pompası", "360 Derece Çevre Görüş Kamerası", "Isıtmalı Ön Koltuklar & Isıtmalı Direksiyon", "Kör Nokta Uyarı Sistemi & Çift Renk Siyah Tavan", "18\" Aero Alaşım Jantlar"],
+        },
+    ],
+    ("Renault", "Megane E-Tech"): [
+        {
+            "name": "Techno",
+            "level": "orta",
+            "summary": "OpenR Link Google Ekranlı 450 km Elektrikli",
+            "features": ["12\" OpenR Link Google Entegreli Dikey Ekran + 12.3\" Gösterge", "Isı Pompası & 130 kW DC Hızlı Şarj", "Full LED Adaptive Vision Farlar", "Geri Görüş Kamerası & Kablosuz Şarj", "20\" Soren Alaşım Jantlar"],
+        },
+        {
+            "name": "Iconic",
+            "level": "premium",
+            "summary": "Harman Kardon Sesli Zirve Megane E-Tech",
+            "features": ["Harman Kardon 9 Hoparlörlü Premium Ses Sistemi", "Hakiki Deri Elektrikli Masajlı Ön Koltuklar", "360 Derece Çevre Görüş & Akıllı Dikiz Aynası", "Otonom Sürüş Asistanı (Active Driver Assist)", "20\" Enos Elmas Kesim Jantlar"],
+        },
+    ],
+    ("MG", "ZS"): [
+        {
+            "name": "Comfort",
+            "level": "dusuk",
+            "summary": "Ekonomik B-SUV Giriş Paketi",
+            "features": ["10.1\" Dokunmatik Ekran & CarPlay", "Bi-LED Ön Farlar", "Arka Park Sensörü", "17\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Luxury (Benzin / EV)",
+            "level": "premium",
+            "summary": "360 Kamera ve Cam Tavanlı Zirve MG ZS",
+            "features": ["Açılır Panoramik Cam Tavan (EV & Luxury Plus)", "360 Derece Çevre Görüş Kamerası", "Isıtmalı Deri Ön Koltuklar", "Dijital Gösterge Paneli", "17\" Elmas Kesim Jantlar"],
+        },
+    ],
+    ("MG", "HS"): [
+        {
+            "name": "Comfort",
+            "level": "orta",
+            "summary": "Geniş C-SUV Başlangıç Donanımı",
+            "features": ["12.3\" Dijital Gösterge + 10.1\" Dokunmatik Ekran", "MG Pilot ADAS Güvenlik Paketi", "Deri Koltuklar & Isıtmalı Ön Koltuklar", "Geri Görüş Kamerası", "18\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Luxury",
+            "level": "premium",
+            "summary": "Panoramik Cam Tavanlı ve 360 Kameralı Zirve HS",
+            "features": ["Açılır Panoramik Cam Tavan", "360 Derece Çevre Görüş Kamerası", "Elektrikli Bagaj Kapağı & Hafızalı Spor Koltuklar", "64 Renkli Ambiyans Aydınlatma", "18\" Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Suzuki", "Vitara"): [
+        {
+            "name": "GL+ / GL Elegance",
+            "level": "orta",
+            "summary": "48V Hibrit ve Çift Renkli Sağlam Japon SUV",
+            "features": ["7\" Dokunmatik Multimedya & CarPlay", "Adaptif Hız Sabitleyici & Çift Sensörlü Fren Desteği", "Isıtmalı Ön Koltuklar", "Otomatik Klima & Geri Görüş Kamerası", "17\" Alaşım Jantlar"],
+        },
+        {
+            "name": "GLX Premium (AllGrip 4x4)",
+            "level": "premium",
+            "summary": "Panoramik Cam Tavanlı ve AllGrip 4x4 Zirve Vitara",
+            "features": ["Açılır Panoramik Cam Tavan", "AllGrip 4x4 Seçilebilir Çekiş Sistemi", "Süet & Deri Koltuklar", "Anahtarsız Giriş ve Çalıştırma & Ön-Arka Park Sensörü", "17\" Parlak Elmas Kesim Jantlar"],
+        },
+    ],
+    ("Suzuki", "Swift"): [
+        {
+            "name": "GL Techno",
+            "level": "orta",
+            "summary": "Hafif ve Ekonomik Hibrit Şehir Otomobili",
+            "features": ["12V Mild-Hybrid Ekonomik Motor", "Adaptif Hız Sabitleyici & Şerit Takip", "LED Ön Farlar & Gündüz Farları", "Isıtmalı Ön Koltuklar", "16\" Alaşım Jantlar"],
+        },
+        {
+            "name": "GLX Premium",
+            "level": "premium",
+            "summary": "Otomatik Klimalı ve Çift Renkli Zirve Swift",
+            "features": ["Otomatik Dijital Klima", "Anahtarsız Giriş ve Çalıştırma", "Geri Görüş Kamerası & Park Sensörleri", "Çift Renk Tavan Seçeneği", "16\" Parlak Alaşım Jantlar"],
+        },
+    ],
+    ("Toyota", "Corolla Cross"): [
+        {
+            "name": "Flame",
+            "level": "orta",
+            "summary": "5. Nesil Hibrit C-SUV Başlangıcı",
+            "features": ["12.3\" Dijital Gösterge + 10.5\" Toyota Touch Ekran", "Toyota Safety Sense 3.0 (Adaptif Cruise & Çarpışma Önleme)", "Çift Bölgeli Otomatik Klima", "Geri Görüş Kamerası & Kablosuz CarPlay", "17\" Alaşım Jantlar"],
+        },
+        {
+            "name": "Passion / Passion X-Pack",
+            "level": "premium",
+            "summary": "Panoramik Cam Tavanlı ve Deri Koltuklu Zirve",
+            "features": ["Panoramik Cam Tavan", "Deri Döşeme & Isıtmalı Ön Koltuklar", "Elektrikli Bagaj Kapağı & Kör Nokta Uyarısı", "Kablosuz Şarj & Ambiyans Aydınlatma", "18\" Elmas Kesim Alaşım Jantlar"],
+        },
+    ],
 }

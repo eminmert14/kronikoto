@@ -31,6 +31,10 @@ BRANDS = [
     ("Cupra", "İspanya"),
     ("Chery", "Çin"),
     ("Togg", "Türkiye"),
+    ("Tesla", "ABD"),
+    ("BYD", "Çin"),
+    ("MG", "İngiltere / Çin"),
+    ("Suzuki", "Japonya"),
 ]
 
 # (marka, model_adi, kasa_tipi, yil_bas, yil_son, konfor_puani, sahibinden_slug, arabam_slug)
@@ -201,6 +205,45 @@ ALL_MODELS = [
     ("Hyundai", "Accent Era", "sedan", 2006, 2012, 6.1, "hyundai-accent-era", "hyundai/accent-era"),
     ("Fiat", "Punto", "hatchback", 2006, 2018, 6.2, "fiat-punto", "fiat/punto"),
     ("Citroen", "C3", "hatchback", 2016, None, 7.3, "citroen-c3", "citroen/c3"),
+
+    # Elektrikli Modeller (5)
+    ("Tesla", "Model Y", "suv", 2022, None, 8.9, "tesla-model-y", "tesla/model-y"),
+    ("BYD", "Atto 3", "suv", 2023, None, 8.4, "byd-atto-3", "byd/atto-3"),
+    ("BYD", "Seal U", "suv", 2024, None, 8.7, "byd-seal-u", "byd/seal-u"),
+    ("MG", "MG4 Electric", "hatchback", 2023, None, 8.2, "mg-mg4", "mg/mg4"),
+    ("Renault", "Megane E-Tech", "hatchback", 2022, None, 8.5, "renault-megane-e-tech", "renault/megane-e-tech"),
+
+    # Station Wagon Modeller (6)
+    ("Volkswagen", "Passat Variant", "station", 2015, 2023, 8.9, "volkswagen-passat-variant", "volkswagen/passat-variant"),
+    ("Skoda", "Octavia Combi", "station", 2013, None, 8.5, "skoda-octavia-combi", "skoda/octavia-combi"),
+    ("Renault", "Megane Sport Tourer", "station", 2016, None, 8.0, "renault-megane-sport-tourer", "renault/megane-sport-tourer"),
+    ("Fiat", "Egea Station Wagon", "station", 2016, None, 6.8, "fiat-egea-station-wagon", "fiat/egea-station-wagon"),
+    ("Volvo", "V60", "station", 2018, None, 9.2, "volvo-v60", "volvo/v60"),
+    ("Ford", "Focus SW", "station", 2018, 2025, 8.4, "ford-focus-sw", "ford/focus-sw"),
+
+    # Coupe Modeller (5)
+    ("BMW", "4 Serisi Coupe", "coupe", 2014, None, 8.8, "bmw-4-serisi", "bmw/4-serisi"),
+    ("Mercedes-Benz", "C Serisi Coupe", "coupe", 2015, 2023, 8.9, "mercedes-benz-c-serisi-coupe", "mercedes-benz/c-serisi-coupe"),
+    ("Audi", "A5 Coupe", "coupe", 2016, None, 8.9, "audi-a5", "audi/a5"),
+    ("Volkswagen", "Scirocco", "coupe", 2009, 2017, 7.6, "volkswagen-scirocco", "volkswagen/scirocco"),
+    ("BMW", "2 Serisi Coupe", "coupe", 2014, None, 8.3, "bmw-2-serisi", "bmw/2-serisi"),
+
+    # Ticari / Kombi Modeller (5)
+    ("Renault", "Kangoo", "kombi", 2013, None, 6.7, "renault-kangoo", "renault/kangoo"),
+    ("Citroen", "Berlingo", "kombi", 2018, None, 7.3, "citroen-berlingo", "citroen/berlingo"),
+    ("Volkswagen", "Transporter", "kombi", 2015, None, 7.7, "volkswagen-transporter", "volkswagen/transporter"),
+    ("Opel", "Combo", "kombi", 2018, None, 7.2, "opel-combo", "opel/combo"),
+    ("Ford", "Tourneo Connect", "kombi", 2014, None, 7.4, "ford-tourneo-connect", "ford/tourneo-connect"),
+
+    # Türkiye Piyasası Ek Popüler Modeller (8)
+    ("MG", "ZS", "suv", 2021, None, 7.6, "mg-zs", "mg/zs"),
+    ("MG", "HS", "suv", 2021, None, 8.2, "mg-hs", "mg/hs"),
+    ("Suzuki", "Vitara", "suv", 2015, None, 7.7, "suzuki-vitara", "suzuki/vitara"),
+    ("Suzuki", "Swift", "hatchback", 2017, None, 7.2, "suzuki-swift", "suzuki/swift"),
+    ("Peugeot", "206", "hatchback", 2000, 2012, 6.0, "peugeot-206", "peugeot/206"),
+    ("Opel", "Vectra C", "sedan", 2002, 2009, 7.4, "opel-vectra", "opel/vectra"),
+    ("Skoda", "Rapid", "sedan", 2013, 2019, 7.1, "skoda-rapid", "skoda/rapid"),
+    ("Toyota", "Corolla Cross", "suv", 2022, None, 8.4, "toyota-corolla-cross", "toyota/corolla-cross"),
 ]
 
 # (kod, etiket, yakıt, cc, hp, nm, teknoloji)
@@ -323,6 +366,22 @@ ENGINES = {
     "hyu_15_crdi": ("D4FA", "1.5 CRDi VGT 110 HP", "dizel", 1493, 110, 235, "Değişken Geometrili Turbo Dizel"),
     "hyu_14_era": ("G4EE", "1.4 DOHC 97 HP", "benzin", 1399, 97, 125, "Atmosferik Çok Nokta Enjeksiyon"),
     "fiat_14_fire_77": ("350A1000-77", "1.4 Fire 77 HP", "benzin", 1368, 77, 115, "Atmosferik 8V"),
+
+    # Elektrikli & Yeni Marka Motorları
+    "tesla_rwd_220": ("Tesla-3D6", "RWD Standart Menzil 299 HP (220 kW)", "elektrik", 0, 299, 420, "Kalıcı Mıknatıslı Senkron Elektrik Motoru"),
+    "tesla_lr_awd": ("Tesla-AWD", "Long Range AWD 514 HP Çift Motor", "elektrik", 0, 514, 493, "Çift Motorlu Dört Çeker Elektrikli"),
+    "byd_atto_150": ("BYD-TZ200", "204 HP (150 kW) Blade Batarya", "elektrik", 0, 204, 310, "LFP Blade Batarya Elektrik Motoru"),
+    "byd_seal_ev": ("BYD-EV160", "218 HP (160 kW) Design EV", "elektrik", 0, 218, 330, "LFP Blade Batarya Elektrik Motoru"),
+    "byd_seal_phev": ("BYD-DMi", "1.5 DM-i Plug-in Hibrit 218 HP", "hibrit", 1498, 218, 300, "DM-i Şarj Edilebilir Hibrit"),
+    "mg4_ev_150": ("MG-EV150", "Comfort / Luxury 204 HP (64 kWh)", "elektrik", 0, 204, 250, "Arkadan İtişli MSP Platform Elektrik Motoru"),
+    "ren_meg_ev_160": ("Renault-EV60", "EV60 220 HP (160 kW) Optimum Charge", "elektrik", 0, 220, 300, "Sargılı Rotorlu Senkron Elektrik Motoru"),
+    "mg_zs_15": ("15S4C", "1.5 VTi-tech 106 HP", "benzin", 1498, 106, 141, "Atmosferik Çok Nokta Enjeksiyon"),
+    "mg_zs_ev": ("MG-ZS-EV", "ZS EV 156 HP (72.6 kWh)", "elektrik", 0, 156, 280, "Önden Çekişli Elektrik Motoru"),
+    "mg_hs_15t": ("15E4E", "1.5 T-GDI 162 HP", "benzin", 1490, 162, 250, "Direkt Enjeksiyon Turbo"),
+    "suz_14_boos": ("K14D", "1.4 Boosterjet 129 HP Mild-Hybrid", "hibrit", 1373, 129, 235, "48V SHVS Mild-Hybrid Turbo"),
+    "suz_12_dual": ("K12D", "1.2 Dualjet 83 HP Mild-Hybrid", "hibrit", 1197, 83, 107, "12V SHVS Mild-Hybrid"),
+    "psa_14_hdi": ("DV4TD", "1.4 HDi 68 HP", "dizel", 1398, 68, 160, "8V Ekonomik Common-Rail Dizel"),
+    "opel_16_ecotec": ("Z16XEP", "1.6 Twinport 105-115 HP", "benzin", 1598, 115, 155, "Atmosferik 16V Ecotec"),
 }
 
 TRANSMISSIONS = {
@@ -891,6 +950,60 @@ ALL_VARIANTS = [
     ("Citroen", "C3", "psa_12_pure100", "eat6", 2017, None, 860_000),
     ("Citroen", "C3", "psa_12_pure75", "man5", 2017, None, 720_000),
     ("Citroen", "C3", "psa_15_hdi", "man6", 2018, None, 840_000),
+
+    # Elektrikli Modeller (5)
+    ("Tesla", "Model Y", "tesla_rwd_220", "ev_single", 2023, None, 1_890_000),
+    ("Tesla", "Model Y", "tesla_lr_awd", "ev_single", 2022, None, 2_450_000),
+    ("BYD", "Atto 3", "byd_atto_150", "ev_single", 2023, None, 1_490_000),
+    ("BYD", "Seal U", "byd_seal_ev", "ev_single", 2024, None, 1_850_000),
+    ("BYD", "Seal U", "byd_seal_phev", "toy_ecvt", 2024, None, 1_950_000),
+    ("MG", "MG4 Electric", "mg4_ev_150", "ev_single", 2023, None, 1_320_000),
+    ("Renault", "Megane E-Tech", "ren_meg_ev_160", "ev_single", 2022, None, 1_480_000),
+
+    # Station Wagon Modeller (6)
+    ("Volkswagen", "Passat Variant", "vag_15_tsi", "dsg7_kuru", 2018, 2023, 1_620_000),
+    ("Volkswagen", "Passat Variant", "vag_20_tdi", "dsg7_islak", 2015, 2023, 1_890_000),
+    ("Skoda", "Octavia Combi", "vag_15_etec", "dsg7_kuru", 2020, None, 1_490_000),
+    ("Skoda", "Octavia Combi", "vag_16_tdi", "dsg7_kuru", 2015, 2020, 1_120_000),
+    ("Renault", "Megane Sport Tourer", "ren_k9k_115", "edc7", 2019, None, 1_140_000),
+    ("Renault", "Megane Sport Tourer", "ren_13_tce", "edc7", 2019, None, 1_180_000),
+    ("Fiat", "Egea Station Wagon", "fiat_16_mjet", "fiat_dct", 2016, None, 920_000),
+    ("Fiat", "Egea Station Wagon", "fiat_13_mjet", "man5", 2016, None, 740_000),
+    ("Volvo", "V60", "vol_20_b4", "volvo_8at", 2019, None, 2_450_000),
+    ("Volvo", "V60", "vol_20_d4", "volvo_8at", 2018, 2021, 1_950_000),
+    ("Ford", "Focus SW", "ford_15_ecoblue", "ford_8at", 2019, 2025, 1_240_000),
+
+    # Coupe Modeller (5)
+    ("BMW", "4 Serisi Coupe", "bmw_16_b48", "zf8", 2017, None, 2_650_000),
+    ("BMW", "4 Serisi Coupe", "bmw_20_b47d", "zf8", 2015, 2020, 2_150_000),
+    ("Mercedes-Benz", "C Serisi Coupe", "mb_16_m274", "7gtronic", 2015, 2018, 1_950_000),
+    ("Mercedes-Benz", "C Serisi Coupe", "mb_15_m264", "9gtronic", 2018, 2023, 2_680_000),
+    ("Audi", "A5 Coupe", "audi_40_tdi", "stronic7", 2017, None, 2_550_000),
+    ("Audi", "A5 Coupe", "audi_45_tfsi", "stronic7", 2019, None, 2_750_000),
+    ("Volkswagen", "Scirocco", "vag_14_tsi_122", "dsg7_kuru", 2009, 2014, 780_000),
+    ("Volkswagen", "Scirocco", "vag_14_tsi", "dsg7_kuru", 2014, 2017, 1_050_000),
+    ("BMW", "2 Serisi Coupe", "bmw_15_b38", "zf8", 2015, 2021, 1_450_000),
+
+    # Ticari / Kombi Modeller (5)
+    ("Renault", "Kangoo", "ren_k9k_115", "man6", 2019, None, 790_000),
+    ("Renault", "Kangoo", "ren_13_tce", "edc7", 2022, None, 1_050_000),
+    ("Citroen", "Berlingo", "psa_15_hdi", "eat8", 2019, None, 980_000),
+    ("Citroen", "Berlingo", "psa_15_hdi", "man6", 2019, None, 860_000),
+    ("Volkswagen", "Transporter", "vag_20_tdi", "dsg7_islak", 2015, None, 1_380_000),
+    ("Volkswagen", "Transporter", "vag_20_tdi", "man6", 2015, None, 1_150_000),
+    ("Opel", "Combo", "psa_15_hdi", "eat8", 2019, None, 960_000),
+    ("Ford", "Tourneo Connect", "ford_15_ecoblue", "ford_8at", 2020, None, 1_120_000),
+
+    # Türkiye Piyasası Ek Popüler Modeller (8)
+    ("MG", "ZS", "mg_zs_15", "man5", 2021, None, 860_000),
+    ("MG", "ZS", "mg_zs_ev", "ev_single", 2022, None, 1_190_000),
+    ("MG", "HS", "mg_hs_15t", "chery_7dct", 2021, None, 1_280_000),
+    ("Suzuki", "Vitara", "suz_14_boos", "hk_6at", 2019, None, 1_150_000),
+    ("Suzuki", "Swift", "suz_12_dual", "xtronic", 2018, None, 840_000),
+    ("Peugeot", "206", "psa_14_hdi", "man5", 2002, 2012, 310_000),
+    ("Opel", "Vectra C", "opel_16_ecotec", "man5", 2003, 2009, 360_000),
+    ("Skoda", "Rapid", "vag_16_tdi", "dsg7_kuru", 2013, 2019, 760_000),
+    ("Toyota", "Corolla Cross", "toy_18_hyb", "toy_ecvt", 2022, None, 1_690_000),
 ]
 
 # Detaylı Arıza Raporları (Şikayetvar & Usta & TÜVTÜRK Entegrasyonlu)
@@ -1559,6 +1672,61 @@ DETAILED_FAULTS = [
         "n": 95,
         "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:DonanımHaber"],
         "checklist": ["Yetkili serviste ADAS ve multimedya yazılım kalibrasyonunun yapılıp yapılmadığı"],
+    },
+    {
+        "m": ("Tesla", "Model Y"),
+        "title": "Sert Süspansiyon Trim Sesi & Ön Salıncak Burcu Gıcırtısı",
+        "description": "Model Y araçlarda bozuk yollarda ön üst salıncak bilyasından gelen gıcırtı ve cam tavan/bagaj kapağı fitillerinden gelen rüzgar/trim sesi.",
+        "category": "konfor",
+        "avg": 14_000,
+        "max": 28_000,
+        "override": "orta",
+        "km": (20_000, 70_000),
+        "n": 145,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "tuv:TÜV Report"],
+        "checklist": [
+            "Direksiyonu çevirirken ön takımdan gıcırtı gelip gelmediği",
+            "Isı pompası ve batarya SoH (sağlık) yüzdesi kontrolü",
+        ],
+    },
+    {
+        "m": ("BYD", "Atto 3"),
+        "title": "12V Yardımcı Akü Boşalması & Fabrika Lastik Tutunma Sorunu",
+        "description": "Uzun süre park halinde 12V akünün zayıflaması ve orijinal fabrika lastiklerinin ıslak zeminde erken kayması (lastik değişimi ile çözülür).",
+        "category": "yazilim_multimedya",
+        "avg": 7_500,
+        "max": 16_000,
+        "override": "dusuk",
+        "km": (10_000, 50_000),
+        "n": 80,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:BYD Türkiye"],
+        "checklist": ["OTA yazılım sürümü ve DC hızlı şarj soketi kilidi kontrolü"],
+    },
+    {
+        "m": ("Volkswagen", "Transporter"),
+        "title": "2.0 TDI Çift Kütleli Volan & EGR Soğutucu Çatlağı",
+        "description": "T6 Transporter ticari araçlarda yüksek tork nedeniyle volan vuruntusu ve EGR soğutucusundan gizli antifriz eksiltmesi.",
+        "category": "mekanik",
+        "avg": 38_000,
+        "max": 72_000,
+        "override": "yuksek",
+        "km": (120_000, 220_000),
+        "n": 150,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "tuv:TÜV Report"],
+        "checklist": ["Rölantide şanzıman tarafından gelen tıkırtı ve antifriz seviyesi kontrolü"],
+    },
+    {
+        "m": ("Peugeot", "206"),
+        "title": "Arka Torsiyon Dingili Boşluğu & COM2000 Sinyal Kolu Arızası",
+        "description": "Arka tekerleklerin içe yatması (torsiyon bilyası dağılması) ve direksiyon altındaki COM2000 sinyal/far kolu grubunun temassızlığı.",
+        "category": "mekanik",
+        "avg": 15_000,
+        "max": 28_000,
+        "override": "orta",
+        "km": (130_000, 240_000),
+        "n": 190,
+        "sources": ["sikayetvar:Şikayetvar Kullanıcı Bildirimleri", "forum:Peugeot Türkiye"],
+        "checklist": ["Arka lastiklerde kamber açısı (içe yatma) ve tümseklerde gıcırtı kontrolü"],
     },
 ]
 
