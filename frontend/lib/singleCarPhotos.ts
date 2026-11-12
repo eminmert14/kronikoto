@@ -6,13 +6,16 @@
 export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   // Fiat
   "linea": "/cars/fiat-linea.jpg",
+  "egea cross": "/cars/fiat-egea-cross.jpg",
   "egea": "/cars/fiat-egea.jpg",
   "doblo": "/cars/fiat-doblo.jpg",
   "fiorino": "/cars/fiat-fiorino.jpg",
 
   // Renault
+  "megane 3": "/cars/renault-megane-3.jpg",
   "megane": "/cars/renault-megane.jpg",
   "fluence": "/cars/renault-fluence.jpg",
+  "clio 4": "/cars/renault-clio-4.jpg",
   "clio": "/cars/renault-clio.jpg",
   "captur": "/cars/renault-captur.jpg",
   "kadjar": "/cars/renault-kadjar.jpg",
@@ -21,6 +24,7 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "symbol": "/cars/renault-symbol.jpg",
 
   // Volkswagen
+  "passat b7": "/cars/vw-passat-b7.jpg",
   "passat": "/cars/vw-passat.jpg",
   "jetta": "/cars/vw-jetta.jpg",
   "golf": "/cars/vw-golf.jpg",
@@ -36,6 +40,7 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "jogger": "/cars/dacia-jogger.jpg",
 
   // Toyota
+  "corolla e180": "/cars/toyota-corolla-e180.jpg",
   "corolla": "/cars/toyota-corolla.jpg",
   "auris": "/cars/toyota-auris.jpg",
   "c-hr": "/cars/toyota-c-hr.jpg",
@@ -67,6 +72,7 @@ export const MODEL_SINGLE_PHOTOS: Record<string, string> = {
   "stonic": "/cars/kia-stonic.jpg",
 
   // Ford
+  "focus 3": "/cars/ford-focus-3.jpg",
   "focus": "/cars/ford-focus.jpg",
   "fiesta": "/cars/ford-fiesta.jpg",
   "puma": "/cars/ford-puma.jpg",
