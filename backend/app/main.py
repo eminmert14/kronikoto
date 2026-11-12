@@ -447,6 +447,15 @@ def search(
             else:
                 clean_transmissions.add("manuel")
 
+        # Fiyat / Performans & Puan Endeksi için varyant verileri
+        prices = [float(v.used_price_tl) for v in vs if v.used_price_tl]
+        hps = [v.engine.power_hp for v in vs if v.engine and v.engine.power_hp]
+        min_price_tl = min(prices) if prices else None
+        avg_hp = round(sum(hps) / len(hps)) if hps else 110
+        comfort = mo.comfort_score or 7.5
+        price_m = max(0.4, (min_price_tl or 1200000) / 1_000_000)
+        value_index = round(((comfort * 1.4) + (avg_hp / 45.0)) / price_m, 2)
+
         clean_search_query = quote_plus(f"{mo.brand.name} {mo.name}")
         out.append({
             "id": str(mo.id),
@@ -456,6 +465,9 @@ def search(
             "year_start": mo.year_start,
             "year_end": mo.year_end,
             "comfort_score": mo.comfort_score,
+            "min_price_tl": min_price_tl,
+            "avg_hp": avg_hp,
+            "value_index": value_index,
             "variants_count": len(vs),
             "fuel_types": sorted({v.engine.fuel_type for v in vs}),
             "transmission_types": sorted(clean_transmissions),

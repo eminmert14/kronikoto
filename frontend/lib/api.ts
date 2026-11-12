@@ -86,6 +86,9 @@ export interface SearchResult {
   year_start: number;
   year_end: number | null;
   comfort_score: number | null;
+  min_price_tl?: number | null;
+  avg_hp?: number | null;
+  value_index?: number | null;
   variants_count: number;
   fuel_types: string[];
   transmission_types: string[];

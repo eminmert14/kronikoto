@@ -190,21 +190,67 @@ export default function Home() {
   const [allCatalog, setAllCatalog] = useState<SearchResult[]>([]);
   const [error, setError] = useState("");
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const [hourBucket, setHourBucket] = useState<number>(() => Math.floor(Date.now() / 3600000));
 
-  // Katalog verisini arka planda çek (Öne Çıkan En Yüksek Puanlı 3 Araç + "Bunu mu demek istediniz?" tahmin motoru için)
+  // Saat başı otomatik yenileme kontrolü
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentBucket = Math.floor(Date.now() / 3600000);
+      setHourBucket((prev) => (prev !== currentBucket ? currentBucket : prev));
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Katalog verisini arka planda çek (Saatlik F/P & Puan Endeksli 3 Araç + "Bunu mu demek istediniz?" tahmin motoru için)
   useEffect(() => {
     api<SearchResult[]>("/vehicles/search")
       .then((data) => setAllCatalog(data))
       .catch(() => {});
   }, []);
 
-  // Puanı en yüksek 3 araba ("Öne Çıkan / Güvenilir Araçlar")
+  // Performans · Puan / Fiyat endeksine göre saatlik değişen 3 araba ("Öne Çıkan / Güvenilir Araçlar")
   const topFeaturedCars = useMemo(() => {
     if (!allCatalog.length) return [];
-    return [...allCatalog]
-      .sort((a, b) => (b.comfort_score ?? 0) - (a.comfort_score ?? 0))
-      .slice(0, 3);
-  }, [allCatalog]);
+
+    const calcIndex = (c: SearchResult) => {
+      if (typeof c.value_index === "number" && c.value_index > 0) return c.value_index;
+      const comfort = c.comfort_score ?? 7.5;
+      const hp = c.avg_hp ?? 110;
+      const priceM = Math.max(0.4, (c.min_price_tl ?? 1200000) / 1_000_000);
+      return ((comfort * 1.4) + (hp / 45.0)) / priceM;
+    };
+
+    // F/P & Puan endeksi en yüksek 21 araçlık kaliteli havuz
+    const topPool = [...allCatalog]
+      .filter((c) => (c.comfort_score ?? 0) >= 6.5 && c.variants_count > 0)
+      .sort((a, b) => calcIndex(b) - calcIndex(a))
+      .slice(0, 21);
+
+    if (topPool.length <= 3) return topPool;
+
+    // Saatlik deterministik rotasyon (her saat 3 yeni araç; aynı markayı yan yana getirmemeye özen gösterir)
+    const picked: SearchResult[] = [];
+    const usedBrands = new Set<string>();
+    const startOffset = (hourBucket * 3) % topPool.length;
+
+    for (let i = 0; i < topPool.length && picked.length < 3; i++) {
+      const candidate = topPool[(startOffset + i) % topPool.length];
+      if (!usedBrands.has(candidate.brand)) {
+        picked.push(candidate);
+        usedBrands.add(candidate.brand);
+      }
+    }
+
+    // Eğer marka çeşitliliği 3'e yetmezse havuzdan tamamla
+    for (let i = 0; i < topPool.length && picked.length < 3; i++) {
+      const candidate = topPool[(startOffset + i) % topPool.length];
+      if (!picked.some((p) => p.id === candidate.id)) {
+        picked.push(candidate);
+      }
+    }
+
+    return picked;
+  }, [allCatalog, hourBucket]);
 
   // "Bunu mu demek istediniz?" akıllı tahmin hesaplayıcı
   const didYouMeanSuggestions = useMemo(() => {
@@ -910,17 +956,30 @@ export default function Home() {
         </div>
       )}
 
-      {/* ANA GİRİŞ EKRANI VİTRİNİ: 1. Öne Çıkan / Güvenilir Araçlar (Ekranı 3'e Bölen En Yüksek Puanlı 3 Araba) */}
+      {/* ANA GİRİŞ EKRANI VİTRİNİ: 1. Öne Çıkan / Güvenilir Araçlar (Saatlik Performans · Puan / Fiyat Endeksi) */}
       <section style={{ marginTop: 12, marginBottom: 36 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 14, flexWrap: "wrap", gap: 8 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 8 }}>
           <div>
             <h2 style={{ fontSize: "1.4rem", fontWeight: 800, margin: 0, color: "var(--text)" }}>
               🏆 Öne Çıkan / Güvenilir Araçlar
             </h2>
             <p className="muted small" style={{ margin: "2px 0 0 0" }}>
-              Konfor, yalıtım ve uzun ömürlülük puanı en yüksek 3 model — motor ve kronik arıza analizi için araca tıklayın.
+              Performans, konfor puanı ve piyasa fiyatı oranına göre öne çıkan modeller — her saat başı güncellenir.
             </p>
           </div>
+          <span
+            style={{
+              fontSize: "0.76rem",
+              fontWeight: 700,
+              padding: "4px 10px",
+              borderRadius: 999,
+              background: "var(--accent-light)",
+              color: "var(--accent)",
+              border: "1px solid var(--border)",
+            }}
+          >
+            ⚡ Saatlik F/P & Puan Endeksi
+          </span>
         </div>
 
         <div className="featured-3-grid">
@@ -953,6 +1012,7 @@ export default function Home() {
                 <div className="muted small" style={{ marginTop: 4 }}>
                   {BODY_TYPE_LABEL[car.body_type] ?? car.body_type} · {car.year_start}–
                   {car.year_end ?? "devam"}
+                  {car.min_price_tl ? ` · ~${Math.round(car.min_price_tl).toLocaleString("tr-TR")} TL'den` : ""}
                 </div>
               </div>
 
