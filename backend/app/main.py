@@ -1,10 +1,13 @@
 import uuid
 import difflib
+import hmac
+import hashlib
+import time
 from pathlib import Path
 from urllib.parse import quote_plus
 from pydantic import BaseModel, Field
 
-from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi import Depends, FastAPI, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from sqlalchemy import select, desc, func
@@ -712,6 +715,252 @@ def variant_faults(variant_id: uuid.UUID, db: Session = Depends(get_db)):
             ],
         } for s in mods],
     }
+
+
+# ---------- ADMIN PANEL API (HMAC-SHA256 TOKEN KORUMALI) ----------
+class AdminLoginRequest(BaseModel):
+    password: str = Field(..., min_length=1)
+
+
+class AdminModelUpdate(BaseModel):
+    comfort_score: float | None = Field(default=None, ge=1.0, le=10.0)
+    year_end: int | None = None
+    is_active: bool | None = None
+
+
+class AdminVariantUpdate(BaseModel):
+    used_price_tl: float | None = Field(default=None, ge=0)
+    year_start: int | None = None
+    year_end: int | None = None
+    is_active: bool | None = None
+
+
+class AdminFaultCreate(BaseModel):
+    model_id: str
+    title: str = Field(..., min_length=3, max_length=255)
+    description: str = Field(..., min_length=5)
+    category: str = Field(default="mekanik")
+    avg_repair_cost_tl: float = Field(..., ge=0)
+    max_repair_cost_tl: float | None = Field(default=None, ge=0)
+    severity_override: str | None = Field(default=None)
+    occurrence_km_start: int | None = Field(default=None, ge=0)
+    occurrence_km_end: int | None = Field(default=None, ge=0)
+    checklist: list[str] = Field(default_factory=list)
+
+
+def _create_admin_token(ttl_seconds: int = 86400) -> str:
+    exp = int(time.time()) + ttl_seconds
+    payload = f"admin:{exp}"
+    sig = hmac.new(
+        settings.admin_secret.encode("utf-8"),
+        payload.encode("utf-8"),
+        hashlib.sha256,
+    ).hexdigest()
+    return f"{exp}.{sig}"
+
+
+def require_admin(authorization: str | None = Header(default=None)):
+    if not authorization or not authorization.startswith("Bearer "):
+        raise HTTPException(401, "Yönetici yetkisi gerekli")
+    token = authorization.split(" ", 1)[1].strip()
+    parts = token.split(".", 1)
+    if len(parts) != 2:
+        raise HTTPException(401, "Geçersiz oturum anahtarı")
+    exp_str, sig = parts
+    try:
+        exp = int(exp_str)
+    except ValueError:
+        raise HTTPException(401, "Geçersiz oturum anahtarı")
+    if exp < int(time.time()):
+        raise HTTPException(401, "Oturum süresi doldu, yeniden giriş yapın")
+    expected = hmac.new(
+        settings.admin_secret.encode("utf-8"),
+        f"admin:{exp}".encode("utf-8"),
+        hashlib.sha256,
+    ).hexdigest()
+    if not hmac.compare_digest(sig, expected):
+        raise HTTPException(401, "Geçersiz oturum imzası")
+    return True
+
+
+@app.post("/api/v1/admin/login")
+def admin_login(payload: AdminLoginRequest):
+    if not hmac.compare_digest(payload.password, settings.admin_password):
+        raise HTTPException(401, "Hatalı yönetici şifresi")
+    return {"token": _create_admin_token(), "expires_in": 86400}
+
+
+@app.get("/api/v1/admin/overview", dependencies=[Depends(require_admin)])
+def admin_overview(db: Session = Depends(get_db)):
+    brands_count = db.scalar(select(func.count(m.Brand.id))) or 0
+    models_count = db.scalar(select(func.count(m.CarModel.id))) or 0
+    variants_count = db.scalar(select(func.count(m.Variant.id))) or 0
+    faults_count = db.scalar(select(func.count(m.FaultReport.id))) or 0
+    comments_count = db.scalar(select(func.count(UserComment.id))) or 0
+
+    body_rows = db.execute(
+        select(m.CarModel.body_type, func.count(m.CarModel.id)).group_by(m.CarModel.body_type)
+    ).all()
+    fuel_rows = db.execute(
+        select(m.Engine.fuel_type, func.count(m.Variant.id))
+        .join(m.Variant, m.Variant.engine_id == m.Engine.id)
+        .group_by(m.Engine.fuel_type)
+    ).all()
+    recent_comments = db.scalars(
+        select(UserComment).order_by(desc(UserComment.created_at)).limit(25)
+    ).all()
+
+    return {
+        "counts": {
+            "brands": brands_count,
+            "models": models_count,
+            "variants": variants_count,
+            "faults": faults_count,
+            "comments": comments_count,
+        },
+        "body_types": {k: v for k, v in body_rows},
+        "fuel_types": {k: v for k, v in fuel_rows},
+        "recent_comments": [
+            {
+                "id": str(c.id),
+                "variant_id": str(c.variant_id),
+                "author_name": c.author_name,
+                "ownership_status": c.ownership_status,
+                "mileage_km": c.mileage_km,
+                "rating": c.rating,
+                "recommend": c.recommend,
+                "body": c.body,
+                "created_at": c.created_at.isoformat() if c.created_at else None,
+            }
+            for c in recent_comments
+        ],
+    }
+
+
+@app.get("/api/v1/admin/models", dependencies=[Depends(require_admin)])
+def admin_list_models(q: str | None = None, db: Session = Depends(get_db)):
+    stmt = (
+        select(m.CarModel)
+        .options(
+            joinedload(m.CarModel.brand),
+            joinedload(m.CarModel.variants).joinedload(m.Variant.engine),
+            joinedload(m.CarModel.variants).joinedload(m.Variant.transmission),
+        )
+    )
+    models = db.scalars(stmt).unique().all()
+    models.sort(key=lambda c: (_tr_sort_key(c.brand.name), _tr_sort_key(c.name)))
+    q_low = q.strip().lower() if q else None
+    out = []
+    for c in models:
+        full_name = f"{c.brand.name} {c.name}"
+        if q_low and q_low not in full_name.lower():
+            continue
+        out.append({
+            "id": str(c.id),
+            "brand": c.brand.name,
+            "name": c.name,
+            "body_type": c.body_type,
+            "year_start": c.year_start,
+            "year_end": c.year_end,
+            "comfort_score": c.comfort_score,
+            "is_active": c.is_active,
+            "variants": [
+                {
+                    "id": str(v.id),
+                    "engine_label": v.engine.label if v.engine else "",
+                    "fuel_type": v.engine.fuel_type if v.engine else "",
+                    "transmission_label": v.transmission.label if v.transmission else "",
+                    "year_start": v.year_start,
+                    "year_end": v.year_end,
+                    "used_price_tl": float(v.used_price_tl) if v.used_price_tl is not None else None,
+                    "is_active": v.is_active,
+                }
+                for v in c.variants
+            ],
+        })
+    return out
+
+
+@app.patch("/api/v1/admin/models/{model_id}", dependencies=[Depends(require_admin)])
+def admin_update_model(model_id: uuid.UUID, payload: AdminModelUpdate, db: Session = Depends(get_db)):
+    car = db.get(m.CarModel, model_id)
+    if not car:
+        raise HTTPException(404, "Model bulunamadı")
+    if payload.comfort_score is not None:
+        car.comfort_score = payload.comfort_score
+    if "year_end" in payload.model_fields_set:
+        car.year_end = payload.year_end
+    if payload.is_active is not None:
+        car.is_active = payload.is_active
+    db.commit()
+    return {"ok": True, "id": str(car.id), "comfort_score": car.comfort_score}
+
+
+@app.patch("/api/v1/admin/variants/{variant_id}", dependencies=[Depends(require_admin)])
+def admin_update_variant(variant_id: uuid.UUID, payload: AdminVariantUpdate, db: Session = Depends(get_db)):
+    v = db.get(m.Variant, variant_id)
+    if not v:
+        raise HTTPException(404, "Varyant bulunamadı")
+    if payload.used_price_tl is not None:
+        v.used_price_tl = payload.used_price_tl
+    if payload.year_start is not None:
+        v.year_start = payload.year_start
+    if "year_end" in payload.model_fields_set:
+        v.year_end = payload.year_end
+    if payload.is_active is not None:
+        v.is_active = payload.is_active
+    db.commit()
+    return {"ok": True, "id": str(v.id), "used_price_tl": float(v.used_price_tl) if v.used_price_tl else None}
+
+
+@app.post("/api/v1/admin/faults", dependencies=[Depends(require_admin)])
+def admin_create_fault(payload: AdminFaultCreate, db: Session = Depends(get_db)):
+    try:
+        mid = uuid.UUID(payload.model_id)
+    except ValueError:
+        raise HTTPException(400, "Geçersiz model_id")
+    car = db.get(m.CarModel, mid)
+    if not car:
+        raise HTTPException(404, "Model bulunamadı")
+    fault = m.FaultReport(
+        model_id=mid,
+        title=payload.title.strip(),
+        description=payload.description.strip(),
+        category=payload.category,
+        avg_repair_cost_tl=payload.avg_repair_cost_tl,
+        max_repair_cost_tl=payload.max_repair_cost_tl or payload.avg_repair_cost_tl * 1.5,
+        severity_override=payload.severity_override or None,
+        occurrence_km_start=payload.occurrence_km_start,
+        occurrence_km_end=payload.occurrence_km_end,
+        report_count=1,
+        sources=["admin:Yönetici Paneli"],
+        checklist=payload.checklist,
+        verified=True,
+    )
+    db.add(fault)
+    db.commit()
+    db.refresh(fault)
+    return {"ok": True, "id": str(fault.id), "title": fault.title}
+
+
+@app.delete("/api/v1/admin/faults/{fault_id}", dependencies=[Depends(require_admin)])
+def admin_delete_fault(fault_id: uuid.UUID, db: Session = Depends(get_db)):
+    fault = db.get(m.FaultReport, fault_id)
+    if not fault:
+        raise HTTPException(404, "Arıza kaydı bulunamadı")
+    db.delete(fault)
+    db.commit()
+    return {"ok": True}
+
+
+@app.delete("/api/v1/admin/comments/{comment_id}", dependencies=[Depends(require_admin)])
+def admin_delete_comment(comment_id: uuid.UUID, db: Session = Depends(get_db)):
+    comment = db.get(UserComment, comment_id)
+    if not comment:
+        raise HTTPException(404, "Yorum bulunamadı")
+    db.delete(comment)
+    db.commit()
+    return {"ok": True}
 
 
 # ---------- RENDER TEK SERVİS: STATİK FRONTEND SUNUMU ----------

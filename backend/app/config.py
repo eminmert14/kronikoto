@@ -6,6 +6,8 @@ class Settings(BaseSettings):
     # postgresql+psycopg://kronikoto:kronikoto@localhost:5432/kronikoto
     database_url: str = "sqlite:///./kronikoto.db"
     cors_origins: str = "http://localhost:3000,https://kronikoto.vercel.app,*"
+    admin_password: str = "259958Emin."
+    admin_secret: str = "kronikoto-admin-hmac-secret-2026"
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
